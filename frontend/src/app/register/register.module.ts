@@ -5,6 +5,8 @@ import { SignupComponent } from './signup/signup.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register.component';
 import { RegisterService } from '../services/register.service';
+import { ReactiveFormsModule , FormsModule } from '@angular/forms';
+
 
 // routes for register module
 const routes: Routes = [
@@ -20,6 +22,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     RouterModule.forChild(routes) // routes for register module
   ],
   providers: [RegisterService] // Inject RegisterService to register module

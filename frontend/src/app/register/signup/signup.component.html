@@ -1,1 +1,47 @@
-<p>signup works!</p>
+<div class="container-fluid d-flex vh-100 align-items-center justify-content-center">
+  <div class="col-md-4 mx-auto shadow">
+    <div class="card bg-white p-5">
+      <div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center">
+        {{errorMessage}}
+      </div>
+      <form class="w-75 m-auto py-5"  [formGroup]="registerForm" (ngSubmit)="getRegisterInfo(registerForm)">
+        <div class="form-group my-2">
+            <label>Name</label>
+            <input [class.is-valid]="registerForm.get('name')?.errors ==null && registerForm.get('name')?.touched"
+            formControlName='name' type="text" class="form-control">
+            <p *ngIf="registerForm.get('name')?.errors !=null && registerForm.get('name')?.touched"
+            class="py-2 text-danger">Name inValid</p>
+        </div>
+        <div class="form-group my-2">
+          <label>Email</label>
+          <input [class.is-valid]="registerForm.get('email')?.errors ==null && registerForm.get('email')?.touched"
+          formControlName='email' type="text" class="form-control">
+          <p *ngIf="registerForm.get('email')?.errors !=null && registerForm.get('email')?.touched"
+          class="py-2 text-danger">email inValid</p>
+        </div>
+        <div class="form-group my-2">
+            <label>Phone</label>
+            <input [class.is-valid]="registerForm.get('phone')?.errors ==null && registerForm.get('phone')?.touched"
+            formControlName='phone' type="text" class="form-control">
+            <p *ngIf="registerForm.get('phone')?.errors !=null && registerForm.get('phone')?.touched"
+            class="py-2 text-danger">phone inValid</p>
+        </div>
+        <div class="form-group my-2">
+          <label>role</label>
+          <input [class.is-valid]="registerForm.get('role')?.errors ==null && registerForm.get('role')?.touched"
+          formControlName='role' type="text" class="form-control">
+          <p *ngIf="registerForm.get('role')?.errors !=null && registerForm.get('role')?.touched"
+          class="py-2 text-danger">role inValid</p>
+        </div>
+        <div class="form-group my-2">
+            <label>Password</label>
+            <input [class.is-valid]="registerForm.get('password')?.errors ==null && registerForm.get('password')?.touched"
+            formControlName='password' type="password" class="form-control">
+            <p *ngIf="registerForm.get('password')?.errors !=null && registerForm.get('password')?.touched"
+            class="py-2 text-danger">password inValid min 8 carc</p>
+        </div>
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-danger text-white my-2">register</button>
+    </form>
+    </div>
+  </div>
+</div>
