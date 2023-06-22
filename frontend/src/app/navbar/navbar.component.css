@@ -1,9 +1,9 @@
 .navbar{
-  background-color: black;
+  background-color: var(--main-color);
 }
 .active{
-    border-bottom: 2px solid #14CF42;
-  }
+    border-bottom: 2px solid var(--neon-green);
+}
 
 a{
     cursor: pointer;
@@ -13,7 +13,7 @@ h1{
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
   font-size: 2rem;
-  color: #14CF42;
+  color: var(--neon-green);
 }
 
 span{
