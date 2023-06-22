@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\AuthController;
+use App\Models\Playground;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,4 +29,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('a','a');
 });
 
-// Route::get('test')
+
+Route::resource('playground', PlaygroundController::class);
+
