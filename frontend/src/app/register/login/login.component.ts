@@ -30,9 +30,16 @@ export class LoginComponent {
           this.flag = true;
           this.errorMessage = data;
         }
-        // console.log(data)
-
-      })
+      },
+      (error) => {
+        if (error.status === 401 && error.error.error === 'Unauthorized') {
+          this.errorMessage = 'invalid email or password';
+        } else {
+          this.errorMessage = 'An error occurred. Please try again later.';
+        }
+        this.flag = true;
+      }
+      )
     }else{
       this.flag = true;
     }
