@@ -37,8 +37,16 @@ export class SignupComponent implements OnInit{
         else {
           this.flag = true
         }
-
-      })
+      },
+      (error) => {
+        if (error.status === 400 && error.error.email[0] === 'The email has already been taken.') {
+          this.errorMessage = 'Email already exists. Please choose a different email.';
+        } else {
+          this.errorMessage = 'An error occurred. Please try again later.';
+        }
+        this.flag = true;
+      }
+      )
     } else{
       this.flag = true
     }
