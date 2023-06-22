@@ -7,6 +7,8 @@ const routes: Routes = [
       path: 'home',
       component: HomeComponent
     },
+    // lazy loading
+    { path:'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule)}
 
 ];
 
