@@ -22,9 +22,8 @@ export class LoginComponent {
   {
     if(loginForm.valid == true){
       this.registerService.login(loginForm.value).subscribe((data)=>{
-        if (data ) {
+        if (data) {
           console.log(data);
-
         }
         else{
           this.flag = true;
