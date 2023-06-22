@@ -17,4 +17,9 @@ export class RegisterService{
     return this.http.post(`${this.apiUrl}/register` , registerFormValue)
   }
 
+  login(registerFormValue:any):Observable<any>
+  {
+    return this.http.post(`${this.apiUrl}/login` , registerFormValue)
+  }
+
 }

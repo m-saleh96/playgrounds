@@ -31,7 +31,7 @@ export class SignupComponent implements OnInit{
   {
     if(registerForm.valid == true){
       this.registerService.signUp(registerForm.value).subscribe((data)=>{
-        if (data.message == 'success') {
+        if (data.message == 'User created successfully') {
           this.router.navigate(['/login'])
         }
         else {
