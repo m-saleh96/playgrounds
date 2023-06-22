@@ -3,6 +3,7 @@
 }
 .active{
     border-bottom: 2px solid var(--neon-green);
+    color: var(--green-color);
 }
 
 a{
@@ -12,7 +13,7 @@ a{
 h1{
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: var(--neon-green);
 }
 
@@ -31,6 +32,10 @@ sup{
   display: flex;
   align-items: center;
 }
+/*
+.btn{
+  background-color: var(--neon-green);
+} */
 
 /* font-family: 'Bangers', cursive;
 font-family: 'Bayon', sans-serif;
