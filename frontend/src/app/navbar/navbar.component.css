@@ -9,11 +9,15 @@ a{
     cursor: pointer;
 }
 h1{
-  font-family: 'Amatic SC', cursive;
-
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #14CF42;
 }
 span{
-  font-family: 'Petit Formal Script', cursive;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 100;
+  color: white;
 }
 
 sup{
@@ -25,3 +29,9 @@ sup{
   display: flex;
   align-items: center;
 }
+
+/* font-family: 'Bangers', cursive;
+font-family: 'Bayon', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Six Caps', sans-serif;
+font-family: 'Staatliches', cursive; */
