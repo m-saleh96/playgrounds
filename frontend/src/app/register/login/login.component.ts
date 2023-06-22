@@ -14,7 +14,11 @@ export class LoginComponent {
   errorMessage:any='';
   flag:boolean =false;
 
-  constructor(private registerService:RegisterService , private router:Router , private cookieService: CookieService){}
+  constructor(private registerService:RegisterService , private router:Router , private cookieService: CookieService){
+    if(JSON.parse(this.cookieService.get('userData') || '{}').user?.role){
+      this.router.navigate(['/home']);
+    }
+  }
 
   loginForm:FormGroup = new FormGroup({
     'email':new FormControl(null , [Validators.email , Validators.required]),
@@ -27,7 +31,7 @@ export class LoginComponent {
       this.registerService.login(loginForm.value).subscribe((data:any)=>{
         if (data) {
         this.cookieService.set('userData', JSON.stringify(data) , data.expires_in ,'Strict');
-        // this.router.navigate(['/home']);
+        window.location.reload();
         }
         else{
           this.flag = true;
@@ -47,4 +51,6 @@ export class LoginComponent {
       this.flag = true;
     }
   }
+
+
 }
