@@ -10,10 +10,12 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  userData!:any;
-  constructor(private registerService:RegisterService , private router:Router , private cookieService: CookieService){}
+
   errorMessage:any='';
   flag:boolean =false;
+
+  constructor(private registerService:RegisterService , private router:Router , private cookieService: CookieService){}
+
   loginForm:FormGroup = new FormGroup({
     'email':new FormControl(null , [Validators.email , Validators.required]),
     'password':new FormControl(null , [Validators.required])
@@ -24,11 +26,8 @@ export class LoginComponent {
     if(loginForm.valid == true){
       this.registerService.login(loginForm.value).subscribe((data:any)=>{
         if (data) {
-          console.log(data.expires_in);
         this.cookieService.set('userData', JSON.stringify(data) , data.expires_in ,'Strict');
-        this.userData = JSON.parse(this.cookieService.get('userData') || '{}');
-        console.log(this.userData);
-
+        // this.router.navigate(['/home']);
         }
         else{
           this.flag = true;
