@@ -9,18 +9,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class NavbarComponent implements OnInit{
   isLogin:boolean=false;
 
-  constructor (private cookieService: CookieService){
+  constructor (private cookieService: CookieService){ }
+
+  ngOnInit(): void {
     if(JSON.parse(this.cookieService.get('userData') || '{}').user?.role){
       this.isLogin = true;
     }
   }
 
-  ngOnInit(): void {
-
-  }
-
   logout(){
     this.cookieService.delete('userData');
-    this.isLogin=false;
+    window.location.reload();
   }
 }
