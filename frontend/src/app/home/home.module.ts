@@ -4,14 +4,13 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 
 
-
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class HomeModule { }
