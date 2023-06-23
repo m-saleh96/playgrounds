@@ -17,8 +17,9 @@ class PlaygroundController extends Controller
     public function index()
     {
         //
-        $playground = Playground::all();
-        return response()->json($playground, 200);
+        return "dd";
+        // $playground = Playground::all();
+        // return response()->json($playground, 200);
     }
 
     /**
