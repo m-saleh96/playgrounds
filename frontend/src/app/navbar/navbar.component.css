@@ -1,9 +1,10 @@
 .navbar{
-  background-color: black;
+  background-color: var(--main-color);
 }
 .active{
-    border-bottom: 2px solid #14CF42;
-  }
+    border-bottom: 2px solid var(--neon-green);
+    color: var(--green-color);
+}
 
 a{
     cursor: pointer;
@@ -12,8 +13,8 @@ a{
 h1{
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
-  font-size: 2rem;
-  color: #14CF42;
+  font-size: 1.7rem;
+  color: var(--neon-green);
 }
 
 span{
@@ -31,6 +32,10 @@ sup{
   display: flex;
   align-items: center;
 }
+/*
+.btn{
+  background-color: var(--neon-green);
+} */
 
 /* font-family: 'Bangers', cursive;
 font-family: 'Bayon', sans-serif;

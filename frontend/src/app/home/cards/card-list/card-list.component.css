@@ -7,13 +7,13 @@
   color: white;
 }
 .my-btn{
-  background-color: #14CF42;
+  background-color: var(--neon-green);
   color: black;
 }
 .my-btn:hover{
   cursor: pointer;
-  background-color: #0f9430;
-  box-shadow: 0px 0px 8px #0f9430;
+  background-color: var(--neon-green);
+  box-shadow: 0px 0px 8px var(--neon-darkgreen);
   color: rgb(0, 0, 0);
 }
 a{
