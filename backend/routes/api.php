@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
 use Illuminate\Http\Request;
@@ -31,4 +32,5 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::resource('playground', PlaygroundController::class);
+Route::resource('user', userController::class);
 

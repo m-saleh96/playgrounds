@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+  @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bayon&family=Orbitron:wght@400;700&family=Six+Caps&family=Staatliches&display=swap');
+
+
+
+:root{
+  --main-color: #000;
+  --dark-blue: #213245;
+  --green-color: #7DB905;
+  --neon-green: #14CF42;
+  --neon-darkgreen: #0f9430;
+  --dark-gray: #141313;
+  --light-gray: #1D1D1D;
+  --gray-color: #555555;
+}
