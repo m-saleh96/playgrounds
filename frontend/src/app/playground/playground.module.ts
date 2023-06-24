@@ -9,7 +9,7 @@ import { PlaygroundService } from '../services/playground.service';
 // routes for playground module
 const routes: Routes = [
   {path:'list', component: ListComponent },
-  {path:'details', component : DetailsComponent},
+  {path:'details/:id', component : DetailsComponent},
   {path:'card', component : CardComponent}
 
 ]

@@ -16,6 +16,10 @@ export class PlaygroundService {
     return this.http.get(`${this.apiUrl}/playground`)
   }
 
+  listById(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/playground/${id}`)
+  }
+
   create(registerFormValue: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/playground`, registerFormValue)
   }

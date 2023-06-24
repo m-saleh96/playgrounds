@@ -1,49 +1,53 @@
-<div class="container">
+<div class="container" *ngFor="let playground of playgrounds">
+    <div class="section">
+        <h1>{{playground.name}}</h1>
+        <p>{{playground.location}}</p>
 
-    <h1>playground-info works!(name)</h1>
-    <p>playground-info works!(location)</p>
+        <div class="row">
 
-    <div class="row">
+            <div class="col-8">
+                <img id="mainImg" [src]="'./../../../../../backend/public/images/'+playground?.image">
+                <!-- <img id="mainImg" [src]="'./../../../../../../../xampp/htdocs/playgrounds/backend/public/images/' +playground?.image"> -->
 
-        <div class="col-8">
-            <img id="mainImg" src="https://i.pinimg.com/236x/56/0a/c9/560ac9fc9b57c0f5f92c0fca87d541c0.jpg">
-        </div>
-        <div class="col-4">
-            <div class="row">
-                <img class="allImg" src="https://i.pinimg.com/236x/40/9a/68/409a686e164d461bb29cd1c4673a93c0.jpg">
             </div>
-            <div class="row">
-                <img class="allImg" src="https://i.pinimg.com/236x/7a/56/3d/7a563dc2145d91a175e63989ea8155b5.jpg">
-            </div>
-            <div class="row">
-                <img class="allImg" src="https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg">
-            </div>
+            <div class="col-4">
+                <div class="row">
+                    <img class="allImg" src='./../../../../../backend/public/images/1687616699.jpg'>
+                </div>
+                <div class="row">
+                    <img class="allImg" src="https://i.pinimg.com/236x/7a/56/3d/7a563dc2145d91a175e63989ea8155b5.jpg">
+                </div>
+                <div class="row">
+                    <img class="allImg" src="https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg">
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
+    <div class="section">
 
-<div class="container">
+        <h1>playground-Overview</h1>
+        <h4>location: {{playground.location}}</h4>
+        <h4>description: {{playground.description}}</h4>
+        <h4>price: {{playground.price}}</h4>
+        <h4>size: {{playground.size}}</h4>
+        <h4>type: {{playground.type}}</h4>
+        <h4>image: {{playground.image}}</h4>
 
-    <h1>playground-Overview</h1>
-    <h4>location:</h4>
-    <h4>description:</h4>
-    <h4>price:</h4>
-    <h4>size:</h4>
-    <h4>type:</h4>
-</div>
+    </div>
 
-<div class="container">
+    <div class="section">
 
-    <div class="container">
-        <div class="row">
-          <div class="col">
-            <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
-            <strong>name</strong>
-            <p>dsjjjjjffljdjksedf;lkef;lkdf;cmdknvfdsnv,k</p>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
+                    <strong>name</strong>
+                    <p>dsjjjjjffljdjksedf;lkef;lkdf;cmdknvfdsnv,k</p>
+                </div>
+                <div class="col">
+                    2 of 2
+                </div>
+            </div>
         </div>
-          <div class="col">
-            2 of 2
-          </div>
-</div>

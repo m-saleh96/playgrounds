@@ -1,12 +1,15 @@
 <p>list works!</p>
 <tbody>
-    <tr *ngFor="let user of playgrounds">
+    <tr *ngFor="let playground of playgrounds">
         <td></td>
-        <td>{{user.name| uppercase}}</td>
-        <td>{{user.price}}</td>
-        <td><img class="img-fluid" [src]="'http://localhost/cafeteria/backend/images/'+user.image" width="50px"></td>
-        <td>{{user.type}}</td>
-       
+        <td>{{playground.name| uppercase}}</td>
+        <td>{{playground.price}}</td>
+        <td><img class="img-fluid" [src]="'http://localhost/cafeteria/backend/images/'+playground.image" width="50px"></td>
+        <td>{{playground.type}}</td>
+        <td>{{playground.location}}</td>
+        <td>{{playground.size}}</td>
+        <td>{{playground.description}}</td>
+
 
     </tr>
 

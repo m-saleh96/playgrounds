@@ -1,0 +1,21 @@
+.main{
+  background-color: black;
+  padding-bottom: 100px;
+}
+.first-p{
+  font-size: 3.2rem;
+  color: white;
+}
+.my-btn{
+  background-color: var(--neon-green);
+  color: black;
+}
+.my-btn:hover{
+  cursor: pointer;
+  background-color: var(--neon-green);
+  box-shadow: 0px 0px 8px var(--neon-darkgreen);
+  color: rgb(0, 0, 0);
+}
+a{
+  z-index: 99999;
+}
