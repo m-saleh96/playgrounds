@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
+import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RegisterModule } from './register/register.module';
     HttpClientModule,
     HomeModule,
     RegisterModule,
+    PlaygroundsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
