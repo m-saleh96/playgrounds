@@ -1,0 +1,17 @@
+.carousel-caption{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+.btn{
+  background-color: var(--neon-green);
+}
+#myCarousel {
+  height: 90vh;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  height: 90vh; 
+}
