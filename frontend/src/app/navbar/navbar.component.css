@@ -1,19 +1,26 @@
 .navbar{
-  background-color: black;
+  background-color: var(--main-color);
 }
 .active{
-    border-bottom: 2px solid white;
-  }
+    border-bottom: 2px solid var(--neon-green);
+    color: var(--green-color);
+}
 
 a{
     cursor: pointer;
 }
-h1{
-  font-family: 'Amatic SC', cursive;
 
+h1{
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--neon-green);
 }
+
 span{
-  font-family: 'Petit Formal Script', cursive;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 100;
+  color: white;
 }
 
 sup{
@@ -25,3 +32,13 @@ sup{
   display: flex;
   align-items: center;
 }
+/*
+.btn{
+  background-color: var(--neon-green);
+} */
+
+/* font-family: 'Bangers', cursive;
+font-family: 'Bayon', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Six Caps', sans-serif;
+font-family: 'Staatliches', cursive; */

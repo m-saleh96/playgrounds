@@ -1,0 +1,9 @@
+aside{
+  border: 2px solid rgb(231, 231, 231);
+  border-radius: 10px;
+  min-height: 50vh;
+}
+
+button{
+  background-color: rgb(235, 235, 235);
+}
