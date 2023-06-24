@@ -1,1 +1,13 @@
 <p>list works!</p>
+<tbody>
+    <tr *ngFor="let user of playgrounds">
+        <td></td>
+        <td>{{user.name| uppercase}}</td>
+        <td>{{user.price}}</td>
+        <td><img class="img-fluid" [src]="'http://localhost/cafeteria/backend/images/'+user.image" width="50px"></td>
+        <td>{{user.type}}</td>
+       
+
+    </tr>
+
+</tbody>

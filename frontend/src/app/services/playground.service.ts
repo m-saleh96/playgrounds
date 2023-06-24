@@ -7,23 +7,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class PlaygroundService {
-// const part from api
-private apiUrl : string = environment.apiUrl
+  // const part from api
+  private apiUrl: string = environment.apiUrl
 
-constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-create(registerFormValue:any):Observable<any>
-{
-  return this.http.post(`${this.apiUrl}/playground` , registerFormValue)
-}
+  listAll(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/playground`)
+  }
 
-listAll():Observable<any>
-{
-  return this.http.get(`${this.apiUrl}/playground`)
-}
+  create(registerFormValue: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/playground`, registerFormValue)
+  }
 
-delete($id:any):Observable<any>
-{
-  return this.http.delete(`${this.apiUrl}/playground` , $id)
-}
+
+
+  delete($id: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/playground`, $id)
+  }
 }
