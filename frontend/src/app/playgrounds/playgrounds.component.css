@@ -5,6 +5,11 @@ aside{
   color: white;
   background-color: var(--main-color);
 }
+.btn:hover{
+  background-color: white;
+  color: black;
+  transition: 0.3s;
+}
 
 button{
   background-color: rgb(235, 235, 235);
