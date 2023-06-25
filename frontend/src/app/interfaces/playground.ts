@@ -6,5 +6,6 @@ export interface Playground {
     price:number,
     size:number,
     type:string,
-    userid:number
+    userid:number,
+    id:number
 }
