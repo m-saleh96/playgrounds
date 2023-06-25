@@ -11,4 +11,10 @@
   --dark-gray: #141313;
   --light-gray: #1D1D1D;
   --gray-color: #555555;
+  --dark-gray2: #2B2B2A;
+  --light-gary2: #313131;
+}
+
+html, body{
+  background-color: var(--main-color);
 }
