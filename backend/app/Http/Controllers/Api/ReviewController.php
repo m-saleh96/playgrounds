@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Validator;
+
 class ReviewController extends Controller
 {
     /**
@@ -16,8 +17,8 @@ class ReviewController extends Controller
     public function index()
     {
         //
-        $reviews=Review::all();
-        return response()->json($reviews,200);
+        $reviews = Review::all();
+        return response()->json($reviews, 200);
     }
 
     /**
@@ -29,18 +30,18 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
-        $validated = validator::make($request->all(),[
-            'user_id'=>'required|exists:users,id',
-            'playground_id'=>'required|exists:playgrounds,id',
-            'review'=>'required',
-            'rating'=>'required|integer|between:1,5',
+        $validated = validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+            'playground_id' => 'required|exists:playgrounds,id',
+            'review' => 'required',
+            'rating' => 'required|integer|between:1,5',
         ]);
-        if($validated->fails()){
-            return response()->json($validated->errors(),400);
+        if ($validated->fails()) {
+            return response()->json($validated->errors(), 400);
         }
 
-        $review=Review::create($request->all());
-        return response()->json($review,201);
+        $review = Review::create($request->all());
+        return response()->json($review, 201);
     }
 
     /**
@@ -52,11 +53,22 @@ class ReviewController extends Controller
     public function show($id)
     {
         //
-      $review=Review::where('playground_id',$id)->get();
-        if(is_null($review)){
-            return response()->json(["message"=>"Record not found"],404);
+
+        $review = Review::where('playground_id', $id)->with('user')->get();
+        if($review->isEmpty()){
+            return response()->json(["message" => "Record not found"], 404);
         }
-        return response()->json($review,200);
+     
+        $responseData = $review->map(function ($review) {
+            return [
+                'id' => $review->id,
+                'rating' => $review->rating,
+                'review' => $review->review,
+                'created_id' => $review->created_at,
+                'user_name' => $review->user->name,
+            ];
+        });
+        return response()->json($responseData, 200);
     }
 
     /**
@@ -69,22 +81,22 @@ class ReviewController extends Controller
     public function update(Request $request, $id)
     {
         //
-       
-    $review=Review::find($id);
-        if(is_null($review)){
-            return response()->json(["message"=>"Record not found"],404);
+
+        $review = Review::find($id);
+        if (is_null($review)) {
+            return response()->json(["message" => "Record not found"], 404);
         }
-        $validated = validator::make($request->all(),[
-            'user_id'=>'required|exists:users,id',
-            'playground_id'=>'required|exists:playgrounds,id',
-            'review'=>'required',
-            'rating'=>'required|integer|between:1,5',
+        $validated = validator::make($request->all(), [
+            'user_id' => 'required|exists:users,id',
+            'playground_id' => 'required|exists:playgrounds,id',
+            'review' => 'required',
+            'rating' => 'required|integer|between:1,5',
         ]);
-        if($validated->fails()){
-            return response()->json($validated->errors(),400);
+        if ($validated->fails()) {
+            return response()->json($validated->errors(), 400);
         }
         $review->update($request->all());
-        return response()->json($review,200);
+        return response()->json($review, 200);
     }
 
     /**
@@ -96,12 +108,12 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         //
-    $review=Review::find($id);
-        if(is_null($review)){
-            return response()->json(["message"=>"Record not found"],404);
+        $review = Review::find($id);
+        if (is_null($review)) {
+            return response()->json(["message" => "Record not found"], 404);
         }
         $review->delete();
-        return response()->json("deleted sucessfully",200);
+        return response()->json("deleted sucessfully", 200);
 
     }
 }
