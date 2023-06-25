@@ -8,12 +8,16 @@ import { environment } from 'src/environments/environment';
 })
 export class ReviewService {
 
- // const part from api
- private apiUrl: string = environment.apiUrl
+  // const part from api
+  private apiUrl: string = environment.apiUrl
 
- constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
- listAll(): Observable<any> {
-   return this.http.get(`${this.apiUrl}/reviews`)
- }
+  listAll(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/review`)
+  }
+
+  listById(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/review/${id}`)
+  }
 }

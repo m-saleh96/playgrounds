@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Playground } from 'src/app/interfaces/playground';
 import { Review } from 'src/app/interfaces/review';
 import { PlaygroundService } from 'src/app/services/playground.service';
+import { ReviewService } from 'src/app/services/review.service';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,7 @@ export class DetailsComponent {
   playgrounds !: Playground[];
   reviews !: Review[];
 
-  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private reviewService: ReviewService, private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -25,9 +26,12 @@ export class DetailsComponent {
 
     this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {
       this.playgrounds = [res]
-      console.log(this.playgrounds);
+      // console.log(this.playgrounds);
     });
-
+    this.reviewService.listById(this.playgroundId).subscribe((res: any) => {
+      this.reviews = res
+      console.log(this.reviews);
+    });
 
   }
 }
