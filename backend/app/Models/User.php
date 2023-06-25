@@ -65,4 +65,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function playgrounds()
+    {
+        return $this->hasMany(Playground::class);
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }
