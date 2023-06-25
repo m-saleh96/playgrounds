@@ -11,8 +11,8 @@
     <label>Description:</label>
     <textarea [(ngModel)]="playground.description" name="description" required></textarea>
   
-    <label>Image:</label>
-    <!-- <input type="file" (change)="playground.image=$event.target?.files[0]" name="image" required> -->
+    <!-- <label>Image:</label>
+    <input type="file" (change)="playground.image=$event.target?.files[0]" name="image" required> -->
   
     <label>Price:</label>
     <input type="number" [(ngModel)]="playground.price" name="price" required>
@@ -23,10 +23,10 @@
     <label>Type:</label>
     <input type="text" [(ngModel)]="playground.type" name="type" required>
   
-    <label>User:</label>
-    <select [(ngModel)]="playground.user" name="user" required>
+    <!-- <label>User:</label>
+    <select [(ngModel)]="playground.userid" name="user" required>
       <option *ngFor="let user of users" [value]="user">{{ user }}</option>
-    </select>
+    </select> -->
   
     <button type="submit">Submit</button>
   </form>
