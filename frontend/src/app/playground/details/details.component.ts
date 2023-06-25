@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Playground } from 'src/app/interfaces/playground';
+import { Review } from 'src/app/interfaces/review';
 import { PlaygroundService } from 'src/app/services/playground.service';
 
 @Component({
@@ -10,19 +11,23 @@ import { PlaygroundService } from 'src/app/services/playground.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  userId!: number;
+  playgroundId!: number;
 
-  playgrounds !:Playground[];
+  playgrounds !: Playground[];
+  reviews !: Review[];
 
-  constructor(private http: HttpClient , private playgroundService: PlaygroundService, private route: ActivatedRoute){}
+  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private route: ActivatedRoute) { }
 
 
   ngOnInit(): void {
-    this.userId = Number(this.route.snapshot.paramMap.get('id'))
-console.log(this.userId);
+    this.playgroundId = Number(this.route.snapshot.paramMap.get('id'))
+    console.log(this.playgroundId);
 
-    this.playgroundService.listById(this.userId).subscribe((res: any) =>{ this.playgrounds = [res]
-  console.log(this.playgrounds);
+    this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {
+      this.playgrounds = [res]
+      console.log(this.playgrounds);
     });
+
+
   }
 }

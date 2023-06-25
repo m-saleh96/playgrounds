@@ -6,12 +6,15 @@ import { DetailsComponent } from './details/details.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundService } from '../services/playground.service';
 import { AddComponent } from './add/add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // routes for playground module
 const routes: Routes = [
   {path:'list', component: ListComponent },
   {path:'details/:id', component : DetailsComponent},
-  {path:'card', component : CardComponent}
+  {path:'card', component : CardComponent},
+  {path:'add', component : AddComponent}
+
 
 ]
 @NgModule({
@@ -23,6 +26,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes) // routes for register module
 
   ],

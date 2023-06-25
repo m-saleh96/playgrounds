@@ -2,10 +2,10 @@ export interface Playground {
     name:string,
     location:string,
     description:string,
-    image:string,
-    price:number,
-    size:number,
+    image:any,
+    price:any,
+    size:any,
     type:string,
-    userid:number,
-    id:number
+    userid:any,
+    id:any
 }
