@@ -5,6 +5,7 @@ import { CardComponent } from './card/card.component';
 import { DetailsComponent } from './details/details.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundService } from '../services/playground.service';
+import { AddComponent } from './add/add.component';
 
 // routes for playground module
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   declarations: [
     ListComponent,
     CardComponent,
-    DetailsComponent
+    DetailsComponent,
+    AddComponent
   ],
   imports: [
     CommonModule,

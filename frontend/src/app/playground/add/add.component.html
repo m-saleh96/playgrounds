@@ -1,0 +1,33 @@
+<p>add works!</p>
+
+
+<form (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" [(ngModel)]="playground.name" name="name" required>
+  
+    <label>Location:</label>
+    <input type="text" [(ngModel)]="playground.location" name="location" required>
+  
+    <label>Description:</label>
+    <textarea [(ngModel)]="playground.description" name="description" required></textarea>
+  
+    <label>Image:</label>
+    <!-- <input type="file" (change)="playground.image=$event.target?.files[0]" name="image" required> -->
+  
+    <label>Price:</label>
+    <input type="number" [(ngModel)]="playground.price" name="price" required>
+  
+    <label>Size:</label>
+    <input type="text" [(ngModel)]="playground.size" name="size" required>
+  
+    <label>Type:</label>
+    <input type="text" [(ngModel)]="playground.type" name="type" required>
+  
+    <label>User:</label>
+    <select [(ngModel)]="playground.user" name="user" required>
+      <option *ngFor="let user of users" [value]="user">{{ user }}</option>
+    </select>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
