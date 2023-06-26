@@ -1,6 +1,6 @@
 .card{
-  background-color: var(--dark-gray);
-  color: white;
+  /* background-color: var(--dark-gray); */
+  background-color: white;
 }
 .card:hover{
   background-color: var(--main-color2);

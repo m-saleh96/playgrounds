@@ -3,8 +3,7 @@
 
 <div class="container" *ngFor="let playground of playgrounds">
     <div class="section">
-        <h2>{{playground.name}}</h2>
-        <p>{{playground.location}}</p>
+
 
         <div class="row">
 
@@ -28,10 +27,12 @@
     </div>
 
     <div class="section">
+      <h2>{{playground.name}}</h2>
+      <p>{{playground.location}}</p>
+      <h4>description: {{playground.description}}</h4>
 
         <h1>playground-Overview</h1>
         <h4>location: {{playground.location}}</h4>
-        <h4>description: {{playground.description}}</h4>
         <h4>price: {{playground.price}}</h4>
         <h4>size: {{playground.size}}</h4>
         <h4>type: {{playground.type}}</h4>
@@ -40,13 +41,13 @@
     </div>
 
 <div class="section">
-    <h1>playground-Reviews</h1>
+    <h1>Reviews</h1>
 
     <div class="row" *ngFor="let review of reviews">
         <div class="col-md-6 my-3">
             <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
             <strong>{{review.user_name}}</strong>
-            <span>{{review.created_id  | date:'mediumDate'}}</span> 
+            <span>{{review.created_id  | date:'mediumDate'}}</span>
             <h5>Review: {{review.review}}</h5>
             <b>Rating: {{review.rating}}       </b>
 
