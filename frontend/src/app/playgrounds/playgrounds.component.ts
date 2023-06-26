@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PlaygroundService } from '../services/playground.service';
 
 @Component({
   selector: 'app-playgrounds',
   templateUrl: './playgrounds.component.html',
   styleUrls: ['./playgrounds.component.css']
 })
-export class PlaygroundsComponent {
+export class PlaygroundsComponent implements OnInit{
+  playGrounds:any[]=[];
+
+  constructor (private playGroundService:PlaygroundService){}
+
+  ngOnInit(): void {
+    this.playGroundService.listAll().subscribe(data=>this.playGrounds = data)
+  }
 
   showTypeContent: boolean = true;
   showPriceContent: boolean = false;
