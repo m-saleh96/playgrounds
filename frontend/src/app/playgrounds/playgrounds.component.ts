@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaygroundService } from '../services/playground.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-playgrounds',
@@ -8,7 +9,8 @@ import { PlaygroundService } from '../services/playground.service';
 })
 export class PlaygroundsComponent implements OnInit{
   playGrounds:any[]=[];
-
+  startDate: string='';
+  tennis!: string;
   constructor (private playGroundService:PlaygroundService){}
 
   ngOnInit(): void {
@@ -30,5 +32,15 @@ export class PlaygroundsComponent implements OnInit{
     } else if (section === 'location') {
       this.showLocationContent = !this.showLocationContent;
     }
+  }
+
+
+
+  filter(){
+    if(this.tennis){
+      console.log('tennis');
+
+    }
+
   }
 }

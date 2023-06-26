@@ -23,7 +23,7 @@ import { PlaygroundsModule } from './playgrounds/playgrounds.module';
     HomeModule,
     RegisterModule,
     PlaygroundModule,
-    PlaygroundsModule
+    PlaygroundsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
