@@ -1,77 +1,79 @@
-<div class="main">
-  <div class="container">
-    <div class="row py-5">
-      <div class="col-md-3">
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-3">
 
-        <aside class="p-2">
-          <div class="mb-3">
-            <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
-            <div class="my-2 ms-3" [hidden]="!showTypeContent">
-              <div>
-                <input type="checkbox" name="tennis" id="tennis">
-                <label class="ms-1" for="tennis">tennis</label>
-              </div>
-              <div>
-                <input type="checkbox" name="paddle" id="paddle">
-                <label class="ms-1" for="paddle">paddle</label>
-              </div>
-              <div>
-                <input type="checkbox" name="football" id="football">
-                <label class="ms-1" for="football">football</label>
-              </div>
+      <aside class="p-2">
+        <div class="mb-3">
+          <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
+          <div class="my-2 ms-3" [hidden]="!showTypeContent">
+            <div>
+              <input type="checkbox" name="tennis" id="tennis" [(ngModel)]="tennis">
+              <label class="ms-1" for="tennis">tennis</label>
+            </div>
+            <div>
+              <input type="checkbox" name="paddle" id="paddle">
+              <label class="ms-1" for="paddle">paddle</label>
+            </div>
+            <div>
+              <input type="checkbox" name="football" id="football">
+              <label class="ms-1" for="football">football</label>
             </div>
           </div>
+        </div>
 
-          <div class="mb-3">
-            <button class="btn w-100 text-start" (click)="toggleContent('price')">Price</button>
-            <div class="my-2 ms-3" [hidden]="!showPriceContent">
-              <div>
-                <input type="checkbox" name="50" id="50">
-                <label class="ms-1" for="50">Below $50</label>
-              </div>
-              <div>
-                <input type="checkbox" name="100" id="100">
-                <label class="ms-1" for="100">From $50 to $99</label>
-              </div>
-              <div>
-                <input type="checkbox" name="200" id="200">
-                <label class="ms-1" for="200">From $100 to $200</label>
-              </div>
-              <div>
-                <input type="checkbox" name="200" id="200">
-                <label class="ms-1" for="200">Above $200</label>
-              </div>
+        <div class="mb-3">
+          <button class="btn w-100 text-start" (click)="toggleContent('price')">Price</button>
+          <div class="my-2 ms-3" [hidden]="!showPriceContent">
+            <div>
+              <input type="checkbox" name="50" id="50">
+              <label class="ms-1" for="50">Below $50</label>
+            </div>
+            <div>
+              <input type="checkbox" name="100" id="100">
+              <label class="ms-1" for="100">From $50 to $99</label>
+            </div>
+            <div>
+              <input type="checkbox" name="200" id="200">
+              <label class="ms-1" for="200">From $100 to $200</label>
+            </div>
+            <div>
+              <input type="checkbox" name="200" id="200">
+              <label class="ms-1" for="200">Above $200</label>
             </div>
           </div>
+        </div>
 
-          <div class="mb-3">
-            <button class="btn w-100 text-start" (click)="toggleContent('reviews')">Reviews</button>
-            <div class="my-2 ms-3" [hidden]="!showReviewsContent">
-              <div>
-                <input type="checkbox" name="tennis" id="tennis">
-                <label class="ms-1" for="tennis">tennis</label>
-              </div>
+        <div class="mb-3">
+          <button class="btn w-100 text-start" (click)="toggleContent('reviews')">Reviews</button>
+          <div class="my-2 ms-3" [hidden]="!showReviewsContent">
+            <div>
+              <input type="checkbox" name="tennis" id="tennis">
+              <label class="ms-1" for="tennis">tennis</label>
             </div>
           </div>
+        </div>
 
-          <div class="">
-            <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
-            <div class="my-2 ms-3" [hidden]="!showLocationContent">
-              <div>
-                <input type="checkbox" name="tennis" id="tennis">
-                <label class="ms-1" for="tennis">tennis</label>
-              </div>
+        <div class="mb-3">
+          <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
+          <div class="my-2 ms-3" [hidden]="!showLocationContent">
+            <div>
+              <input type="checkbox" name="tennis" id="tennis">
+              <label class="ms-1" for="tennis">tennis</label>
             </div>
           </div>
-        </aside>
+        </div>
+        <div>
+          <div class="btn btn-info" (click)="filter()">search</div>
+        </div>
+      </aside>
 
-      </div>
-      <div class="col-md-9">
-        <app-field></app-field>
+    </div>
+    <div class="col-md-9">
+      <div *ngFor="let playground of playGrounds">
+        <app-field [playground]="playground"></app-field>
       </div>
     </div>
   </div>
-
-
-
 </div>
+
+

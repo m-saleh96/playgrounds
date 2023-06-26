@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-field',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./field.component.css']
 })
 export class FieldComponent {
-
+@Input() playground!:any;
 }

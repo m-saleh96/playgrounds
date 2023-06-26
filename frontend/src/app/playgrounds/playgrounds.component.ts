@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PlaygroundService } from '../services/playground.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-playgrounds',
   templateUrl: './playgrounds.component.html',
   styleUrls: ['./playgrounds.component.css']
 })
-export class PlaygroundsComponent {
+export class PlaygroundsComponent implements OnInit{
+  playGrounds:any[]=[];
+  startDate: string='';
+  tennis!: string;
+  constructor (private playGroundService:PlaygroundService){}
+
+  ngOnInit(): void {
+    this.playGroundService.listAll().subscribe(data=>this.playGrounds = data)
+  }
 
   showTypeContent: boolean = true;
   showPriceContent: boolean = false;
@@ -22,5 +32,15 @@ export class PlaygroundsComponent {
     } else if (section === 'location') {
       this.showLocationContent = !this.showLocationContent;
     }
+  }
+
+
+
+  filter(){
+    if(this.tennis){
+      console.log('tennis');
+
+    }
+
   }
 }
