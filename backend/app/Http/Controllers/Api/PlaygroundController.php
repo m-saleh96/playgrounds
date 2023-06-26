@@ -77,6 +77,11 @@ class PlaygroundController extends Controller
     {
         //
         $playground = Playground::find($id);
+        if(!$playground){
+            return response()->json([
+                'message' => 'Record not found',
+            ], 404);
+        }
         return response()->json($playground, 200);
     }
 
@@ -143,5 +148,33 @@ class PlaygroundController extends Controller
         return response()->json([
             'message' => 'Playground deleted'
         ], 200);
+    }
+
+    public function search(Request $request)
+    {
+        
+        $playground = Playground::query();
+
+        // if($request->has('type')){
+        //     $playground->where('type', $request->type);
+        // }
+        if($request->input('type')){
+            $playground->where('type', $request->input('type'));
+        }
+
+        if($request->input('location')){
+            $playground->where('location', $request->input('location'));
+        }
+
+        if($request->input('price_from') && $request->input('price_to')){
+            $playground->whereBetween('price', [$request->input('price_from'), $request->input('price_to')]);
+        }
+        if($request->input('price_below')){
+            $playground->where('price', '<', $request->input('price_below'));
+        }
+        if($request->input('price_above')){
+            $playground->where('price', '>', $request->input('price_above'));
+        }
+        return response()->json($playground->get(), 200);
     }
 }

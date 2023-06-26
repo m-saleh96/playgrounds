@@ -31,7 +31,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('a','a');
 });
 
-
+Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('playground', PlaygroundController::class);
 Route::resource('user', userController::class);
 
