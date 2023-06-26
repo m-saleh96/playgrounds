@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
 use Illuminate\Http\Request;
@@ -29,6 +31,12 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('a','a');
 });
 
-
+Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('playground', PlaygroundController::class);
+Route::resource('user', userController::class);
 
+
+Route::middleware('auth:api')->group(function () {
+    Route::resource('review', ReviewController::class)->except(['index', 'show']);
+});
+Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
