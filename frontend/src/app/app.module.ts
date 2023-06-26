@@ -6,12 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
+import { PlaygroundComponent } from './playground/playground.component';
+import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    PlaygroundComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +22,7 @@ import { PlaygroundsModule } from './playgrounds/playgrounds.module';
     HttpClientModule,
     HomeModule,
     RegisterModule,
+    PlaygroundModule,
     PlaygroundsModule
   ],
   providers: [],

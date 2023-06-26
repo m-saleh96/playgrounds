@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Playground } from 'src/app/interfaces/playground';
 
 @Component({
   selector: 'app-card',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
+  @Input() playground !: Playground
 
+  constructor(private router:Router){}
+
+redirectToDetails(id: number){
+    // console.log(id);
+    this.router.navigate(['playground/details/',id])
+  }
 }

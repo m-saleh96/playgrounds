@@ -3,8 +3,8 @@
   <p class="text-center text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-3 my-3">
-        <app-card></app-card>
+      <div class="col-md-3 my-3"  *ngFor="let playground of playgrounds">
+        <app-card  [playground]="playground"></app-card>
       </div>
       <!-- <div class="col-4 d-flex justify-content-center align-items-center mt-5">
         <a class="btn px-3 my-btn">View All</a>

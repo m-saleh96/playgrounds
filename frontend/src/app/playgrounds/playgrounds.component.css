@@ -1,19 +1,13 @@
 aside{
   border: 2px solid rgb(231, 231, 231);
   border-radius: 10px;
-
-  color: white;
-  background-color: var(--main-color);
 }
 .btn:hover{
-  background-color: white;
+  background-color: #EBEBEB;
   color: black;
   transition: 0.3s;
 }
 
 button{
   background-color: rgb(235, 235, 235);
-}
-.main{
-  background-color: black;
 }

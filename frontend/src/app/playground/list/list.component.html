@@ -1,0 +1,15 @@
+<p>list works!</p>
+<tbody>
+    <div *ngFor="let playground of playgrounds">
+        <span>{{playground.name| uppercase}}</span>
+        <span>{{playground.price}}</span>
+       <img class="img-fluid" [src]="'http://localhost/cafeteria/backend/images/'+playground.image" width="50px">
+        <span>{{playground.type}}</span>
+        <span>{{playground.location}}</span>
+        <span>{{playground.size}}</span>
+        <span>{{playground.description}}</span>
+
+
+    </div>
+
+</tbody>

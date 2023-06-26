@@ -14,7 +14,3 @@
   --dark-gray2: #2B2B2A;
   --light-gary2: #313131;
 }
-
-html, body{
-  background-color: var(--main-color);
-}

@@ -1,0 +1,57 @@
+
+<a class="btn px-2" (click)="addplayground()"> add playground</a>
+
+<div class="container" *ngFor="let playground of playgrounds">
+    <div class="section">
+        <h2>{{playground.name}}</h2>
+        <p>{{playground.location}}</p>
+
+        <div class="row">
+
+            <div class="col-8">
+                <img id="mainImg" [src]="'http://localhost:8000/api/images/'+playground?.image">
+
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <img class="allImg" src='https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg'>
+                </div>
+                <div class="row">
+                    <img class="allImg" src="https://i.pinimg.com/236x/7a/56/3d/7a563dc2145d91a175e63989ea8155b5.jpg">
+                </div>
+                <div class="row">
+                    <img class="allImg" src="https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+
+        <h1>playground-Overview</h1>
+        <h4>location: {{playground.location}}</h4>
+        <h4>description: {{playground.description}}</h4>
+        <h4>price: {{playground.price}}</h4>
+        <h4>size: {{playground.size}}</h4>
+        <h4>type: {{playground.type}}</h4>
+        <h4>image: {{playground.image}}</h4>
+
+    </div>
+
+<div class="section">
+    <h1>playground-Reviews</h1>
+
+    <div class="row" *ngFor="let review of reviews">
+        <div class="col-md-6 my-3">
+            <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
+            <strong>{{review.user_name}}</strong>
+            <span>{{review.created_id  | date:'mediumDate'}}</span> 
+            <h5>Review: {{review.review}}</h5>
+            <b>Rating: {{review.rating}}       </b>
+
+        </div>
+
+    </div>
+</div>
+</div>
