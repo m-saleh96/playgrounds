@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Playground } from 'src/app/interfaces/playground';
 import { Review } from 'src/app/interfaces/review';
 import { PlaygroundService } from 'src/app/services/playground.service';
@@ -17,7 +17,7 @@ export class DetailsComponent {
   playgrounds !: Playground[];
   reviews !: Review[];
 
-  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private reviewService: ReviewService, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private reviewService: ReviewService, private route: ActivatedRoute, private router:Router) { }
 
 
   ngOnInit(): void {
@@ -32,6 +32,12 @@ export class DetailsComponent {
       this.reviews = res
       console.log(this.reviews);
     });
+
+  }
+
+  addplayground(){
+    this.router.navigate(['playground/add/'])
+
 
   }
 }

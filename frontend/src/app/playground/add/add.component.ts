@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Playground } from 'src/app/interfaces/playground';
 import { Signup } from 'src/app/interfaces/signup';
 import { PlaygroundService } from 'src/app/services/playground.service';
@@ -15,16 +16,8 @@ export class AddComponent {
   oldPic!:any;
 
   playground: Playground = {} as Playground;
-  // playground !: Playground[];
 
-  constructor(private http: HttpClient , private playgroundService: PlaygroundService, private registerService :RegisterService){}
-
-
-  ngOnInit() {
-    // this.http.get('/api/users').subscribe((data: any) => {
-    //   this.users = data;
-   // });
-  }
+  constructor(private http: HttpClient , private router:Router, private playgroundService: PlaygroundService, private registerService :RegisterService){}
 
   selectedFile: File | null = null;
   onFileSelected(event: any) {
@@ -53,22 +46,6 @@ export class AddComponent {
       formData.append('type', this.addPlayground.get('type')!.value);
       formData.append('location', this.addPlayground.get('location')!.value);
       formData.append('user_id', this.addPlayground.get('user_id')!.value);
-     
-
-
-
-
-    // formData.append('location', this.playground.location);
-    // formData.append('description', this.playground.description);
-    // if (this.playground.image) {
-    //   formData.append('image', this.playground.image,this.playground.image.name);
-    // }
-    // formData.append('price', this.playground.price);
-    // formData.append('size', this.playground.size);
-    // formData.append('type', this.playground.type);
-    // formData.append('userid', this.playground.userid);
-
-    // formData.append('userName', this.playground.userName);
 
     this.playgroundService.create(formData).subscribe(
       (data: any) => {
@@ -79,5 +56,6 @@ export class AddComponent {
       }
     );
   }
+  this.router.navigate(['home/'])
 }
 }
