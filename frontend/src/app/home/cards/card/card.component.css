@@ -1,9 +1,9 @@
 .card{
-  background-color: var(--main-color2);
+  background-color: var(--dark-gray);
   color: white;
 }
 .card:hover{
-  background-color: #0e0e0e;
+  background-color: var(--main-color2);
   transition: 0.3s;
 }
 .btn{
@@ -18,3 +18,23 @@
 img{
   cursor: pointer;
 }
+.card {
+  overflow: hidden;
+}
+
+.card img {
+  transition: transform 0.3s ease-in-out;
+}
+.card img:hover {
+  transform: scale(1.1);
+}
+
+
+/* a{
+  color: var(--neon-green);
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover{
+  text-decoration: underline;
+} */
