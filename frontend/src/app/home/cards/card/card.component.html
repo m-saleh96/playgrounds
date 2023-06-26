@@ -3,12 +3,12 @@
   <img [src]="'http://127.0.0.1:8000/api/backend/images/'+playground.image" class="card-img-top" alt="...">
   <div class="card-body d-flex flex-row justify-content-between">
     <div class="col-8">
-      <h4 class="card-title text-white">{{playground.type}}</h4>
-      <p class="card-text text-white">{{playground.name}}</p>
-      <p class="card-text text-white">{{playground.size}}</p>
+      <h4 class="card-title">{{playground.type}}</h4>
+      <p class="card-text">{{playground.name}}</p>
+      <p class="card-text">{{playground.size}}</p>
     </div>
     <div class="col-4 d-flex justify-content-end align-items-end">
-      <a class="btn px-2" (click)="redirectToDetails(playground.id)"> More details</a>
+      <a class="btn px-2" (click)="redirectToDetails(playground.id)">more details</a>
     </div>
   </div>
 </div>

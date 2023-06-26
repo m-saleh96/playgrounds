@@ -1,12 +1,13 @@
 .card{
-  background-color: #111111;
+  background-color: var(--main-color2);
+  color: white;
 }
 .card:hover{
   background-color: #0e0e0e;
   transition: 0.3s;
 }
 .btn{
-  background-color: #14CF42;
+  background-color: var(--neon-green);
   color: black;
   font-weight: bold;
 }
