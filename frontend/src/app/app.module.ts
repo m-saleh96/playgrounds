@@ -10,6 +10,7 @@ import { PlaygroundComponent } from './playground/playground.component';
 import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     NavbarComponent,
     PlaygroundComponent,
     DashboardComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
