@@ -2,8 +2,7 @@
 
 <div class="container" *ngFor="let playground of playgrounds">
     <div class="section">
-        <h2>{{playground.name}}</h2>
-        <p>{{playground.location}}</p>
+
 
         <div class="row">
 
@@ -27,16 +26,19 @@
     </div>
 
     <div class="section">
+      <h2>{{playground.name}}</h2>
+      <p>{{playground.location}}</p>
+      <h4>description: {{playground.description}}</h4>
 
         <h1>playground-Overview</h1>
         <h4>location: {{playground.location}}</h4>
-        <h4>description: {{playground.description}}</h4>
         <h4>price: {{playground.price}}</h4>
         <h4>size: {{playground.size}}</h4>
         <h4>type: {{playground.type}}</h4>
         <h4>image: {{playground.image}}</h4>
 
     </div>
+
 
     <div class="section">
         <h1>playground-Reviews</h1>
@@ -48,7 +50,6 @@
                         [(ngModel)]="review" name="review"><br>
                     <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
                             [(ngModel)]="rating" name="rating">
-
                     </div>
                     <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postReview()"> ADD
                         </button></div>
@@ -57,7 +58,7 @@
         </div>
 
     </div>
-   
+
         <a class="btn px-2" (click)="checklogin()"> add Review</a>
 
         <div class="row" *ngFor="let review of reviews">

@@ -1,13 +1,19 @@
 .navbar{
-  background-color: var(--main-color);
+  background-color: var(--main-color2);
 }
-.active{
-    border-bottom: 2px solid var(--neon-green);
-    color: var(--green-color);
+li a{
+  color: white;
 }
-
 a{
     cursor: pointer;
+}
+li a:hover{
+  color: var(--neon-green);
+}
+
+.nav-link.active {
+  color: var(--neon-green) !important;
+  text-shadow: 0px 0px 10px var(--neon-green);
 }
 
 h1{
