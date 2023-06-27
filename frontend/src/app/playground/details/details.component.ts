@@ -49,9 +49,9 @@ export class DetailsComponent {
 
 
   checklogin(){
-      if(JSON.parse(this.cookieService.get('userData') || '{}').user?.id >1){
-        // this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
-          console.log(JSON.parse(this.cookieService.get('userData') || '{}').access_token);
+      if(JSON.parse(this.cookieService.get('userData') || '{}').user?.id >=1){
+        this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
+          // console.log(JSON.parse(this.cookieService.get('userData') || '{}').access_token);
 
         this.toDisplay=true
         this.isLogin = true;
@@ -59,32 +59,29 @@ export class DetailsComponent {
            this.toDisplay=false
            alert("please login")
            this.router.navigate(['login/'])
-
-      // this.errorMessage = 'please login first';
+          // this.errorMessage = 'please login first';
     }
   }
 
 
-  postReview(){
-    
-    const data: { review: string, rating: number, user_id: number, playground_id:number } = {
-      review:String( this.review),
-      rating:Number( this.rating),
-      user_id: this.user_id,
-      playground_id:this.playgroundId
-    };
-    const token ="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjg3ODQyMTEyLCJleHAiOjE2ODc4NDU3MTIsIm5iZiI6MTY4Nzg0MjExMiwianRpIjoiTzdOQjBBU0pteTYxbGM0bCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.RSxThg0G-U0G1ojn-rZkKAYThU1yVNH6YlBCirrJB2E"
+postReview(){
+      const data: { review: string, rating: number, user_id: number, playground_id:number } = {
+           review:String( this.review),
+           rating:Number( this.rating),
+           user_id: this.user_id,
+           playground_id:this.playgroundId
+         };
 
-console.log(data);
+      const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-this.reviewService.create(data, token).subscribe(
-  (response) => {
-    console.log('Response: ', response);
-  },
-  (error) => {
-    console.log('Error: ', error);
-  }
-);
+      console.log(data);
+
+      this.reviewService.create(data, token).subscribe(
+            (response) => {console.log('Response: ', response);},
+            (error) => {console.log('Error: ', error);}
+          )
+
+      // window.location.reload();
 
   }
   
