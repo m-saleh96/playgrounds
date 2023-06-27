@@ -24,9 +24,8 @@ export class PlaygroundService {
     return this.http.post(`${this.apiUrl}/playground`, registerFormValue)
   }
 
-
-
   delete($id: any): Observable<any> {
     return this.http.delete(`${this.apiUrl}/playground`, $id)
   }
+
 }
