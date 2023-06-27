@@ -1,5 +1,5 @@
-import { Component ,EventEmitter,Output , ViewChild , ElementRef, OnInit } from '@angular/core';
-import { PlaygroundService } from 'src/app/services/playground.service';
+import { Component ,EventEmitter,Output , OnInit } from '@angular/core';
+import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.service';
 
 @Component({
   selector: 'app-aside',
@@ -12,10 +12,10 @@ export class AsideComponent implements OnInit{
 
   playGrounds:any[]=[];
 
-  constructor(private playGroundService:PlaygroundService){}
+  constructor(private filterService:FilterPlayGroundsService){}
 
   ngOnInit(): void {
-    this.playGroundService.filter().subscribe(data=>{
+    this.filterService.filter().subscribe(data=>{
       this.playGrounds = data;
       this.emitFromChild.emit(this.playGrounds);
     })
@@ -49,17 +49,17 @@ export class AsideComponent implements OnInit{
   mansoura!:boolean;
 
   filter(){
-    this.playGroundService.tennis = this.tennis;
-    this.playGroundService.paddle = this.paddle;
-    this.playGroundService.football = this.football;
-    this.playGroundService.p50 = this.p50;
-    this.playGroundService.p100 = this.p100;
-    this.playGroundService.p200 = this.p200;
-    this.playGroundService.p201 = this.p201;
-    this.playGroundService.cairo = this.cairo;
-    this.playGroundService.mansoura = this.mansoura;
+    this.filterService.tennis = this.tennis;
+    this.filterService.paddle = this.paddle;
+    this.filterService.football = this.football;
+    this.filterService.p50 = this.p50;
+    this.filterService.p100 = this.p100;
+    this.filterService.p200 = this.p200;
+    this.filterService.p201 = this.p201;
+    this.filterService.cairo = this.cairo;
+    this.filterService.mansoura = this.mansoura;
 
-    this.playGroundService.filter().subscribe(data=>{
+    this.filterService.filter().subscribe(data=>{
       this.playGrounds = data
       this.emitFromChild.emit(this.playGrounds);
     })
