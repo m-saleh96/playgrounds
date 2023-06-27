@@ -41,20 +41,19 @@
 
     <div *ngIf="toDisplay">
 
-            <div class="form-group">
-                <div class="row">
-                    <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
-                            [(ngModel)]="review" name="review"><br>
-                        <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
-                                [(ngModel)]="rating" name="rating">
+        <div class="form-group">
+            <div class="row">
+                <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
+                        [(ngModel)]="review" name="review"><br>
+                    <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
+                            [(ngModel)]="rating" name="rating">
 
-                        </div>
-                        <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postReview()"> ADD
-                            </button></div>
-                        <!-- <div *ngIf="!toDisplay" class="alert alert-danger w-50 m-auto">{{errorMessage}}</div> -->
                     </div>
+                    <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postReview()"> ADD
+                        </button></div>
                 </div>
-                </div>
+            </div>
+        </div>
 
     </div>
     <div class="section">

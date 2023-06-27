@@ -32,22 +32,23 @@ export class DetailsComponent {
 
 
   ngOnInit(): void {
+    //get playground id from parameters
     this.playgroundId = Number(this.route.snapshot.paramMap.get('id'))
-    console.log(this.playgroundId);
 
+    //get playground details and save it in interface to display it on loading page
     this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {this.playgrounds = [res]});
 
+    //get reviews  and save it in interface to display it on loading page
     this.reviewService.listById(this.playgroundId).subscribe((res: any) => {this.reviews = res});
 
   }
 
+  // Go to adding playground page
   addplayground(){
     this.router.navigate(['playground/add/'])
    }
 
-
-
-
+// Open small form to add review (if you are login) if not go to login page
   checklogin(){
       if(JSON.parse(this.cookieService.get('userData') || '{}').user?.id >=1){
         this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
@@ -59,11 +60,10 @@ export class DetailsComponent {
            this.toDisplay=false
            alert("please login")
            this.router.navigate(['login/'])
-          // this.errorMessage = 'please login first';
     }
   }
 
-
+// on click add it will save all information in DB and display it as review
 postReview(){
       const data: { review: string, rating: number, user_id: number, playground_id:number } = {
            review:String( this.review),
@@ -77,9 +77,11 @@ postReview(){
       console.log(data);
 
       this.reviewService.create(data, token).subscribe(
-            (response) => {console.log('Response: ', response);},
+            (response) => {console.log('Response: ', response);setTimeout(() => {location.reload();}, 1); // Reload page after 2 seconds
+          },
             (error) => {console.log('Error: ', error);}
           )
+          this.toDisplay=false
 
       // window.location.reload();
 
