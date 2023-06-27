@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 export class PlaygroundsComponent implements OnInit{
   playGrounds:any[]=[];
   startDate: string='';
-  tennis!: string;
   constructor (private playGroundService:PlaygroundService){}
 
   ngOnInit(): void {
@@ -35,12 +34,33 @@ export class PlaygroundsComponent implements OnInit{
   }
 
 
+  tennis!: boolean;
+  paddle!:boolean;
+  football!:boolean;
+  p50!:boolean;
+  p100!:boolean;
+  p200!:boolean;
+  p201!:boolean;
+  cairo!:boolean;
+  mansoura!:boolean;
 
   filter(){
-    if(this.tennis){
-      console.log('tennis');
+    this.playGroundService.tennis = this.tennis;
+    this.playGroundService.paddle = this.paddle;
+    this.playGroundService.football = this.football;
+    this.playGroundService.p50 = this.p50;
+    this.playGroundService.p100 = this.p100;
+    this.playGroundService.p200 = this.p200;
+    this.playGroundService.p201 = this.p201;
+    this.playGroundService.cairo = this.cairo;
+    this.playGroundService.mansoura = this.mansoura;
 
-    }
+
+    this.playGroundService.filter().subscribe(data=>{
+      this.playGrounds = data
+      console.log(data);
+
+    })
 
   }
 }
