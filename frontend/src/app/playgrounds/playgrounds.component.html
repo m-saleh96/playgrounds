@@ -7,7 +7,7 @@
           <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
           <div class="my-2 ms-3" [hidden]="!showTypeContent">
             <div>
-              <input type="checkbox" name="tennis" id="tennis">
+              <input type="checkbox" name="tennis" id="tennis" [(ngModel)]="tennis">
               <label class="ms-1" for="tennis">tennis</label>
             </div>
             <div>
@@ -62,11 +62,16 @@
             </div>
           </div>
         </div>
+        <div>
+          <div class="btn btn-info" (click)="filter()">search</div>
+        </div>
       </aside>
 
     </div>
     <div class="col-md-9">
-      <app-field></app-field>
+      <div *ngFor="let playground of playGrounds">
+        <app-field [playground]="playground"></app-field>
+      </div>
     </div>
   </div>
 </div>

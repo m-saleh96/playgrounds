@@ -9,8 +9,8 @@
         <div class="row">
 
             <div class="col-8">
-                <!-- <img id="mainImg" [src]="'http://localhost:8000/api/assets/images/'+playground?.image"> -->
-                <img id="mainImg" [src]="'../../../assets/images/card1.jpg'">
+                <img id="mainImg" [src]="'http://localhost:8000/images/'+playground?.image">
+
             </div>
             <div class="col-4">
                 <div class="row">
@@ -62,7 +62,7 @@
         <div class="col-md-6 my-3">
             <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
             <strong>{{review.user_name}}</strong>
-            <span>{{review.created_id  | date:'mediumDate'}}</span> 
+            <span>{{review.created_id  | date:'mediumDate'}}</span>
             <h5>Review: {{review.review}}</h5>
             <b>Rating: {{review.rating}}       </b>
 

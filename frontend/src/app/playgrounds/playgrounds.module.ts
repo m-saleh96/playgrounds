@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FieldComponent } from './field/field.component';
 import { PlaygroundsComponent } from './playgrounds.component';
 import { FieldDetailsComponent } from './field-details/field-details.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,8 @@ import { FieldDetailsComponent } from './field-details/field-details.component';
     FieldDetailsComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class PlaygroundsModule { }

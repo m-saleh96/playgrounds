@@ -28,7 +28,7 @@
         <p *ngIf="addPlayground.get('price')?.errors !=null && addPlayground.get('price')?.touched"
         class="py-2 text-danger">inValid</p>
     </div>
-    
+
     <div class="form-group my-2">
         <label>Size</label>
         <input [class.is-valid]="addPlayground.get('size')?.errors ==null && addPlayground.get('size')?.touched"
@@ -58,6 +58,6 @@
         <p *ngIf="addPlayground.get('user_id')?.errors !=null && addPlayground.get('user_id')?.touched"
         class="py-2 text-danger">inValid</p>
     </div>
-   
+  
     <button type="submit" class="btn btn-primary" >Submit</button>
 </form>
