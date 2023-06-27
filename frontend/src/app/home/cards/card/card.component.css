@@ -3,7 +3,7 @@
   background-color: white;
 }
 .card:hover{
-  background-color: var(--main-color2);
+  /* background-color: var(--main-color); */
   transition: 0.3s;
 }
 .btn{
