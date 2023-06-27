@@ -1,4 +1,3 @@
-
 <a class="btn px-2" (click)="addplayground()"> add playground</a>
 
 <div class="container" *ngFor="let playground of playgrounds">
@@ -41,33 +40,37 @@
 
 
     <div *ngIf="toDisplay">
-        <div class="form-group"> 
-          <div class="row" >
-            <div class="col md-9">    <input type="text" class="form-control" placeholder="add review" [(ngModel)]="review" name="todoInput" >
-                <div class="col md-9">    <input type="number" class="form-control" placeholder="add rating" [(ngModel)]="rating" name="todoInput" >
 
-            </div>
-            <!-- <div class="col md-3">    <button type="submit" class="btn btn-info"  (click)="addEdit()" >  ADD  </button> -->
-            </div>
-            <!-- <div *ngIf="!toDisplay" class="alert alert-danger w-50 m-auto">{{errorMessage}}</div> -->
-        </div>
-      </div>
-      </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
+                            [(ngModel)]="review" name="review"><br>
+                        <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
+                                [(ngModel)]="rating" name="rating">
 
-<div class="section">
-    <h1>playground-Reviews</h1>
-    <a class="btn px-2" (click)="addReview()"> add Review</a>
-
-    <div class="row" *ngFor="let review of reviews">
-        <div class="col-md-6 my-3">
-            <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
-            <strong>{{review.user_name}}</strong>
-            <span>{{review.created_id  | date:'mediumDate'}}</span>
-            <h5>Review: {{review.review}}</h5>
-            <b>Rating: {{review.rating}}       </b>
-
-        </div>
+                        </div>
+                        <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postReview()"> ADD
+                            </button></div>
+                        <!-- <div *ngIf="!toDisplay" class="alert alert-danger w-50 m-auto">{{errorMessage}}</div> -->
+                    </div>
+                </div>
+                </div>
 
     </div>
-</div>
+    <div class="section">
+        <h1>playground-Reviews</h1>
+        <a class="btn px-2" (click)="checklogin()"> add Review</a>
+
+        <div class="row" *ngFor="let review of reviews">
+            <div class="col-md-6 my-3">
+                <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
+                <strong>{{review.user_name}}</strong>
+                <span>{{review.created_id | date:'mediumDate'}}</span>
+                <h5>Review: {{review.review}}</h5>
+                <b>Rating: {{review.rating}} </b>
+
+            </div>
+
+        </div>
+    </div>
 </div>
