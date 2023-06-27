@@ -1,0 +1,66 @@
+<aside class="p-2">
+  <div class="mb-3">
+    <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
+    <div class="my-2 ms-3" [hidden]="!showTypeContent">
+      <div>
+        <input type="checkbox" name="tennis" id="tennis" [(ngModel)]="tennis" (change)="filter()">
+        <label class="ms-1" for="tennis">tennis</label>
+      </div>
+      <div>
+        <input type="checkbox" name="paddle" id="paddle" [(ngModel)]="paddle" (change)="filter()">
+        <label class="ms-1" for="paddle">paddle</label>
+      </div>
+      <div>
+        <input type="checkbox" name="football" id="football" [(ngModel)]="football" (change)="filter()">
+        <label class="ms-1" for="football">football</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <button class="btn w-100 text-start" (click)="toggleContent('price')">Price</button>
+    <div class="my-2 ms-3" [hidden]="!showPriceContent">
+      <div>
+        <input type="checkbox" name="p50" id="p50" [(ngModel)]="p50" (change)="filter()">
+        <label class="ms-1" for="p50">Below $50</label>
+      </div>
+      <div>
+        <input type="checkbox" name="p100" id="p100" [(ngModel)]="p100" (change)="filter()">
+        <label class="ms-1" for="p100">From $50 to $99</label>
+      </div>
+      <div>
+        <input type="checkbox" name="p200" id="p200" [(ngModel)]="p200" (change)="filter()">
+        <label class="ms-1" for="p200">From $100 to $200</label>
+      </div>
+      <div>
+        <input type="checkbox" name="p201" id="p201" [(ngModel)]="p201" (change)="filter()">
+        <label class="ms-1" for="p201">Above $200</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <button class="btn w-100 text-start" (click)="toggleContent('reviews')">Reviews</button>
+    <div class="my-2 ms-3" [hidden]="!showReviewsContent">
+      <div>
+        <input type="checkbox" name="tennis" id="tennis">
+        <label class="ms-1" for="tennis">tennis</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
+    <div class="my-2 ms-3" [hidden]="!showLocationContent">
+      <div>
+        <input type="checkbox" name="cairo" id="cairo" [(ngModel)]="cairo" (change)="filter()">
+        <label class="ms-1" for="cairo">cairo</label>
+      </div>
+      <div>
+        <input type="checkbox" name="mansoura" id="mansoura" [(ngModel)]="mansoura" (change)="filter()">
+        <label class="ms-1" for="mansoura">mansoura</label>
+      </div>
+    </div>
+  </div>
+</aside>
+
