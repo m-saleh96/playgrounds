@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Playground } from 'src/app/interfaces/playground';
 import { Review } from 'src/app/interfaces/review';
 import { PlaygroundService } from 'src/app/services/playground.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-details',
@@ -13,11 +14,18 @@ import { ReviewService } from 'src/app/services/review.service';
 })
 export class DetailsComponent {
   playgroundId!: number;
+  isLogin:boolean=false;
+  toDisplay = false;
+  rating: number = 0;
+  review: string = '';
+  errorMessage:any='';
 
   playgrounds !: Playground[];
   reviews !: Review[];
+  
+  @Input() todos: any[] = [];
 
-  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private reviewService: ReviewService, private route: ActivatedRoute, private router:Router) { }
+  constructor(private http: HttpClient, private playgroundService: PlaygroundService, private reviewService: ReviewService, private route: ActivatedRoute, private router:Router, private cookieService: CookieService) { }
 
 
   ngOnInit(): void {
@@ -39,5 +47,19 @@ export class DetailsComponent {
     this.router.navigate(['playground/add/'])
 
 
+  }
+
+  addReview(){
+      if(JSON.parse(this.cookieService.get('userData') || '{}').user?.role){
+        console.log(this.cookieService.get('userData'));
+        this.toDisplay=true
+
+        this.isLogin = true;
+      }
+    else{
+      this.toDisplay=false
+      alert("please login")
+      // this.errorMessage = 'please login first';
+    }
   }
 }
