@@ -22,7 +22,7 @@ const routes: Routes = [
     ListComponent,
     CardComponent,
     DetailsComponent,
-    AddComponent
+    AddComponent,
   ],
   imports: [
     CommonModule,

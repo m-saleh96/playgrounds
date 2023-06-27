@@ -3,5 +3,6 @@ export interface Review {
     review: string,
     rating:number,
     created_id:any,
-    id:number
+    id:any,
+    playground_id:any
 }
