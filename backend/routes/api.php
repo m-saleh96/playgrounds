@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\userController;
@@ -40,3 +41,4 @@ Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
 });
 Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+Route::resource('category', categoryController::class);
