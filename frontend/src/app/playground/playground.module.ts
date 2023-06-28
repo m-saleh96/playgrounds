@@ -15,8 +15,6 @@ const routes: Routes = [
   {path:'details/:id', component : DetailsComponent},
   {path:'card', component : CardComponent},
   {path:'add', component : AddComponent}
-
-
 ]
 @NgModule({
   declarations: [
