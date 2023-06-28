@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PlaygroundsComponent } from './playgrounds/playgrounds.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { WelcomeComponent } from './admin/welcome/welcome.component';
+import { WelcomeComponent } from './admin/dashboard/welcome/welcome.component';
+import { UsersComponent } from './admin/dashboard/users/users.component';
 
 const routes: Routes = [
     // lazy loading
@@ -20,6 +21,10 @@ const routes: Routes = [
         {
           path: 'welcome',
           component:WelcomeComponent
+        },
+        {
+          path: 'users',
+          component:UsersComponent
         },
       ]
     },
