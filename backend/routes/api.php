@@ -33,6 +33,9 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
+Route::get('playground/pending',[PlaygroundController::class,'pending']);
+Route::put('playground/changeStates/{playground}',[PlaygroundController::class,'changeStates']);
+
 Route::resource('playground', PlaygroundController::class);
 Route::resource('user', userController::class);
 
