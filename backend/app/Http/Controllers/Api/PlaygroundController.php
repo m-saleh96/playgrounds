@@ -17,8 +17,10 @@ class PlaygroundController extends Controller
     public function index()
     {
     
-        $playground = Playground::all();
-        return response()->json($playground, 200);
+        // $playground = Playground::all();
+        // return response()->json($playground, 200);
+        return response()->json(Playground::where('status','<>',"pending")->get(), 200);
+        
     }
 
     /**
@@ -159,22 +161,62 @@ class PlaygroundController extends Controller
         //     $playground->where('type', $request->type);
         // }
         if($request->input('type')){
-            $playground->where('type', $request->input('type'));
+            $playground->where('type', $request->input('type'));                               
+            // $playground->where([
+                // ['type',$request->input('type')],
+                // ['status','<>',"pending"],
+            // ])->get();
         }
 
         if($request->input('location')){
             $playground->where('location', $request->input('location'));
+            // $playground->where([
+                // ['location',$request->input('location')],
+                // ['status','<>',"pending"],
+            // ])->get();
         }
 
         if($request->input('price_from') && $request->input('price_to')){
             $playground->whereBetween('price', [$request->input('price_from'), $request->input('price_to')]);
+            
         }
         if($request->input('price_below')){
             $playground->where('price', '<', $request->input('price_below'));
+            // $playground->where([
+                // ['price','<',$request->input('price_below')],
+                // ['status','<>',"pending"],
+            // ])->get();
         }
         if($request->input('price_above')){
             $playground->where('price', '>', $request->input('price_above'));
+            // $playground->where([
+                // ['price','>',$request->input('price_above')],
+                // ['status','<>',"pending"],
+            // ])->get();
+            
         }
         return response()->json($playground->get(), 200);
+    }
+
+
+
+
+
+    public function pending()// for admin interface
+    {
+        return response()->json(Playground::where('status',"pending")->get(), 200);
+    }
+
+
+
+    public function changeStates(Request $request,Playground $playground)
+    {
+
+    $playground->status = "done";
+        $playground->save();
+        return response()->json([
+            'message' => 'Playground updated',
+            'playground' => $playground
+        ], 200);
     }
 }
