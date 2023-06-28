@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundService } from '../services/playground.service';
 import { AddComponent } from './add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PlaygroundComponent } from './playground.component';
 
 // routes for playground module
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
 ]
 @NgModule({
   declarations: [
+    PlaygroundComponent,
     ListComponent,
     CardComponent,
     DetailsComponent,

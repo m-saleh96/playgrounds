@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeModule } from './home/home.module';
 import { RegisterModule } from './register/register.module';
-import { PlaygroundComponent } from './playground/playground.component';
 import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
@@ -17,7 +16,6 @@ import { WelcomeComponent } from './admin/welcome/welcome.component';
   declarations: [
     AppComponent,
     NavbarComponent,
-    PlaygroundComponent,
     DashboardComponent,
     AdminPanelComponent,
     WelcomeComponent,
