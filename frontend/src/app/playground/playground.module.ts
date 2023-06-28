@@ -30,7 +30,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes) // routes for register module
+    RouterModule.forChild(routes) //routes for register module
 
   ],
   providers: [PlaygroundService] // Inject RegisterService to register module
