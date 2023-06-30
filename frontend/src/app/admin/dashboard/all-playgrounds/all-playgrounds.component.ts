@@ -7,13 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./all-playgrounds.component.css']
 })
 export class AllPlaygroundsComponent {
-  // Go to adding playground page
 
 
   constructor(private router:Router) { }
 
+  // Go to adding playground page
   addplayground(){
-    this.router.navigate(['all-playgrounds/add'])
+    this.router.navigate(['all-playgrounds/add/'])
   }
 
 }
