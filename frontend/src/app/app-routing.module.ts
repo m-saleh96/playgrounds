@@ -7,6 +7,7 @@ import { WelcomeComponent } from './admin/dashboard/welcome/welcome.component';
 import { UsersComponent } from './admin/dashboard/users/users.component';
 import { AllPlaygroundsComponent } from './admin/dashboard/all-playgrounds/all-playgrounds.component';
 import { AddComponent } from './admin/dashboard/all-playgrounds/add/add.component';
+import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 
 const routes: Routes = [
     // lazy loading
@@ -36,10 +37,12 @@ const routes: Routes = [
           path: 'add',
           component:AddComponent
         },
-
-
       ]
     },
+    {
+      path: "owner",
+      component: OwnerDashboardComponent
+    }
 ];
 
 @NgModule({
