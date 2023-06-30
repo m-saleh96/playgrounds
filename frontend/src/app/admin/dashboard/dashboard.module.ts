@@ -5,6 +5,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users/users.component';
+import { PlaygroundsComponent } from './playgrounds/playgrounds.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     AdminPanelComponent,
     WelcomeComponent,
     UsersComponent,
+    PlaygroundsComponent,
   ],
   imports: [
     CommonModule,
