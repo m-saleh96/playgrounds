@@ -13,7 +13,7 @@ export class AllPlaygroundsComponent {
 
   // Go to adding playground page
   addplayground(){
-    this.router.navigate(['all-playgrounds/add/'])
+    this.router.navigate(['../add'])
   }
 
 }

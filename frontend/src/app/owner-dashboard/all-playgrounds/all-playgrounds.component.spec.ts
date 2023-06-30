@@ -1,6 +1,6 @@
+import { PlaygroundsComponent } from './../../playgrounds/playgrounds.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaygroundsComponent } from './all-playgrounds.component';
 
 describe('PlaygroundsComponent', () => {
   let component: PlaygroundsComponent;
