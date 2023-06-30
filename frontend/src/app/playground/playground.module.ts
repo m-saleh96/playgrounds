@@ -5,7 +5,6 @@ import { CardComponent } from './card/card.component';
 import { DetailsComponent } from './details/details.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundService } from '../services/playground.service';
-import { AddComponent } from './add/add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaygroundComponent } from './playground.component';
 
@@ -14,7 +13,6 @@ const routes: Routes = [
   {path:'list', component: ListComponent },
   {path:'details/:id', component : DetailsComponent},
   {path:'card', component : CardComponent},
-  {path:'add', component : AddComponent}
 ]
 @NgModule({
   declarations: [
@@ -22,7 +20,6 @@ const routes: Routes = [
     ListComponent,
     CardComponent,
     DetailsComponent,
-    AddComponent,
   ],
   imports: [
     CommonModule,

@@ -5,6 +5,7 @@ import { PlaygroundsComponent } from './playgrounds/playgrounds.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { WelcomeComponent } from './admin/dashboard/welcome/welcome.component';
 import { UsersComponent } from './admin/dashboard/users/users.component';
+import { AllPlaygroundsComponent } from './admin/dashboard/all-playgrounds/all-playgrounds.component';
 
 const routes: Routes = [
     // lazy loading
@@ -26,6 +27,11 @@ const routes: Routes = [
           path: 'users',
           component:UsersComponent
         },
+        {
+          path: 'allplaygrounds',
+          component:AllPlaygroundsComponent
+        },
+
       ]
     },
 ];
