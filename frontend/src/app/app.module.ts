@@ -10,11 +10,13 @@ import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { OwnerDashboardModule } from './owner-dashboard/owner-dashboard.module';
+import { OwnerPanelComponent } from './owner/owner-panel/owner-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    OwnerPanelComponent,
   ],
   imports: [
     BrowserModule,
