@@ -6,7 +6,6 @@ import { Playground } from 'src/app/interfaces/playground';
 import { Signup } from 'src/app/interfaces/signup';
 import { PlaygroundService } from 'src/app/services/playground.service';
 import { RegisterService } from 'src/app/services/register.service';
-
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',

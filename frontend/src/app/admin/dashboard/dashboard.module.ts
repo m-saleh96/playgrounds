@@ -6,9 +6,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 
+
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
-  { path:'users', component: UsersComponent }
+  { path:'users', component: UsersComponent },
 ];
 
 @NgModule({
@@ -17,10 +18,11 @@ const routes: Routes = [
     AdminPanelComponent,
     WelcomeComponent,
     UsersComponent,
+
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ]
 })
 export class DashboardModule { }
