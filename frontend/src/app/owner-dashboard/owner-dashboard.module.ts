@@ -5,10 +5,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AllPlaygroundsComponent } from './all-playgrounds/all-playgrounds.component';
 import { AddComponent } from './add/add.component';
+import { OwnerWelcomeComponent } from './owner-welcome/owner-welcome.component';
 
 
 const routes: Routes = [
-
+  { path:'ownerpanel', component: OwnerDashboardComponent},
+  { path:'ownerwelcome', component: OwnerWelcomeComponent},
   { path:'allplaygrounds', component: AllPlaygroundsComponent},
   { path:'add', component : AddComponent}
 ];
@@ -17,8 +19,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     OwnerDashboardComponent,
+    OwnerDashboardComponent,
     AllPlaygroundsComponent,
-    AddComponent
+    AddComponent,
+    OwnerWelcomeComponent
   ],
   imports: [
     CommonModule,

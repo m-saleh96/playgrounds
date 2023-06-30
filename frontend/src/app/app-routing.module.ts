@@ -1,3 +1,4 @@
+import { OwnerWelcomeComponent } from './owner-dashboard/owner-welcome/owner-welcome.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -35,6 +36,10 @@ const routes: Routes = [
       path: "owner",
       component: OwnerDashboardComponent,
       children:[
+        {
+          path: 'ownerwelcome',
+          component:OwnerWelcomeComponent
+        },
         {
           path: 'allplaygrounds',
           component:AllPlaygroundsComponent
