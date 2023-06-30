@@ -6,10 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AllPlaygroundsComponent } from './all-playgrounds/all-playgrounds.component';
 import { AddComponent } from './add/add.component';
 import { OwnerWelcomeComponent } from './owner-welcome/owner-welcome.component';
+import { OwnerPanelComponent } from './owner-panel/owner-panel.component';
 
 
 const routes: Routes = [
-  { path:'ownerpanel', component: OwnerDashboardComponent},
+  { path:'ownerpanel', component: OwnerPanelComponent},
   { path:'ownerwelcome', component: OwnerWelcomeComponent},
   { path:'allplaygrounds', component: AllPlaygroundsComponent},
   { path:'add', component : AddComponent}
@@ -19,10 +20,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     OwnerDashboardComponent,
-    OwnerDashboardComponent,
+    OwnerPanelComponent,
+    OwnerWelcomeComponent,
     AllPlaygroundsComponent,
     AddComponent,
-    OwnerWelcomeComponent
+
   ],
   imports: [
     CommonModule,
