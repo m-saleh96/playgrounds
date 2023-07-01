@@ -41,21 +41,16 @@ export class AsideComponent implements OnInit{
   tennis!: boolean;
   paddle!:boolean;
   football!:boolean;
-  p50!:boolean;
-  p100!:boolean;
-  p200!:boolean;
-  p201!:boolean;
   cairo!:boolean;
   mansoura!:boolean;
-
+  priceAbove:number=1000;
+  priceBelow:number=1;
   filter(){
     this.filterService.tennis = this.tennis;
     this.filterService.paddle = this.paddle;
     this.filterService.football = this.football;
-    this.filterService.p50 = this.p50;
-    this.filterService.p100 = this.p100;
-    this.filterService.p200 = this.p200;
-    this.filterService.p201 = this.p201;
+    this.filterService.priceAbove = this.priceAbove;
+    this.filterService.priceBelow = this.priceBelow;
     this.filterService.cairo = this.cairo;
     this.filterService.mansoura = this.mansoura;
 
