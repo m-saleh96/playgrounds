@@ -10,32 +10,28 @@ export class FilterPlayGroundsService {
   private apiUrl: string = environment.apiUrl
 
   constructor(private http: HttpClient) { }
-  tennis!: boolean;
-  paddle!:boolean;
-  football!:boolean;
+
   cairo!:boolean;
   mansoura!:boolean;
   price_to:number = 1000;
   price_from:number = 0;
 
+  type:any[]=[];
+
   filter(): Observable<any> {
+
     let url = `${this.apiUrl}/playground/search?price_from=${this.price_from}&price_to=${this.price_to}&`;
-    if (this.tennis) {
-      url += 'type[]=tennis&'
-    }
-    if (this.paddle) {
-      url += 'type[]=paddle&'
-    }
-    if (this.football) {
-      url += 'type[]=football&'
-    }
+
+    this.type.forEach(elm=>{
+      url += `type[]=${elm}&`
+    })
+
     if (this.cairo) {
       url += 'location[]=cairo&'
     }
     if (this.mansoura) {
       url += 'location[]=mansoura&'
     }
-    console.log(url);
 
     return this.http.get(url)
   }

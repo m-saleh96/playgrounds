@@ -2,7 +2,14 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
     <div class="my-2 ms-3" [hidden]="!showTypeContent">
-      <div>
+
+
+      <div *ngFor="let category of categories">
+        <input type="checkbox" [name]="category.name" [id]="category.name" (change)="filter($event)">
+        <label class="ms-1" [for]="category.name">{{category.name}}</label>
+      </div>
+
+      <!-- <div>
         <input type="checkbox" name="tennis" id="tennis" [(ngModel)]="tennis" (change)="filter()">
         <label class="ms-1" for="tennis">tennis</label>
       </div>
@@ -13,7 +20,7 @@
       <div>
         <input type="checkbox" name="football" id="football" [(ngModel)]="football" (change)="filter()">
         <label class="ms-1" for="football">football</label>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -24,14 +31,14 @@
         <tr>
           <td><label for="price_from">Price From :</label></td>
           <td>
-            <input type="range" class="ms-1 my-1" [(ngModel)]="price_from" name="price_from" id="price_from" step="10" min="0" [max]="price_to" (change)="filter()">
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_from" name="price_from" id="price_from" step="10" min="0" [max]="price_to" (change)="filter($event)">
             <span>{{ price_from }}</span>
           </td>
         </tr>
         <tr>
           <td><label for="price_to">Price To :</label></td>
           <td>
-            <input type="range" class="ms-1 my-1" [(ngModel)]="price_to" name="price_to" id="price_to" step="10" [min]="price_from" max="1000" (change)="filter()">
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_to" name="price_to" id="price_to" step="10" [min]="price_from" max="1000" (change)="filter($event)">
             <span>{{ price_to }}</span>
           </td>
         </tr>
@@ -53,11 +60,11 @@
     <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
     <div class="my-2 ms-3" [hidden]="!showLocationContent">
       <div>
-        <input type="checkbox" name="cairo" id="cairo" [(ngModel)]="cairo" (change)="filter()">
+        <input type="checkbox" name="cairo" id="cairo" [(ngModel)]="cairo" (change)="filter($event)">
         <label class="ms-1" for="cairo">cairo</label>
       </div>
       <div>
-        <input type="checkbox" name="mansoura" id="mansoura" [(ngModel)]="mansoura" (change)="filter()">
+        <input type="checkbox" name="mansoura" id="mansoura" [(ngModel)]="mansoura" (change)="filter($event)">
         <label class="ms-1" for="mansoura">mansoura</label>
       </div>
     </div>

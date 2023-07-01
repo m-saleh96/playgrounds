@@ -159,12 +159,12 @@ class PlaygroundController extends Controller
 
         if ($request->input('type')) {
             $playground->whereIn('type', $request->input('type'));
-          
+
         }
 
         if ($request->input('location')) {
             $playground->whereIn('location', $request->input('location'));
-          
+
         }
 
         if ($request->input('price_from') && $request->input('price_to')) {
@@ -179,7 +179,7 @@ class PlaygroundController extends Controller
             $playground->where('price', '>', intval($request->input('price_above')));
 
         }
-        $playground->where('status', '<>', "pending");
+        // $playground->where('status', '<>', "pending");
         return response()->json($playground->get(), 200);
     }
 
