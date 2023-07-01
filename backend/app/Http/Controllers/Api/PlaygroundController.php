@@ -178,18 +178,19 @@ class PlaygroundController extends Controller
         }
 
         if($request->input('price_from') && $request->input('price_to')){
-            $playground->whereBetween('price', [$request->input('price_from'), $request->input('price_to')]);
+            $playground->whereBetween('price', [intval($request->input('price_from')),intval( $request->input('price_to'))]);
             
         }
         if($request->input('price_below')){
-            $playground->where('price', '<', $request->input('price_below'));
+            $playground->where('price', '<', intval($request->input('price_below')));
+
             // $playground->where([
                 // ['price','<',$request->input('price_below')],
                 // ['status','<>',"pending"],
             // ])->get();
         }
         if($request->input('price_above')){
-            $playground->where('price', '>', $request->input('price_above'));
+            $playground->where('price', '>',intval($request->input('price_above')));
             // $playground->where([
                 // ['price','>',$request->input('price_above')],
                 // ['status','<>',"pending"],
