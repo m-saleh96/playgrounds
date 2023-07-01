@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-use Validator;
+// use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class PlaygroundController extends Controller
 {
@@ -219,4 +220,23 @@ class PlaygroundController extends Controller
             'playground' => $playground
         ], 200);
     }
+
+
+    public function getPlaygroundsByLocation(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'location' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 400);
+    }
+
+    $playgrounds = Playground::where('location', $request->input('location'))->get();
+
+    return response()->json($playgrounds, 200);
 }
+
+}
+
+

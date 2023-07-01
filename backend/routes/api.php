@@ -45,3 +45,6 @@ Route::middleware('auth:api')->group(function () {
 });
 Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
 Route::resource('category', categoryController::class);
+
+
+Route::get('/playgrounds', [PlaygroundController::class,'getPlaygroundsByLocation']);
