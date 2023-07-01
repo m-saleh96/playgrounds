@@ -17,11 +17,11 @@ class PlaygroundController extends Controller
      */
     public function index()
     {
-    
+
         // $playground = Playground::all();
         // return response()->json($playground, 200);
         return response()->json(Playground::where('status','<>',"pending")->get(), 200);
-        
+
     }
 
     /**
@@ -155,14 +155,14 @@ class PlaygroundController extends Controller
 
     public function search(Request $request)
     {
-        
+
         $playground = Playground::query();
 
         // if($request->has('type')){
         //     $playground->where('type', $request->type);
         // }
         if($request->input('type')){
-            $playground->whereIn('type', $request->input('type'));                               
+            $playground->whereIn('type', $request->input('type'));
             // $playground->where([
                 // ['type',$request->input('type')],
                 // ['status','<>',"pending"],
@@ -177,50 +177,32 @@ class PlaygroundController extends Controller
             // ])->get();
         }
 
-        // if($request->input('price_from') && $request->input('price_to')){
-        //     $playground->whereBetween('price', [intval($request->input('price_from')),intval( $request->input('price_to'))]);
-            
-        // }
-        // if($request->input('price_below')){
-        //     $playground->where('price', '<', intval($request->input('price_below')));
+        if($request->input('price_from') && $request->input('price_to')){
+            $playground->whereBetween('price', [intval($request->input('price_from')),intval( $request->input('price_to'))]);
 
-        //     // $playground->where([
-        //         // ['price','<',$request->input('price_below')],
-        //         // ['status','<>',"pending"],
-        //     // ])->get();
-        // }
-        // if($request->input('price_above')){
-        //     $playground->where('price', '>',intval($request->input('price_above')));
-        //     // $playground->where([
-        //         // ['price','>',$request->input('price_above')],
-        //         // ['status','<>',"pending"],
-        //     // ])->get();
-            
-        // }
-        // return response()->json($playground->get(), 200);
-        
-        $playground = Playground::query();
-
-        if ($request->input('price_above')) {
-            $playground->orWhere('price', '>', intval($request->input('price_above')));
         }
-        
-        if ($request->input('price_below')) {
-            $playground->orWhere('price', '<', intval($request->input('price_below')));
+        if($request->input('price_below')){
+            $playground->where('price', '<', intval($request->input('price_below')));
+
+            // $playground->where([
+                // ['price','<',$request->input('price_below')],
+                // ['status','<>',"pending"],
+            // ])->get();
+        }
+        if($request->input('price_above')){
+            $playground->where('price', '>',intval($request->input('price_above')));
+            // $playground->where([
+                // ['price','>',$request->input('price_above')],
+                // ['status','<>',"pending"],
+            // ])->get();
+
         }
 
-        if ($request->input('price_from') && $request->input('price_to')) {
-            $playground->orWhereBetween('price', [intval($request->input('price_from')), intval($request->input('price_to'))]);
-        }
-        
-        if ($request->input('price_from2') && $request->input('price_to2')) {
-            $playground->orWhereBetween('price', [intval($request->input('price_from2')), intval($request->input('price_to2'))]);
-        }
 
-        $playgrounds = $playground->get();
 
-        return response()->json($playgrounds, 200);
+        return response()->json($playground->get(), 200);
     }
+
 
 
 
