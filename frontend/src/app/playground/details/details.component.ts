@@ -24,7 +24,7 @@ export class DetailsComponent {
 
   playgrounds !: Playground[];
   reviews !: Review[];
-
+  
   // @Input() todos: any[] = [];
   @Output() setTasks = new EventEmitter();
 
@@ -43,6 +43,10 @@ export class DetailsComponent {
 
   }
 
+  // Go to adding playground page
+  addplayground(){
+    this.router.navigate(['playground/add/'])
+   }
 
 // Open small form to add review (if you are login) if not go to login page
   checklogin(){
@@ -82,5 +86,5 @@ postReview(){
       // window.location.reload();
 
   }
-
+  
 }

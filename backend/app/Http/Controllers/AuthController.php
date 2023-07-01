@@ -29,7 +29,7 @@ class AuthController extends Controller
             'name' => 'required|string',
             'email' => 'required|string|email|unique:users',
             'phone'=> 'required|string',
-            'role'=> 'required|string',
+            'role'=> 'required|string|in:player,owner',
             'password' => 'required|string'
         ]);
         if($validator->fails()){
