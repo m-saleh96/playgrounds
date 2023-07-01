@@ -20,22 +20,22 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('price')">Price</button>
     <div class="my-2 ms-3" [hidden]="!showPriceContent">
-      <div>
-        <input type="checkbox" name="p50" id="p50" [(ngModel)]="p50" (change)="filter()">
-        <label class="ms-1" for="p50">Below $50</label>
-      </div>
-      <div>
-        <input type="checkbox" name="p100" id="p100" [(ngModel)]="p100" (change)="filter()">
-        <label class="ms-1" for="p100">From $50 to $99</label>
-      </div>
-      <div>
-        <input type="checkbox" name="p200" id="p200" [(ngModel)]="p200" (change)="filter()">
-        <label class="ms-1" for="p200">From $100 to $200</label>
-      </div>
-      <div>
-        <input type="checkbox" name="p201" id="p201" [(ngModel)]="p201" (change)="filter()">
-        <label class="ms-1" for="p201">Above $200</label>
-      </div>
+      <table>
+        <tr>
+          <td><label for="price_from">Price From :</label></td>
+          <td>
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_from" name="price_from" id="price_from" step="10" min="0" [max]="price_to" (change)="filter()">
+            <span>{{ price_from }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="price_to">Price To :</label></td>
+          <td>
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_to" name="price_to" id="price_to" step="10" [min]="price_from" max="1000" (change)="filter()">
+            <span>{{ price_to }}</span>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 
