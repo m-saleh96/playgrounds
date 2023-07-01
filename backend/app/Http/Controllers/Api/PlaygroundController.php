@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-// use Validator;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class PlaygroundController extends Controller
@@ -206,5 +206,28 @@ class PlaygroundController extends Controller
             'playground' => $playground
         ], 200);
     }
-
+    public function addAdmin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+    
+        $admin = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+            'role' => 'admin',
+        ]);
+    
+        return response()->json([
+            'message' => 'Admin user created successfully',
+            'admin' => $admin,
+        ], 201);
+    }
 }
