@@ -33,16 +33,29 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
-Route::get('playground/pending',[PlaygroundController::class,'pending']);
-Route::put('playground/changeStates/{playground}',[PlaygroundController::class,'changeStates']);
 
-Route::resource('playground', PlaygroundController::class);
+
 Route::resource('user', userController::class);
 
-
+//should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
 });
+
+//shoudl be logged in as admin to access
+Route::middleware(['auth:api', 'admin'])->group(function () {
+    Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
+    Route::get('playground/pending',[PlaygroundController::class,'pending']);
+    Route::resource('category', categoryController::class)->except(['index', 'show']);
+});
+
+//should be logged in as owner to access
+Route::middleware(['auth:api', 'owner'])->group(function () {
+    Route::resource('playground', PlaygroundController::class)->except(['index', 'show']);
+
+});
+
 Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
-Route::resource('category', categoryController::class);
+Route::resource('category', categoryController::class)->only(['index', 'show']);
+Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
 
