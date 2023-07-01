@@ -223,6 +223,7 @@ class PlaygroundController extends Controller
             'email' => $request->email,
             'password' => \Hash::make($request->password),
             'role' => 'admin',
+            'phone'=>$request->phone
         ]);
     
         return response()->json([
