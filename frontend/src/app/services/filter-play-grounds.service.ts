@@ -13,16 +13,13 @@ export class FilterPlayGroundsService {
   tennis!: boolean;
   paddle!:boolean;
   football!:boolean;
-  p50!:boolean;
-  p100!:boolean;
-  p200!:boolean;
-  p201!:boolean;
   cairo!:boolean;
   mansoura!:boolean;
-
+  priceAbove:number = 1000;
+  priceBelow:number = 0;
 
   filter(): Observable<any> {
-    let url = `${this.apiUrl}/playground/search?`;
+    let url = `${this.apiUrl}/playground/search?price_from=${this.priceBelow}&price_to=${this.priceAbove}&`;
     if (this.tennis) {
       url += 'type[]=tennis&'
     }
@@ -32,24 +29,13 @@ export class FilterPlayGroundsService {
     if (this.football) {
       url += 'type[]=football&'
     }
-    if (this.p50) {
-      url += 'price_below=50&'
-    }
-    if (this.p100) {
-      url += 'price_from=50&price_to=100&'
-    }
-    if (this.p200) {
-      url += 'price_from=100&price_to=200&'
-    }
-    if (this.p201) {
-      url += 'price_above=200&'
-    }
     if (this.cairo) {
       url += 'location[]=cairo&'
     }
     if (this.mansoura) {
       url += 'location[]=mansoura&'
     }
+    console.log(url);
 
     return this.http.get(url)
   }
