@@ -24,13 +24,13 @@ export class FilterPlayGroundsService {
   filter(): Observable<any> {
     let url = `${this.apiUrl}/playground/search?`;
     if (this.tennis) {
-      url += 'type=tennis&'
+      url += 'type[]=tennis&'
     }
     if (this.paddle) {
-      url += 'type=paddle&'
+      url += 'type[]=paddle&'
     }
     if (this.football) {
-      url += 'type=football&'
+      url += 'type[]=football&'
     }
     if (this.p50) {
       url += 'price_below=50&'
@@ -45,10 +45,10 @@ export class FilterPlayGroundsService {
       url += 'price_above=200&'
     }
     if (this.cairo) {
-      url += 'location=cairo&'
+      url += 'location[]=cairo&'
     }
     if (this.mansoura) {
-      url += 'location=mansoura&'
+      url += 'location[]=mansoura&'
     }
 
     return this.http.get(url)
