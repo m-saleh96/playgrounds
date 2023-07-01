@@ -97,7 +97,6 @@ class PlaygroundController extends Controller
     public function update(Request $request, $id)
     {
         //
-        // return $request;
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -179,8 +178,13 @@ class PlaygroundController extends Controller
             $playground->where('price', '>', intval($request->input('price_above')));
 
         }
-        // $playground->where('status', '<>', "pending");
-        return response()->json($playground->get(), 200);
+
+        $playground = $playground->where('status', '<>', "pending");
+
+        $items_per_page = $request->input('items') ? $request->input('items') : 1;
+        $playground = $playground->paginate($items_per_page);
+        return response()->json($playground, 200);
+
     }
 
 

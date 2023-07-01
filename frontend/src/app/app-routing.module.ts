@@ -9,6 +9,7 @@ import { UsersComponent } from './admin/dashboard/users/users.component';
 import { OwnerDashboardComponent } from './owner-dashboard/owner-dashboard.component';
 import { AllPlaygroundsComponent } from './owner-dashboard/all-playgrounds/all-playgrounds.component';
 import { AddComponent } from './owner-dashboard/add/add.component';
+import { ListAllCategoriesComponent } from './admin/dashboard/list-all-categories/list-all-categories.component';
 
 const routes: Routes = [
     // lazy loading
@@ -29,6 +30,10 @@ const routes: Routes = [
         {
           path: 'users',
           component:UsersComponent
+        },
+        {
+          path: 'category',
+          component:ListAllCategoriesComponent
         },
       ]
     },
