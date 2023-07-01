@@ -27,11 +27,13 @@
             class="py-2 text-danger">phone inValid</p>
         </div>
         <div class="form-group my-2">
-          <label>role</label>
-          <input [class.is-valid]="registerForm.get('role')?.errors ==null && registerForm.get('role')?.touched"
-          formControlName='role' type="text" class="form-control">
+          <label>Status</label>
+          <select name="role" formControlName='role' class="form-select" >
+            <option value="player">Player</option>
+            <option value="owner">Owner</option>
+          </select>
           <p *ngIf="registerForm.get('role')?.errors !=null && registerForm.get('role')?.touched"
-          class="py-2 text-danger">role inValid</p>
+          class="py-2 text-danger">status require</p>
         </div>
         <div class="form-group my-2">
             <label>Password</label>
