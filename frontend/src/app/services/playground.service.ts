@@ -28,4 +28,7 @@ export class PlaygroundService {
     return this.http.delete(`${this.apiUrl}/playground`, $id)
   }
 
+  update(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/playground/${id}`, data);
+  }
 }

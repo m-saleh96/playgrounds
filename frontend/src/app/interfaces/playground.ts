@@ -7,5 +7,7 @@ export interface Playground {
     size:any,
     type:string,
     userid:any,
-    id:any
+    id:any,
+    status:string,
+    user_id:any
 }
