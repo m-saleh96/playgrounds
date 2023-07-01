@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-//use Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
@@ -97,7 +96,7 @@ class PlaygroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',

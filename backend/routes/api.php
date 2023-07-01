@@ -46,6 +46,7 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
 
     Route::resource('category', categoryController::class)->except(['index', 'show']);
@@ -60,9 +61,4 @@ Route::middleware(['auth:api', 'owner'])->group(function () {
 Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
-
-
-
-// ...
-
 
