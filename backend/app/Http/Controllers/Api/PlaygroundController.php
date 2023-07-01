@@ -212,6 +212,10 @@ class PlaygroundController extends Controller
         if ($request->input('price_from') && $request->input('price_to')) {
             $playground->orWhereBetween('price', [intval($request->input('price_from')), intval($request->input('price_to'))]);
         }
+        
+        if ($request->input('price_from2') && $request->input('price_to2')) {
+            $playground->orWhereBetween('price', [intval($request->input('price_from2')), intval($request->input('price_to2'))]);
+        }
 
         $playgrounds = $playground->get();
 
