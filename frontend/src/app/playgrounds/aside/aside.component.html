@@ -2,25 +2,10 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('type')">Type</button>
     <div class="my-2 ms-3" [hidden]="!showTypeContent">
-
-
       <div *ngFor="let category of categories">
         <input type="checkbox" [name]="category.name" [id]="category.name" (change)="filter($event)">
         <label class="ms-1" [for]="category.name">{{category.name}}</label>
       </div>
-
-      <!-- <div>
-        <input type="checkbox" name="tennis" id="tennis" [(ngModel)]="tennis" (change)="filter()">
-        <label class="ms-1" for="tennis">tennis</label>
-      </div>
-      <div>
-        <input type="checkbox" name="paddle" id="paddle" [(ngModel)]="paddle" (change)="filter()">
-        <label class="ms-1" for="paddle">paddle</label>
-      </div>
-      <div>
-        <input type="checkbox" name="football" id="football" [(ngModel)]="football" (change)="filter()">
-        <label class="ms-1" for="football">football</label>
-      </div> -->
     </div>
   </div>
 
