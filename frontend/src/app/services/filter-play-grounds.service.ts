@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -15,12 +15,11 @@ export class FilterPlayGroundsService {
   mansoura!:boolean;
   price_to:number = 1000;
   price_from:number = 0;
-
   type:any[]=[];
 
-  filter(): Observable<any> {
+  filter(page:number): Observable<any> {
 
-    let url = `${this.apiUrl}/playground/search?page=1&items=5&price_from=${this.price_from}&price_to=${this.price_to}&`;
+    let url = `${this.apiUrl}/playground/search?page=${page}&items=4&price_from=${this.price_from}&price_to=${this.price_to}&`;
 
     this.type.forEach(elm=>{
       url += `type[]=${elm}&`
@@ -32,6 +31,7 @@ export class FilterPlayGroundsService {
     if (this.mansoura) {
       url += 'location[]=mansoura&'
     }
+
 
     return this.http.get(url)
   }

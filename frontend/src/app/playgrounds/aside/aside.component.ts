@@ -1,4 +1,4 @@
-import { Component ,EventEmitter,Output , OnInit } from '@angular/core';
+import { Component ,EventEmitter,Output , OnInit, Input, OnChanges } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.service';
 
@@ -7,9 +7,11 @@ import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.s
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
-export class AsideComponent implements OnInit{
+export class AsideComponent implements OnInit , OnChanges{
 
   @Output() emitFromChild = new EventEmitter();
+  @Input()  page!:number;
+
 
   playGrounds:any[]=[];
   categories:any[]=[];
@@ -23,13 +25,23 @@ export class AsideComponent implements OnInit{
   constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService){}
 
   ngOnInit(): void {
-    this.filterService.filter().subscribe(data=>{
-      this.playGrounds = data.data;
-      this.emitFromChild.emit(this.playGrounds);
-    })
-
+    this.filterPlaygrounds();
     this.categoryService.getAllCategory().subscribe((data:any)=>this.categories=data)
   }
+
+
+  ngOnChanges(): void {
+      this.filterPlaygrounds();
+  }
+
+
+  filterPlaygrounds(): void {
+    this.filterService.filter(this.page).subscribe(data => {
+      this.playGrounds = data.data;
+      this.emitFromChild.emit(this.playGrounds);
+    });
+  }
+
 
   showTypeContent: boolean = true;
   showPriceContent: boolean = false;
@@ -68,7 +80,7 @@ export class AsideComponent implements OnInit{
     this.filterService.cairo = this.cairo;
     this.filterService.mansoura = this.mansoura;
 
-    this.filterService.filter().subscribe(data=>{
+    this.filterService.filter(this.page).subscribe(data=>{
       this.playGrounds = data.data;
       this.emitFromChild.emit(this.playGrounds);
     })
