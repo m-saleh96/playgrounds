@@ -39,7 +39,7 @@ export class FilterPlayGroundsService {
       url += 'price_from=50&price_to=100&'
     }
     if (this.p200) {
-      url += 'price_from2=100&price_to2=200&'
+      url += 'price_from=100&price_to=200&'
     }
     if (this.p201) {
       url += 'price_above=200&'
