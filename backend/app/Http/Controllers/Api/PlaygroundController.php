@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-use Validator;
+// use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class PlaygroundController extends Controller
 {
@@ -161,7 +162,7 @@ class PlaygroundController extends Controller
         //     $playground->where('type', $request->type);
         // }
         if($request->input('type')){
-            $playground->where('type', $request->input('type'));                               
+            $playground->whereIn('type', $request->input('type'));                               
             // $playground->where([
                 // ['type',$request->input('type')],
                 // ['status','<>',"pending"],
@@ -169,7 +170,7 @@ class PlaygroundController extends Controller
         }
 
         if($request->input('location')){
-            $playground->where('location', $request->input('location'));
+            $playground->whereIn('location', $request->input('location'));
             // $playground->where([
                 // ['location',$request->input('location')],
                 // ['status','<>',"pending"],
@@ -219,4 +220,11 @@ class PlaygroundController extends Controller
             'playground' => $playground
         ], 200);
     }
+
+
+
+
+
 }
+
+
