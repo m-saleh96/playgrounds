@@ -162,7 +162,7 @@ class PlaygroundController extends Controller
         //     $playground->where('type', $request->type);
         // }
         if($request->input('type')){
-            $playground->where('type', $request->input('type'));                               
+            $playground->whereIn('type', $request->input('type'));                               
             // $playground->where([
                 // ['type',$request->input('type')],
                 // ['status','<>',"pending"],
@@ -170,7 +170,7 @@ class PlaygroundController extends Controller
         }
 
         if($request->input('location')){
-            $playground->where('location', $request->input('location'));
+            $playground->whereIn('location', $request->input('location'));
             // $playground->where([
                 // ['location',$request->input('location')],
                 // ['status','<>',"pending"],
@@ -222,20 +222,8 @@ class PlaygroundController extends Controller
     }
 
 
-    public function getPlaygroundsByLocation(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'location' => 'required',
-    ]);
 
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 400);
-    }
 
-    $playgrounds = Playground::where('location', $request->input('location'))->get();
-
-    return response()->json($playgrounds, 200);
-}
 
 }
 
