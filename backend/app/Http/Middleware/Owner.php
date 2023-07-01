@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Login
+class Owner
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,9 @@ class Login
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth()->check()){
-            return response()->json([
-                'message'=>'You are not logged in'
-            ],401);
+        if(auth()->user()->role != 'owner'){
+            return response()->json(['message' => 'Unauthorized'], 401);
         }
-
         return $next($request);
     }
 }

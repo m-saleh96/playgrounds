@@ -18,9 +18,8 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        // $playground = Playground::all();
-        // return response()->json($playground, 200);
-        return response()->json(Playground::where('status','<>',"pending")->get(), 200);
+        $playground = Playground::where('status', '<>', "pending")->get();
+        return response()->json($playground, 200);
 
     }
 
@@ -80,7 +79,7 @@ class PlaygroundController extends Controller
     {
         //
         $playground = Playground::find($id);
-        if(!$playground){
+        if (!$playground) {
             return response()->json([
                 'message' => 'Record not found',
             ], 404);
@@ -98,7 +97,7 @@ class PlaygroundController extends Controller
     public function update(Request $request, $id)
     {
         //
-        return $request;
+        // return $request;
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -158,48 +157,29 @@ class PlaygroundController extends Controller
 
         $playground = Playground::query();
 
-        // if($request->has('type')){
-        //     $playground->where('type', $request->type);
-        // }
-        if($request->input('type')){
+        if ($request->input('type')) {
             $playground->whereIn('type', $request->input('type'));
-            // $playground->where([
-                // ['type',$request->input('type')],
-                // ['status','<>',"pending"],
-            // ])->get();
+          
         }
 
-        if($request->input('location')){
+        if ($request->input('location')) {
             $playground->whereIn('location', $request->input('location'));
-            // $playground->where([
-                // ['location',$request->input('location')],
-                // ['status','<>',"pending"],
-            // ])->get();
+          
         }
 
-        if($request->input('price_from') && $request->input('price_to')){
-            $playground->whereBetween('price', [intval($request->input('price_from')),intval( $request->input('price_to'))]);
+        if ($request->input('price_from') && $request->input('price_to')) {
+            $playground->whereBetween('price', [intval($request->input('price_from')), intval($request->input('price_to'))]);
 
         }
-        if($request->input('price_below')){
+        if ($request->input('price_below')) {
             $playground->where('price', '<', intval($request->input('price_below')));
 
-            // $playground->where([
-                // ['price','<',$request->input('price_below')],
-                // ['status','<>',"pending"],
-            // ])->get();
         }
-        if($request->input('price_above')){
-            $playground->where('price', '>',intval($request->input('price_above')));
-            // $playground->where([
-                // ['price','>',$request->input('price_above')],
-                // ['status','<>',"pending"],
-            // ])->get();
+        if ($request->input('price_above')) {
+            $playground->where('price', '>', intval($request->input('price_above')));
 
         }
-
-
-
+        $playground->where('status', '<>', "pending");
         return response()->json($playground->get(), 200);
     }
 
@@ -207,17 +187,17 @@ class PlaygroundController extends Controller
 
 
 
-    public function pending()// for admin interface
+    public function pending() // for admin interface
     {
-        return response()->json(Playground::where('status',"pending")->get(), 200);
+        return response()->json(Playground::where('status', "pending")->get(), 200);
     }
 
 
 
-    public function changeStates(Request $request,Playground $playground)
+    public function changeStates(Request $request, Playground $playground)
     {
 
-    $playground->status = "done";
+        $playground->status = "done";
         $playground->save();
         return response()->json([
             'message' => 'Playground updated',
@@ -225,10 +205,4 @@ class PlaygroundController extends Controller
         ], 200);
     }
 
-
-
-
-
 }
-
-
