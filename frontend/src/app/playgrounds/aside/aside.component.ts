@@ -24,7 +24,7 @@ export class AsideComponent implements OnInit{
 
   ngOnInit(): void {
     this.filterService.filter().subscribe(data=>{
-      this.playGrounds = data;
+      this.playGrounds = data.data;
       this.emitFromChild.emit(this.playGrounds);
     })
 
@@ -69,7 +69,7 @@ export class AsideComponent implements OnInit{
     this.filterService.mansoura = this.mansoura;
 
     this.filterService.filter().subscribe(data=>{
-      this.playGrounds = data
+      this.playGrounds = data.data;
       this.emitFromChild.emit(this.playGrounds);
     })
   }

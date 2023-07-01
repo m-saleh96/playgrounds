@@ -20,7 +20,7 @@ export class FilterPlayGroundsService {
 
   filter(): Observable<any> {
 
-    let url = `${this.apiUrl}/playground/search?price_from=${this.price_from}&price_to=${this.price_to}&`;
+    let url = `${this.apiUrl}/playground/search?page=1&items=5&price_from=${this.price_from}&price_to=${this.price_to}&`;
 
     this.type.forEach(elm=>{
       url += `type[]=${elm}&`
