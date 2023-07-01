@@ -20,13 +20,22 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('price')">Price</button>
     <div class="my-2 ms-3" [hidden]="!showPriceContent">
-      <label for="price_below">Price Below :</label>
-      <input type="range" class="ms-1 my-1" [(ngModel)]="priceBelow" name="price_below" id="price_below" step="10" min="0" [max]="priceAbove" (change)="filter()">
-      <span>{{ priceBelow }}</span>
-      <br>
-      <label for="price_above">Price Above :</label>
-      <input type="range" class="ms-1 my-1" [(ngModel)]="priceAbove" name="price_above" id="price_above" step="10" [min]="priceBelow" max="1000" (change)="filter()">
-      <span>{{ priceAbove }}</span>
+      <table>
+        <tr>
+          <td><label for="price_from">Price From :</label></td>
+          <td>
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_from" name="price_from" id="price_from" step="10" min="0" [max]="price_to" (change)="filter()">
+            <span>{{ price_from }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="price_to">Price To :</label></td>
+          <td>
+            <input type="range" class="ms-1 my-1" [(ngModel)]="price_to" name="price_to" id="price_to" step="10" [min]="price_from" max="1000" (change)="filter()">
+            <span>{{ price_to }}</span>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 

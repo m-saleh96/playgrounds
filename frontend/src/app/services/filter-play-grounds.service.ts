@@ -15,11 +15,11 @@ export class FilterPlayGroundsService {
   football!:boolean;
   cairo!:boolean;
   mansoura!:boolean;
-  priceAbove:number = 1000;
-  priceBelow:number = 0;
+  price_to:number = 1000;
+  price_from:number = 0;
 
   filter(): Observable<any> {
-    let url = `${this.apiUrl}/playground/search?price_from=${this.priceBelow}&price_to=${this.priceAbove}&`;
+    let url = `${this.apiUrl}/playground/search?price_from=${this.price_from}&price_to=${this.price_to}&`;
     if (this.tennis) {
       url += 'type[]=tennis&'
     }
