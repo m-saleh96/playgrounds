@@ -41,7 +41,6 @@ export class ListAllPlaygroundsComponent {
 
   playgrounds!: Playground []
   accessToken!: string;
-  // userRole!: string;
 
   constructor(private playgroundService: PlaygroundService, private cookieService: CookieService) { }
 
@@ -50,25 +49,13 @@ export class ListAllPlaygroundsComponent {
     this.accessToken = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
     this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
 
-    // get the user role from the access token
-    const jwtData = this.accessToken.split('.')[1];
-    const decodedJwtJsonData = window.atob(jwtData);
-    const decodedJwtData = JSON.parse(decodedJwtJsonData);
-    // this.userRole = decodedJwtData.role;
   }
 
   acceptPlayground(id: number) {
-    console.log(this.accessToken);
-
-    // console.log(this.userRole);
-
-    // if (this.userRole !== 'admin') {
-    //   console.log('You are not authorized to accept this playground');
-    //   return;
-    // }
-
-    this.playgroundService.update(id, 'done', this.accessToken).subscribe(() => {
       // playground status updated
+    this.playgroundService.updateStatus(id, 'done', this.accessToken).subscribe((res) => {
+      console.log(res);
+
       // reload playgrounds list
       this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
     });

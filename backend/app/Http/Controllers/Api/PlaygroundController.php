@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-// use Validator;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class PlaygroundController extends Controller
@@ -19,7 +19,7 @@ class PlaygroundController extends Controller
     {
 
         // $playground = Playground::where('status', '<>', "pending")->get();
-        $playground = PlayGround::get();
+        $playground = Playground::get();
         return response()->json($playground, 200);
 
     }
@@ -97,8 +97,7 @@ class PlaygroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // return $request;
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -180,8 +179,13 @@ class PlaygroundController extends Controller
             $playground->where('price', '>', intval($request->input('price_above')));
 
         }
-        $playground->where('status', '<>', "pending");
-        return response()->json($playground->get(), 200);
+
+        // $playground = $playground->where('status', '<>', "pending");
+
+        $items_per_page = $request->input('items') ? $request->input('items') : 1;
+        $playground = $playground->paginate($items_per_page);
+        return response()->json($playground, 200);
+
     }
 
 
@@ -206,4 +210,30 @@ class PlaygroundController extends Controller
         ], 200);
     }
 
+    public function addAdmin(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $admin = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
+            'role' => 'admin',
+            'phone'=>$request->phone
+        ]);
+
+        return response()->json([
+            'message' => 'Admin user created successfully',
+            'admin' => $admin,
+        ], 201);
+    }
 }
+
