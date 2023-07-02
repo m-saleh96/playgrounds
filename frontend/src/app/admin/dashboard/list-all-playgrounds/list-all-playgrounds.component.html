@@ -36,7 +36,12 @@
         <td>{{ playground.updated_at }}</td>
         <!-- <td><button type="button" class="btn btn-warning">Edit</button></td>
         <td><button type="button" class="btn btn-danger">Delete</button></td> -->
-        <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)">Accept</button></td>      </tr>
+        <!-- <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)">Accept</button></td>      </tr> -->
+
+        <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)" [disabled]="playground.status === 'done' || statusUpdated">
+          <span *ngIf="playground.status === 'pending' && !statusUpdated">Accept</span>
+          <span *ngIf="playground.status === 'done' || statusUpdated" class="fa fa-check" [class.text-success]="statusUpdated" role="status" aria-hidden="true"></span>
+        </button></td>
     </tbody>
   </table>
 </div>
