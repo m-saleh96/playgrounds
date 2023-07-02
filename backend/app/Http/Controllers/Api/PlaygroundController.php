@@ -18,8 +18,7 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        // $playground = Playground::where('status', '<>', "pending")->get();
-        $playground = Playground::get();
+        $playground = Playground::where('status', '<>', "pending")->get();
         return response()->json($playground, 200);
 
     }
