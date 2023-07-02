@@ -15,8 +15,6 @@ export class CardListComponent {
 
 
   ngOnInit(): void {
-    this.playgroundService.listAll().subscribe((res: any) =>{ this.playgrounds = res
-  console.log(this.playgrounds);
-    });
+    this.playgroundService.listAll().subscribe((res: any) =>this.playgrounds = res);
   }
 }
