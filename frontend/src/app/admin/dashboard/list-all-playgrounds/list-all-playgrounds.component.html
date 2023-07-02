@@ -1,0 +1,47 @@
+<div class="container">
+  <button style="margin-bottom: 30px ;margin-left:900px ;margin-bottom:50px" class="btn green">add playground</button>
+
+
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">location</th>
+        <th scope="col">description</th>
+        <th scope="col">image</th>
+        <th scope="col">price</th>
+        <th scope="col">size</th>
+        <th scope="col">type</th>
+        <th scope="col">status</th>
+        <th scope="col">user_id</th>
+        <th scope="col">created_at</th>
+        <th scope="col">updated_at</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let playground of playgrounds">
+        <td>{{ playground.id }}</td>
+        <td>{{ playground.name }}</td>
+        <td>{{ playground.location }}</td>
+        <td>{{ playground.description }}</td>
+        <td>{{ playground.image }}</td>
+        <td>{{ playground.price }}</td>
+        <td>{{ playground.size }}</td>
+        <td>{{ playground.type }}</td>
+        <td>{{ playground.status }}</td>
+        <td>{{ playground.user_id }}</td>
+        <td>{{ playground.created_at }}</td>
+        <td>{{ playground.updated_at }}</td>
+        <!-- <td><button type="button" class="btn btn-warning">Edit</button></td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td> -->
+        <!-- <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)">Accept</button></td>      </tr> -->
+
+        <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)" [disabled]="playground.status === 'done' || statusUpdated">
+          <span *ngIf="playground.status === 'pending' && !statusUpdated">Accept</span>
+          <span *ngIf="playground.status === 'done' || statusUpdated" class="fa fa-check" [class.text-success]="statusUpdated" role="status" aria-hidden="true"></span>
+        </button></td>
+    </tbody>
+  </table>
+</div>

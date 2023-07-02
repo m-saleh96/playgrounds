@@ -29,6 +29,12 @@ export class PlaygroundService {
     return this.http.delete(`${this.apiUrl}/playground`, $id)
   }
 
+  updateStatus(id: number, status: string, token: string) {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`
+  })
+    return this.http.put(`${this.apiUrl}/playground/changeStatus/${id}`,{status}, { headers });
+  }
+
   update(id:number , formData:any): Observable<any>{
     return this.http.post(`${this.apiUrl}/playground/${id}` , formData )
   }

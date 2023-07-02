@@ -96,7 +96,7 @@ class PlaygroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -216,11 +216,11 @@ class PlaygroundController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-    
+
         $admin = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -228,7 +228,7 @@ class PlaygroundController extends Controller
             'role' => 'admin',
             'phone'=>$request->phone
         ]);
-    
+
         return response()->json([
             'message' => 'Admin user created successfully',
             'admin' => $admin,
