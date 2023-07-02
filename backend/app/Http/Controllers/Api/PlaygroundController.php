@@ -324,21 +324,19 @@ class PlaygroundController extends Controller
     }
 
 
-        public function topRatedPlayground()
+    public function topRatedPlayground()
     {
-        $playground = Playground::where('status', '<>', "pending")->get();
-        // dd($playground);
-        $topRatedPlayground = $playground->sortByDesc(function ($playground) {
+        $playgrounds = Playground::where('status', '<>', 'pending')->get();
+    
+        $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
             $averageRating = $playground->reviews()->avg('rating');
             return $averageRating;
-        })->first();
-        // dd($topRatedPlayground);
-        return response()->json($topRatedPlayground, 200);
+        })->take(2);
+    
+        return response()->json($topRatedPlaygrounds, 200);
     }
-
+    
 
    
-
-
 }
 
