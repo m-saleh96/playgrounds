@@ -324,34 +324,21 @@ class PlaygroundController extends Controller
     }
 
 
-    public function topRatedPlaygrounds()
+        public function topRatedPlayground()
     {
-        $playgrounds = Playground::with('reviews')
-            ->withAvg('reviews.rating', 'average_rating')
-            ->orderByDesc('average_rating')
-            ->limit(10)
-            ->get();
-
-        return response()->json($playgrounds);
+        $playground = Playground::where('status', '<>', "pending")->get();
+        // dd($playground);
+        $topRatedPlayground = $playground->sortByDesc(function ($playground) {
+            $averageRating = $playground->reviews()->avg('rating');
+            return $averageRating;
+        })->first();
+        // dd($topRatedPlayground);
+        return response()->json($topRatedPlayground, 200);
     }
-    
 
 
-//     public function getTopRatedPlayground()
-// {
-//     $playground = Playground::withAvg('reviews', 'rating')
-//         ->where('status', '<>', 'pending')
-//         ->orderByDesc('reviews_avg_rating')
-//         ->first();
+   
 
-//     if (!$playground) {
-//         return response()->json([
-//             'message' => 'No playground found',
-//         ], 404);
-//     }
-
-//     return response()->json($playground, 200);
-// }
 
 }
 

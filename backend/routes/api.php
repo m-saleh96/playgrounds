@@ -73,7 +73,6 @@ Route::resource('playground', PlaygroundController::class)->only(['index', 'show
 Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
 
-Route::get('/playground/top-rated', [PlaygroundController::class, 'topRatedPlaygrounds']);
+Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlayground']);
 
-// Route::get('playground/top-rated', [PlaygroundController::class, 'getTopRatedPlayground']);
 
