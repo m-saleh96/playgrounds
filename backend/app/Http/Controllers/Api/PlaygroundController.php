@@ -19,7 +19,6 @@ class PlaygroundController extends Controller
     {
 
         $playground = Playground::where('status', '<>', "pending")->get();
-        // $playground = Playground::get();
         return response()->json($playground, 200);
 
     }
