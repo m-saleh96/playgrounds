@@ -11,7 +11,11 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./list-all-categories.component.css']
 })
 export class ListAllCategoriesComponent {
-
+  toDisplayAdd:boolean =false;
+  toedit:boolean=false;
+  categoryName!:string;
+  categoryNameEdit!:string;
+categoryId:number=0;
   categories!: Categories [] 
   constructor(private categoryService: CategoryService,  private router: Router, private cookieService: CookieService) { }
 
@@ -27,11 +31,44 @@ delete(id: number){
   const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
   
    this.categoryService.deleteCategory(id, token).subscribe(
-    result => console.log('Data deleted successfully'),
-    error => console.error('Error deleting data', error)
+    (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
+        error => console.error('Error deleting data', error)
   )
-//    (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);}, // Reload page after 2 seconds
-window.location.reload();
+ 
+}
+// openAddForm
+openAddForm(){
+  this.toDisplayAdd=true
+}
+// add category
+postCategory(){
+  console.log(this.categoryName);
+  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
+this.categoryService.addCategory({name:this.categoryName},token).subscribe((res)=>
+console.log(res)
+)
+this.toDisplayAdd=false;
+}
+
+// open rdit form
+edit(id:number){
+  this.categoryId=id;
+  this.toedit=true;
+
+}
+//editCategory
+editCategory(){
+  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+console.log(this.categoryId);
+console.log(this.categoryNameEdit);
+
+
+this.categoryService.editCategory(this.categoryId,{name: this.categoryNameEdit, _method: "put"},token).subscribe((res)=>{
+  console.log(res);
+this.categories[this.categoryId]=res
+}
+)
+this.toedit=false
 }
 }

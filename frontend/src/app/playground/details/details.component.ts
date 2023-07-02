@@ -86,5 +86,16 @@ postReview(){
       // window.location.reload();
 
   }
+ 
   
+// Delete review
+delete(id: number){
+  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+  
+   this.reviewService.deleteReview(id, token).subscribe(
+    (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
+        error => console.error('Error deleting data', error)
+  )
+ 
+}
 }
