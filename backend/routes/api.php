@@ -37,11 +37,11 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 
 
 Route::resource('user', userController::class);
+Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
-    Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 });
 
 //shoudl be logged in as admin to access

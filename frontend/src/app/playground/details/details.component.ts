@@ -21,9 +21,10 @@ export class DetailsComponent {
   rating: any;
   review: any;
   errorMessage:any='';
-  user_id: number=0;
+  user_id: number = Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id);
   reviewId!:number;
   currentUser:number= JSON.parse(this.cookieService.get('userData') || '{}').user?.id;
+   token:string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
 
   playgrounds !: Playground[];
@@ -43,7 +44,10 @@ export class DetailsComponent {
     this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {this.playgrounds = [res]});
 
     //get reviews  and save it in interface to display it on loading page
-    this.reviewService.listById(this.playgroundId).subscribe((res: any) => {this.reviews = res});
+    this.reviewService.listByPlaygroundId(this.playgroundId).subscribe((res: any) => {this.reviews = res
+    console.log(res);
+    
+    });
 
   }
 
@@ -55,7 +59,7 @@ export class DetailsComponent {
 // Open small form to add review (if you are login) if not go to login page
   checklogin(){
       if(JSON.parse(this.cookieService.get('userData') || '{}').user?.id >=1){
-        this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
+        // this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
           // console.log(JSON.parse(this.cookieService.get('userData') || '{}').access_token);
 
         this.toDisplay=true
@@ -76,11 +80,11 @@ postReview(){
            playground_id:this.playgroundId
          };
 
-      const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+      // const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
       console.log(data);
 
-      this.reviewService.create(data, token).subscribe(
+      this.reviewService.create(data, this.token).subscribe(
             (response) => {console.log('Response: ', response);setTimeout(() => {location.reload();}, 1); // Reload page after 2 seconds
           },
             (error) => {console.log('Error: ', error);}
@@ -94,43 +98,43 @@ postReview(){
   
 // Delete review
 delete(id: number){
-  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+  // const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-    this.reviewService.deleteReview(id, token).subscribe(
+    this.reviewService.deleteReview(id, this.token).subscribe(
       (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
           error => console.error('Error deleting data', error)
     )   
 }
 
-// // edit review
-// edit(id: number) {
-//   console.log(id);
+// edit review
+edit(id: number) {
+  console.log(id);
   
-//   this.reviewId=id
-//   this.toedit = true;
+  this.reviewId=id
+  this.toedit = true;
 
-// }
+}
 
-// editCategory() {
-//   const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-// console.log(this.reviewId);
+editCategory() {
+  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+console.log(this.reviewId);
  
  
 
-// const data: { review: string, rating: number, user_id: number, playground_id:number, _method:any } = {
-//   review:String( this.review),
-//   rating:Number( this.rating),
-//   user_id: this.user_id,
-//   playground_id:this.playgroundId,
-//   _method: "put"
-// };
-//   this.reviewService.editReview(this.reviewId, data, token).subscribe((res) => {
-//     console.log(res);
-//     setTimeout(() => { location.reload(); }, 1);
-//     // this.categories[this.categoryId]=res;setTimeout(() => {location.reload();}, 1);
-//   }
-//   )
-//   this.toedit = false
+const data: { review: string, rating: number, user_id: number, playground_id:number, _method:any } = {
+  review:String( this.review),
+  rating:Number( this.rating),
+  user_id: this.user_id,
+  playground_id:this.playgroundId,
+  _method: "put"
+};
+  this.reviewService.editReview(this.reviewId, data, token).subscribe((res) => {
+    console.log(res);
+    setTimeout(() => { location.reload(); }, 1);
+    // this.categories[this.categoryId]=res;setTimeout(() => {location.reload();}, 1);
+  }
+  )
+  this.toedit = false
 
-// }
+}
 }
