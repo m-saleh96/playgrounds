@@ -28,8 +28,6 @@ export class OwnerFieldsComponent implements OnInit{
     // this.playGroundService.listById(this.owner.user.id).subscribe((res:any)=>this.fields=res);
     this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res)
 
-
-
   }
 
   selectedFile: File | null = null;
