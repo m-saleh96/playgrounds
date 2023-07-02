@@ -20,11 +20,19 @@ export class PlaygroundService {
     return this.http.get(`${this.apiUrl}/playground/${id}`)
   }
 
+
   listPending(token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
   })
     return this.http.get(`${this.apiUrl}/playground/pending`, { headers })
+}
+  
+  
+  ownerField(id: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.get(`${this.apiUrl}/playground/owner/${id}` , {headers} )
+
   }
 
   create(formData: any , token:any): Observable<any> {
@@ -32,8 +40,14 @@ export class PlaygroundService {
     return this.http.post(`${this.apiUrl}/playground`, formData , {headers} )
   }
 
-  delete($id: any): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/playground`, $id)
+  update(id:number , formData:any ,token:any): Observable<any>{
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.post(`${this.apiUrl}/playground/${id}` , formData , { headers } )
+  }
+
+  delete(id: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.delete(`${this.apiUrl}/playground/${id}` ,{ headers } )
   }
 
   updateStatus(id: number, status: string, token: string) {
@@ -43,9 +57,7 @@ export class PlaygroundService {
     return this.http.put(`${this.apiUrl}/playground/changeStatus/${id}`,{status}, { headers });
   }
 
-  update(id:number , formData:any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/playground/${id}` , formData )
-  }
+
 
 
 }
