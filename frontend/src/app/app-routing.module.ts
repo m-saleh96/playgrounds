@@ -16,29 +16,6 @@ const routes: Routes = [
 
     { path:'home', component: HomeComponent},
     { path:'playgrounds', component: PlaygroundsComponent},
-
-    {
-      path: 'admin',
-      component:DashboardComponent,
-      children:[
-        {
-          path: 'welcome',
-          component:WelcomeComponent
-        },
-        {
-          path: 'users',
-          component:UsersComponent
-        },
-        {
-          path: 'category',
-          component:ListAllCategoriesComponent
-        },
-        {
-          path: 'adminplaygrounds',
-          component:ListAllPlaygroundsComponent
-        }
-      ]
-    }
 ];
 
 @NgModule({
