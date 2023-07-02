@@ -18,7 +18,8 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        $playground = Playground::where('status', '<>', "pending")->get();
+        // $playground = Playground::where('status', '<>', "pending")->get();
+        $playground = PlayGround::get();
         return response()->json($playground, 200);
 
     }
@@ -159,12 +160,12 @@ class PlaygroundController extends Controller
 
         if ($request->input('type')) {
             $playground->whereIn('type', $request->input('type'));
-          
+
         }
 
         if ($request->input('location')) {
             $playground->whereIn('location', $request->input('location'));
-          
+
         }
 
         if ($request->input('price_from') && $request->input('price_to')) {
