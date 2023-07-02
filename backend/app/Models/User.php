@@ -70,8 +70,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Playground::class);
     }
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
+    // public function reviews()
+    // {
+    //     return $this->hasMany(Review::class);
+    // }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
@@ -60,7 +61,9 @@ Route::middleware(['auth:api', 'owner'])->group(function () {
 
 });
 
-Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+// Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+Route::resource('review', ReviewController::class);
+Route::resource('rating', RateController::class);
+Route::put('rating/changeReview',[RateController::class,'update']);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
-
