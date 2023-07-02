@@ -10,15 +10,18 @@ import { FilterPlayGroundsService } from '../services/filter-play-grounds.servic
 export class PlaygroundsComponent implements OnInit{
   playGrounds:any[]=[];
   page:number =1;
-
+  lastPage!:number;
   constructor(private filterService:FilterPlayGroundsService) {}
+
+
   reciveFromChild(data:any){
-    this.playGrounds=data
+    this.playGrounds=data[0]
+    this.lastPage=data[1]
   }
 
   ngOnInit(): void {
     this.filterService.pag.subscribe(data=>{
-      this.page =data
+      this.page =data;
     })
   }
 
