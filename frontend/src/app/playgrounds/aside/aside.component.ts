@@ -22,6 +22,8 @@ export class AsideComponent implements OnInit , OnChanges{
   price_to:number=1000;
   price_from:number=1;
 
+  result!:number;
+
   constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService){}
 
   ngOnInit(): void {
@@ -85,6 +87,7 @@ export class AsideComponent implements OnInit , OnChanges{
       this.emitFromChild.emit(this.playGrounds);
       this.filterService.lastPage = data.last_page;
       this.filterService.setPage(1);
+      this.result = data.total;
     })
   }
 
