@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Validator;
-
+use App\Models\Playground;
 class ReviewController extends Controller
 {
     /**
@@ -16,9 +16,8 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
-        $reviews = Review::all();
-        return response()->json($reviews, 200);
+        $Review= Review::all();
+        return response($Review);
     }
 
     /**
@@ -30,18 +29,30 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         //
+        //
         $validated = validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'playground_id' => 'required|exists:playgrounds,id',
             'review' => 'required',
-            'rating' => 'required|integer|between:1,5',
+            'rating' => 'required|integer|between:0,5',
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors(), 400);
         }
-
-        $review = Review::create($request->all());
+        $review = Review::updateOrCreate(
+            ['playground_id' => $request->playground_id, 'user_id' =>$request->user_id],
+              ['rating' =>$request->rating,"review"=>$request->review]
+        );
+        $rating = Review::
+            where('playground_id', $request->playground_id)
+             ->avg('rating');
+             $this->updatePaygroundRate( $request->playground_id,$rating);
         return response()->json($review, 201);
+    }
+public function updatePaygroundRate($id,$rating)
+    {
+        Playground::where('id',$id)
+        ->update(['rating' =>$rating ]);
     }
 
     /**
@@ -53,18 +64,31 @@ class ReviewController extends Controller
     public function show($id)
     {
         //
-        $review = Review::find($id);
-        if (is_null($review)) {
+        $review = Review::where('playground_id',$id)->with('user')->get();
+        if($review->isEmpty()){
             return response()->json(["message" => "Record not found"], 404);
         }
-        return response()->json($review, 200);
+     
+        $responseData = $review->map(function ($review) {
+            return [
+                'id' => $review->id,
+                'rating' => $review->rating,
+                'review' => $review->review,
+                'created_id' => $review->created_at,
+                'user_name' => $review->user->name,
+                'user_id' => $review->user->id,
+            ];
+        });
+        return response()->json($responseData, 200);
+        //  $allRatingOfplayground = Review::where('playground_id',$id)->with('user')->get();
+        // return response()->json($allRatingOfplayground, 200);
     }
 
     public function showByPlayground($id)
     {
         //
        
-        $review = Review::where('playground_id', $id)->with('user')->get();
+         $review = Review::where('playground_id',$id)->with('user')->get();
         if($review->isEmpty()){
             return response()->json(["message" => "Record not found"], 404);
         }
@@ -92,21 +116,25 @@ class ReviewController extends Controller
     {
         //
 
-        $review = Review::find($id);
-        if (is_null($review)) {
-            return response()->json(["message" => "Record not found"], 404);
-        }
         $validated = validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'playground_id' => 'required|exists:playgrounds,id',
             'review' => 'required',
-            'rating' => 'required|integer|between:1,5',
+            'rating' => 'required|integer|between:0,5',
         ]);
         if ($validated->fails()) {
             return response()->json($validated->errors(), 400);
         }
-        $review->update($request->all());
-        return response()->json($review, 200);
+        $review = Review::updateOrCreate(
+            ['playground_id' => $request->playground_id, 'user_id' =>$request->user_id],
+              ['rating' =>$request->rating,"review"=>$request->review]
+            //   ['playground_id' => $request->playground_id, 'user_id' =>$request->user_id,'rating' =>$request->rating,"review"=>""]
+        );
+        $rating = Review::
+            where('playground_id', $request->playground_id)
+             ->avg('rating');
+             $this->updatePaygroundRate( $request->playground_id,$rating);
+        return response()->json($review, 201);
     }
 
     /**
@@ -117,13 +145,14 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $review = Review::find($id);
-        if (is_null($review)) {
-            return response()->json(["message" => "Record not found"], 404);
+ $element = Review::where('id',$id)->first();
+        $review = Review::destroy($id);
+        if($element){
+            $rating = Review::where('playground_id', $element->playground_id)
+            ->avg('rating');
+            $this->updatePaygroundRate( $element->playground_id,$rating);
         }
-        $review->delete();
-        return response()->json("deleted sucessfully", 200);
-
+       
+    return response()->json("delete successfuly", 201);
     }
 }

@@ -61,9 +61,17 @@ Route::middleware(['auth:api', 'owner'])->group(function () {
 
 });
 
-// Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
-Route::resource('review', ReviewController::class);
+Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+// Route::resource('review', ReviewController::class);
 Route::resource('rating', RateController::class);
-Route::put('rating/changeReview',[RateController::class,'update']);
+// Route::put('rating/changeReview',[RateController::class,'update']);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
+// Route::resource('category', categoryController::class);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
+
+
+
+
+
+
+Route::post('playground/create2',[PlaygroundController::class,'store2']);
