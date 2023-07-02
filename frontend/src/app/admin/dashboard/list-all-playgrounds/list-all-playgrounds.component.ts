@@ -21,7 +21,7 @@ export class ListAllPlaygroundsComponent {
   ngOnInit(): void {
     // this.accessToken = this.cookieService.get('userData').access_token;
     this.accessToken = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-    this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
+    this.playgroundService.listPending(this.accessToken).subscribe((res: any) => this.playgrounds = res);
 
   }
 
@@ -32,7 +32,7 @@ export class ListAllPlaygroundsComponent {
       this.statusUpdatedMap.set(id, true); // set statusUpdated for selected playground
 
       // reload playgrounds list
-      this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
+      this.playgroundService.listPending(this.accessToken).subscribe((res: any) => this.playgrounds = res);
     });
   }
 
