@@ -37,4 +37,12 @@ export class ReviewService {
     });
       return this.http.delete<any>(`${this.apiUrl}/review/${id}`, { headers })
     }
+
+    editReview(id: number, body:Object,  token: string): Observable<any> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      });
+        return this.http.post<any>(`${this.apiUrl}/review/${id}`,body, { headers });
+      }
 }

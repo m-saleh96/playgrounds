@@ -66,6 +66,8 @@ class ReviewController extends Controller
                 'review' => $review->review,
                 'created_id' => $review->created_at,
                 'user_name' => $review->user->name,
+                'user_id' => $review->user->id,
+
             ];
         });
         return response()->json($responseData, 200);

@@ -17,14 +17,18 @@ export class DetailsComponent {
   playgroundId!: number;
   isLogin:boolean=false;
   toDisplay = false;
+  toedit: boolean = false;
   rating: any;
   review: any;
   errorMessage:any='';
   user_id: number=0;
+  reviewId!:number;
+  currentUser:number= JSON.parse(this.cookieService.get('userData') || '{}').user?.id;
+
 
   playgrounds !: Playground[];
   reviews !: Review[];
-  
+
   // @Input() todos: any[] = [];
   @Output() setTasks = new EventEmitter();
 
@@ -91,11 +95,42 @@ postReview(){
 // Delete review
 delete(id: number){
   const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-  
-   this.reviewService.deleteReview(id, token).subscribe(
-    (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
-        error => console.error('Error deleting data', error)
-  )
- 
+
+    this.reviewService.deleteReview(id, token).subscribe(
+      (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
+          error => console.error('Error deleting data', error)
+    )   
 }
+
+// // edit review
+// edit(id: number) {
+//   console.log(id);
+  
+//   this.reviewId=id
+//   this.toedit = true;
+
+// }
+
+// editCategory() {
+//   const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+// console.log(this.reviewId);
+ 
+ 
+
+// const data: { review: string, rating: number, user_id: number, playground_id:number, _method:any } = {
+//   review:String( this.review),
+//   rating:Number( this.rating),
+//   user_id: this.user_id,
+//   playground_id:this.playgroundId,
+//   _method: "put"
+// };
+//   this.reviewService.editReview(this.reviewId, data, token).subscribe((res) => {
+//     console.log(res);
+//     setTimeout(() => { location.reload(); }, 1);
+//     // this.categories[this.categoryId]=res;setTimeout(() => {location.reload();}, 1);
+//   }
+//   )
+//   this.toedit = false
+
+// }
 }
