@@ -1,12 +1,23 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-3">
-      <app-aside (emitFromChild)="reciveFromChild($event)"></app-aside>
+      <app-aside (emitFromChild)="reciveFromChild($event)" [page]="page"></app-aside>
     </div>
     <div class="col-md-9">
       <div *ngFor="let playground of playGrounds">
         <app-field [playground]="playground"></app-field>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li id="box" [ngClass]="{'disabled':page==1,'page-item':true} ">
+            <a class="page-link" (click)="prevPage()"><i class="fa-solid fa-angle-left px-1"></i></a>
+          </li>
+          <li class="page-item"><p class="px-3 pt-2 display-7">{{page}}</p></li>
+          <li class="page-item">
+            <a [class]="'page-link ' + (lastPage === page ? 'disabled' : '')"  (click)="nextPage()"><i class="fa-solid fa-angle-right px-1"></i></a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

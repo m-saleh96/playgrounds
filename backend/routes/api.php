@@ -41,18 +41,23 @@ Route::resource('user', userController::class);
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
+    Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 });
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+
+    Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
+
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });
 
 //should be logged in as owner to access
 Route::middleware(['auth:api', 'owner'])->group(function () {
     Route::resource('playground', PlaygroundController::class)->except(['index', 'show']);
+    Route::get('playground/owner/{user}',[PlaygroundController::class,'playgroundByOwner']);
 
 });
 

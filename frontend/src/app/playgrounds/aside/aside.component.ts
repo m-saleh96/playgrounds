@@ -1,4 +1,5 @@
-import { Component ,EventEmitter,Output , OnInit } from '@angular/core';
+import { Component ,EventEmitter,Output , OnInit, Input, OnChanges } from '@angular/core';
+import { CategoryService } from 'src/app/services/category.service';
 import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.service';
 
 @Component({
@@ -6,20 +7,46 @@ import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.s
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
-export class AsideComponent implements OnInit{
+export class AsideComponent implements OnInit , OnChanges{
 
-  @Output() emitFromChild = new EventEmitter();
+  @Output() emitFromChild = new EventEmitter<any>();
+  @Input()  page!:number;
+
 
   playGrounds:any[]=[];
+  categories:any[]=[];
+  lastPage!:number;
+  type:any[]=[];
+  cairo!:boolean;
+  mansoura!:boolean;
+  price_to:number=1000;
+  price_from:number=1;
 
-  constructor(private filterService:FilterPlayGroundsService){}
+  result!:number;
+
+  constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService){}
 
   ngOnInit(): void {
-    this.filterService.filter().subscribe(data=>{
-      this.playGrounds = data;
-      this.emitFromChild.emit(this.playGrounds);
-    })
+    this.filterPlaygrounds();
+    this.categoryService.getAllCategory().subscribe((data:any)=>this.categories=data)
   }
+
+
+  ngOnChanges(): void {
+      this.filterPlaygrounds();
+  }
+
+
+  filterPlaygrounds(): void {
+    this.filterService.filter(this.page).subscribe((data:any) => {
+      this.playGrounds = data.data;
+      this.filterService.lastPage = data.last_page;
+      this.lastPage = data.last_page;
+      const value = [this.playGrounds , this.lastPage]
+      this.emitFromChild.emit(value);
+    });
+  }
+
 
   showTypeContent: boolean = true;
   showPriceContent: boolean = false;
@@ -38,25 +65,29 @@ export class AsideComponent implements OnInit{
     }
   }
 
-  tennis!: boolean;
-  paddle!:boolean;
-  football!:boolean;
-  cairo!:boolean;
-  mansoura!:boolean;
-  price_to:number=1000;
-  price_from:number=1;
-  filter(){
-    this.filterService.tennis = this.tennis;
-    this.filterService.paddle = this.paddle;
-    this.filterService.football = this.football;
+  filter(event: any){
+    if (event.target.type==="checkbox") {
+      const type = event.target.name;
+      if (event.target.checked) {
+        this.type.push(type)
+      } else {
+        let index = this.type.indexOf(type);
+        if (index > -1) {
+          this.type.splice(index, 1);
+        }
+      }
+    }
+
+    this.filterService.type = this.type;
     this.filterService.price_to = this.price_to;
     this.filterService.price_from = this.price_from;
     this.filterService.cairo = this.cairo;
     this.filterService.mansoura = this.mansoura;
 
-    this.filterService.filter().subscribe(data=>{
-      this.playGrounds = data
-      this.emitFromChild.emit(this.playGrounds);
+    this.filterPlaygrounds();
+    this.filterService.filter(this.page).subscribe(data=>{
+      this.filterService.setPage(1);
+      this.result = data.total;
     })
   }
 
