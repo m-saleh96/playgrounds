@@ -55,7 +55,7 @@
     <label>image</label>
     <input [class.is-valid]="addField.get('image')?.errors ==null && addField.get('image')?.touched"
     formControlName='image' type="file" (change)="onFileSelected($event)" class="form-control">
-    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="50px" *ngIf="oldPic">
+    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 
 
@@ -68,20 +68,18 @@
 <table class="table table-bordered text-center">
   <thead>
       <tr>
-          <th scope="col">photo</th>
           <th scope="col">Name</th>
-          <th scope="col">price</th>
-          <th scope="col">Description</th>
+          <th scope="col">Details</th>
+          <th scope="col">Recieves</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
       </tr>
   </thead>
   <tbody>
       <tr *ngFor="let row of fields">
-          <td><img class="img-fluid" [src]="'http://localhost:8000/images/'+row.picture" width="50px"></td>
           <td>{{row.name}}</td>
-          <td>{{row.price}}</td>
-          <td>{{row.description}}</td>
+          <td><button type="button" class="btn btn-dark" >Show Details</button></td>
+          <td><button type="button" class="btn btn-info" >Show Recieves</button></td>
           <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
           <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
       </tr>

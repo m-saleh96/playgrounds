@@ -25,9 +25,8 @@ export class OwnerFieldsComponent implements OnInit{
   }
 
   ngOnInit(){
-    // this.playGroundService.listById(this.owner.user.id).subscribe((res:any)=>this.fields=res);
-    this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res)
-
+    this.playGroundService.ownerField(this.owner.user.id , this.owner.access_token).subscribe((res:any)=>this.fields=res);
+    this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res);
   }
 
   selectedFile: File | null = null;
@@ -88,7 +87,7 @@ export class OwnerFieldsComponent implements OnInit{
             formData.append('image', this.oldPic);
           }
 
-        this.playGroundService.update(this.fieldID ,formData).subscribe((data:any)=>{
+          this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
           if (data) {
             this.activeForm = false;
             this.activeupdatebutton = false;
@@ -103,9 +102,9 @@ export class OwnerFieldsComponent implements OnInit{
 
 
 
-    deleteField(id: number) {
+  deleteField(id: number) {
     this.fields = this.fields.filter((elem:any)=>(elem.id)!=id)
-    this.playGroundService.delete(id).subscribe((res:any) => {
+    this.playGroundService.delete(id , this.owner.access_token).subscribe((res:any) => {
       if (res) {
         window.location.reload();
       }
@@ -129,7 +128,7 @@ export class OwnerFieldsComponent implements OnInit{
     this.activeAddbutton = false;
     const field = this.fields.find((elem: any) => elem.id === id);
     if (field) {
-      this.oldPic = field.picture;
+      this.oldPic = field.image;
       this.addField.patchValue({
         'name': field.name,
         'description':field.description,
