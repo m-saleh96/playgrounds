@@ -9,7 +9,7 @@ import { RegisterModule } from './register/register.module';
 import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
-import { OwnerDashboardModule } from './owner-dashboard/owner-dashboard.module';
+import { OwnerModule } from './owner/owner.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { OwnerDashboardModule } from './owner-dashboard/owner-dashboard.module';
     PlaygroundModule,
     PlaygroundsModule,
     DashboardModule,
-    OwnerDashboardModule
+    OwnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
