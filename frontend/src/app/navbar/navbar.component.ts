@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class NavbarComponent implements OnInit{
   isLogin:boolean=false;
   isOwner:boolean=false
+  isAdmin:boolean=false
   constructor (private cookieService: CookieService){ }
 
   ngOnInit(): void {
@@ -16,6 +17,9 @@ export class NavbarComponent implements OnInit{
       this.isLogin = true;
       if (JSON.parse(this.cookieService.get('userData') || '{}').user?.role === "owner") {
         this.isOwner=true;
+      }
+      if (JSON.parse(this.cookieService.get('userData') || '{}').user?.role === "admin") {
+        this.isAdmin=true;
       }
     }
   }
