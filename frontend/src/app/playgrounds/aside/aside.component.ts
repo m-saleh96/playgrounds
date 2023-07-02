@@ -9,13 +9,13 @@ import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.s
 })
 export class AsideComponent implements OnInit , OnChanges{
 
-  @Output() emitFromChild = new EventEmitter();
+  @Output() emitFromChild = new EventEmitter<any>();
   @Input()  page!:number;
 
 
   playGrounds:any[]=[];
   categories:any[]=[];
-
+  lastPage!:number;
   type:any[]=[];
   cairo!:boolean;
   mansoura!:boolean;
@@ -38,10 +38,12 @@ export class AsideComponent implements OnInit , OnChanges{
 
 
   filterPlaygrounds(): void {
-    this.filterService.filter(this.page).subscribe(data => {
+    this.filterService.filter(this.page).subscribe((data:any) => {
       this.playGrounds = data.data;
-      this.emitFromChild.emit(this.playGrounds);
       this.filterService.lastPage = data.last_page;
+      this.lastPage = data.last_page;
+      const value = [this.playGrounds , this.lastPage]
+      this.emitFromChild.emit(value);
     });
   }
 
@@ -82,10 +84,8 @@ export class AsideComponent implements OnInit , OnChanges{
     this.filterService.cairo = this.cairo;
     this.filterService.mansoura = this.mansoura;
 
+    this.filterPlaygrounds();
     this.filterService.filter(this.page).subscribe(data=>{
-      this.playGrounds = data.data;
-      this.emitFromChild.emit(this.playGrounds);
-      this.filterService.lastPage = data.last_page;
       this.filterService.setPage(1);
       this.result = data.total;
     })

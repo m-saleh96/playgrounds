@@ -12,6 +12,7 @@ import { AddComponent } from './owner-dashboard/add/add.component';
 import { ListAllCategoriesComponent } from './admin/dashboard/list-all-categories/list-all-categories.component';
 
 const routes: Routes = [
+    {path:'' , redirectTo:'home' , pathMatch:'full'},
     // lazy loading
     { path:'register', loadChildren: () => import('./register/register.module').then((m) => m.RegisterModule)},
     { path:'playground', loadChildren: () => import('./playground/playground.module').then((m) => m.PlaygroundModule)},

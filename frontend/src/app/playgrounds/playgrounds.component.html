@@ -13,7 +13,7 @@
             <a class="page-link" (click)="prevPage()"><i class="fa-solid fa-angle-left px-1"></i></a>
           </li>
           <li class="page-item">
-            <a class="page-link" (click)="nextPage()"><i class="fa-solid fa-angle-right px-1"></i></a>
+            <a [class]="'page-link ' + (lastPage === page ? 'disabled' : '')"  (click)="nextPage()"><i class="fa-solid fa-angle-right px-1"></i></a>
           </li>
         </ul>
       </nav>
