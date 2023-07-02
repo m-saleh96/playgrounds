@@ -104,7 +104,7 @@ export class OwnerFieldsComponent implements OnInit{
 
   deleteField(id: number) {
     this.fields = this.fields.filter((elem:any)=>(elem.id)!=id)
-    this.playGroundService.delete(id).subscribe((res:any) => {
+    this.playGroundService.delete(id , this.owner.access_token).subscribe((res:any) => {
       if (res) {
         window.location.reload();
       }
