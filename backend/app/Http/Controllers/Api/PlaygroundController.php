@@ -18,8 +18,7 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        // $playground = Playground::where('status', '<>', "pending")->get();
-        $playground = Playground::get();
+        $playground = Playground::where('status', '<>', "pending")->get();
         return response()->json($playground, 200);
 
     }
@@ -97,7 +96,7 @@ class PlaygroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
@@ -180,7 +179,7 @@ class PlaygroundController extends Controller
 
         }
 
-        // $playground = $playground->where('status', '<>', "pending");
+        $playground = $playground->where('status', '<>', "pending");
 
         $items_per_page = $request->input('items') ? $request->input('items') : 1;
         $playground = $playground->paginate($items_per_page);
@@ -217,11 +216,11 @@ class PlaygroundController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-    
+
         $admin = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -229,11 +228,18 @@ class PlaygroundController extends Controller
             'role' => 'admin',
             'phone'=>$request->phone
         ]);
-    
+
         return response()->json([
             'message' => 'Admin user created successfully',
             'admin' => $admin,
         ], 201);
     }
+
+    public function playgroundByowner(Request $request,$id)
+    {
+        $playground = Playground::where('user_id',$id)->get();
+        return response()->json($playground, 200);
+    }
+
 }
 
