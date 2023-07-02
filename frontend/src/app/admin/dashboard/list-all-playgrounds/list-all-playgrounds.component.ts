@@ -13,15 +13,13 @@ export class ListAllPlaygroundsComponent {
 
   playgrounds!: Playground []
   accessToken!: string;
-  statusUpdatedMap = new Map<number, boolean>();
   faCheck = faCheck;
 
   constructor(private playgroundService: PlaygroundService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    // this.accessToken = this.cookieService.get('userData').access_token;
     this.accessToken = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-    this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
+    this.playgroundService.listPending(this.accessToken).subscribe((res: any) => this.playgrounds = res);
 
   }
 
@@ -29,10 +27,9 @@ export class ListAllPlaygroundsComponent {
       // playground status updated
     this.playgroundService.updateStatus(id, 'done', this.accessToken).subscribe((res) => {
       console.log(res);
-      this.statusUpdatedMap.set(id, true); // set statusUpdated for selected playground
 
       // reload playgrounds list
-      this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
+      this.playgroundService.listPending(this.accessToken).subscribe((res: any) => this.playgrounds = res);
     });
   }
 
