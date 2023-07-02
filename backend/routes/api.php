@@ -46,6 +46,9 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+
+    Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
+
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });
 
