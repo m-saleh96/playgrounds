@@ -38,9 +38,9 @@
         <td><button type="button" class="btn btn-danger">Delete</button></td> -->
         <!-- <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)">Accept</button></td>      </tr> -->
 
-        <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)" [disabled]="playground.status === 'done' || statusUpdated">
-          <span *ngIf="playground.status === 'pending' && !statusUpdated">Accept</span>
-          <span *ngIf="playground.status === 'done' || statusUpdated" class="fa fa-check" [class.text-success]="statusUpdated" role="status" aria-hidden="true"></span>
+        <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)" [disabled]="playground.status === 'done' || statusUpdatedMap.get(playground.id)">
+          <span *ngIf="playground.status === 'pending' && !statusUpdatedMap.get(playground.id)">Accept</span>
+          <span *ngIf="playground.status === 'done' || statusUpdatedMap.get(playground.id)" class="fa fa-check text-white" [class.text-success]="statusUpdatedMap.get(playground.id)" role="status" aria-hidden="true"></span>
         </button></td>
     </tbody>
   </table>
