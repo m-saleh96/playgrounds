@@ -32,7 +32,7 @@ export class PlaygroundService {
 
   update(id:number , formData:any ,token:any): Observable<any>{
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
-    return this.http.put(`${this.apiUrl}/playground/${id}` , formData , { headers } )
+    return this.http.post(`${this.apiUrl}/playground/${id}` , formData , { headers } )
   }
 
   delete(id: any , token:any): Observable<any> {

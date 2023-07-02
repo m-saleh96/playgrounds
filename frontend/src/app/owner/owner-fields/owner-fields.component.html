@@ -50,7 +50,6 @@
     <p *ngIf="addField.get('location')?.errors !=null && addField.get('location')?.touched"
     class="py-2 text-danger">inValid</p>
   </div>
-  <input formControlName='user_id' name="user_id" hidden type="text" [value]="owner.user.id">
   <div class="form-group my-2">
     <label>image</label>
     <input [class.is-valid]="addField.get('image')?.errors ==null && addField.get('image')?.touched"
