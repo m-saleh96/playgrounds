@@ -39,6 +39,7 @@ export class AsideComponent implements OnInit , OnChanges{
     this.filterService.filter(this.page).subscribe(data => {
       this.playGrounds = data.data;
       this.emitFromChild.emit(this.playGrounds);
+      this.filterService.lastPage = data.last_page;
     });
   }
 
@@ -61,7 +62,6 @@ export class AsideComponent implements OnInit , OnChanges{
   }
 
   filter(event: any){
-
     if (event.target.type==="checkbox") {
       const type = event.target.name;
       if (event.target.checked) {
@@ -83,6 +83,8 @@ export class AsideComponent implements OnInit , OnChanges{
     this.filterService.filter(this.page).subscribe(data=>{
       this.playGrounds = data.data;
       this.emitFromChild.emit(this.playGrounds);
+      this.filterService.lastPage = data.last_page;
+      this.filterService.setPage(1);
     })
   }
 

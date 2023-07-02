@@ -11,11 +11,18 @@ export class FilterPlayGroundsService {
 
   constructor(private http: HttpClient) { }
 
+  private page = new BehaviorSubject(1);
+  pag = this.page.asObservable();
+  setPage(val:number){
+    this.page.next(val)
+  }
+
   cairo!:boolean;
   mansoura!:boolean;
   price_to:number = 1000;
   price_from:number = 0;
   type:any[]=[];
+  lastPage!:number;
 
   filter(page:number): Observable<any> {
 

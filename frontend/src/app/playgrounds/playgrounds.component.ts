@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FilterPlayGroundsService } from '../services/filter-play-grounds.service';
 
 
@@ -7,21 +7,24 @@ import { FilterPlayGroundsService } from '../services/filter-play-grounds.servic
   templateUrl: './playgrounds.component.html',
   styleUrls: ['./playgrounds.component.css']
 })
-export class PlaygroundsComponent{
+export class PlaygroundsComponent implements OnInit{
   playGrounds:any[]=[];
   page:number =1;
-  constructor(private filterService:FilterPlayGroundsService) {}
 
+  constructor(private filterService:FilterPlayGroundsService) {}
   reciveFromChild(data:any){
     this.playGrounds=data
   }
 
-
+  ngOnInit(): void {
+    this.filterService.pag.subscribe(data=>{
+      this.page =data
+    })
+  }
 
 nextPage(){
-    this.page ++
-    if (this.playGrounds.length == 0) {
-      this.page --
+    if (this.filterService.lastPage > this.page) {
+      this.page ++
     }
 }
 prevPage(){
