@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
@@ -40,6 +41,7 @@ Route::resource('user', userController::class);
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
+    Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 });
 
 //shoudl be logged in as admin to access
@@ -55,10 +57,13 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
 //should be logged in as owner to access
 Route::middleware(['auth:api', 'owner'])->group(function () {
     Route::resource('playground', PlaygroundController::class)->except(['index', 'show']);
+    Route::get('playground/owner/{user}',[PlaygroundController::class,'playgroundByOwner']);
 
 });
 
-Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+// Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+Route::resource('review', ReviewController::class);
+Route::resource('rating', RateController::class);
+Route::put('rating/changeReview',[RateController::class,'update']);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
-

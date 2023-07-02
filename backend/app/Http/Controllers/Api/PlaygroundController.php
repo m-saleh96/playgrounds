@@ -18,8 +18,7 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        // $playground = Playground::where('status', '<>', "pending")->get();
-        $playground = Playground::get();
+        $playground = Playground::where('status', '<>', "pending")->get();
         return response()->json($playground, 200);
 
     }
@@ -180,7 +179,7 @@ class PlaygroundController extends Controller
 
         }
 
-        // $playground = $playground->where('status', '<>', "pending");
+        $playground = $playground->where('status', '<>', "pending");
 
         $items_per_page = $request->input('items') ? $request->input('items') : 1;
         $playground = $playground->paginate($items_per_page);
@@ -235,5 +234,12 @@ class PlaygroundController extends Controller
             'admin' => $admin,
         ], 201);
     }
+
+    public function playgroundByowner(Request $request,$id)
+    {
+        $playground = Playground::where('user_id',$id)->get();
+        return response()->json($playground, 200);
+    }
+
 }
 

@@ -53,7 +53,17 @@ class ReviewController extends Controller
     public function show($id)
     {
         //
+        $review = Review::find($id);
+        if (is_null($review)) {
+            return response()->json(["message" => "Record not found"], 404);
+        }
+        return response()->json($review, 200);
+    }
 
+    public function showByPlayground($id)
+    {
+        //
+       
         $review = Review::where('playground_id', $id)->with('user')->get();
         if($review->isEmpty()){
             return response()->json(["message" => "Record not found"], 404);
@@ -66,11 +76,11 @@ class ReviewController extends Controller
                 'review' => $review->review,
                 'created_id' => $review->created_at,
                 'user_name' => $review->user->name,
+                'user_id' => $review->user->id,
             ];
         });
         return response()->json($responseData, 200);
     }
-
     /**
      * Update the specified resource in storage.
      *
