@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ImagePlayGround;
 use App\Models\Playground;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -29,6 +30,7 @@ class PlaygroundController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -69,6 +71,65 @@ class PlaygroundController extends Controller
 
     }
 
+
+
+
+
+
+    public function store2(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'subimage.*' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:5120',
+            'price' => 'required',
+            'size' => 'required',
+            'type' => 'required',
+            'user_id' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+        $img = $request->file('image');
+        $img_name = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $img_name);
+        $playground = Playground::create(
+            [
+                'name' => $request->name,
+                'location' => $request->location,
+                'description' => $request->description,
+                'image' => $img_name,
+                'price' => $request->price,
+                'size' => $request->size,
+                'type' => $request->type,
+                'user_id' => $request->user_id,
+            ]
+        );
+        $imgs = $request->file('subimage');
+        $count=0;
+        foreach($imgs as $image){
+            $img_name = time() . '.' . $image->extension();
+            $image->move(public_path('images'), $img_name);
+            $imagePlayGround=ImagePlayGround::create([
+            'playgrounds_id'=>$playground->id,
+            'subImage'=>$img_name]);
+            $count++;}
+        $imagePlayGround = ImagePlayGround::where('playgrounds_id',$playground->id)->select('subImage')->get();
+        $outputArray = [];
+        foreach ($imagePlayGround as $obj) {
+         $outputArray[] = $obj['subImage'];
+        }
+        return response()->json([
+            'message' => 'Great success! New playground created',
+            'playground' => $playground,
+            'subImages'=>$outputArray
+        ], 201);
+    }
+
+
+
     /**
      * Display the specified resource.
      *
@@ -76,6 +137,27 @@ class PlaygroundController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+        $playground = Playground::find($id);
+        if (!$playground) {
+            return response()->json([
+                'message' => 'Record not found',
+            ], 404);
+        }
+        $imagePlayGround = ImagePlayGround::where('playgrounds_id',$id)->select('subImage')->get();
+        $outputArray = [];
+        foreach ($imagePlayGround as $obj) {
+         $outputArray[] = $obj['subImage'];
+        }
+        return response()->json([
+            'playground' => $playground,
+            'subImages'=>$outputArray
+        ], 201);
+        // return response()->json($playground, 200);
+    }
+    
+    public function show2($id)
     {
         //
         $playground = Playground::find($id);

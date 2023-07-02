@@ -11,27 +11,72 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./list-all-categories.component.css']
 })
 export class ListAllCategoriesComponent {
-
-  categories!: Categories [] 
-  constructor(private categoryService: CategoryService,  private router: Router, private cookieService: CookieService) { }
+  toDisplayAdd: boolean = false;
+  toedit: boolean = false;
+  categoryName!: any;
+  categoryNameEdit!: any;
+  categoryId: number = 0;
+  categories!: Categories[]
+  constructor(private categoryService: CategoryService, private router: Router, private cookieService: CookieService) { }
 
   ngOnInit(): void {
 
-this.getAllCategories()
+    this.getAllCategories()
   }
 
-getAllCategories(){
-  this.categoryService.getAllCategory().subscribe((res: any) => this.categories = res);
-}
-delete(id: number){
-  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-  
-   this.categoryService.deleteCategory(id, token).subscribe(
-    result => console.log('Data deleted successfully'),
-    error => console.error('Error deleting data', error)
-  )
-//    (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);}, // Reload page after 2 seconds
-window.location.reload();
+  getAllCategories() {
+    this.categoryService.getAllCategory().subscribe((res: any) => this.categories = res);
+  }
+  delete(id: number) {
+    const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-}
+    this.categoryService.deleteCategory(id, token).subscribe(
+      (res) => { console.log('Data deleted successfully ' + res); setTimeout(() => { location.reload(); }, 1); },
+      error => alert(error)//console.error('Error deleting data', error)
+    )
+
+  }
+
+
+  // openAddForm
+  openAddForm() {
+    this.toDisplayAdd = true
+  }
+
+  // add category
+  postCategory() {
+    console.log(this.categoryName);
+    const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+
+    this.categoryService.addCategory({ name: this.categoryName }, token).subscribe((res) => {
+      console.log(res);
+      setTimeout(() => { location.reload(); }, 1)
+    },
+      (error) => console.log(error)
+    )
+
+    this.toDisplayAdd = false;
+  }
+
+  // open edit form
+  edit(id: number) {
+    this.categoryId = id;
+    this.toedit = true;
+
+  }
+  //editCategory
+  editCategory() {
+    const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+    console.log(this.categoryId);
+    console.log(this.categoryNameEdit);
+
+
+    this.categoryService.editCategory(this.categoryId, { name: this.categoryNameEdit, _method: "put" }, token).subscribe((res) => {
+      console.log(res);
+      setTimeout(() => { location.reload(); }, 1);
+    }
+    )
+    this.toedit = false
+
+  }
 }

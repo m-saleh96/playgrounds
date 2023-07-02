@@ -19,4 +19,13 @@ img{
     background-color: #17da48;
     box-shadow: 0px 0px 8px #14CF42;
   }
+
+  #addbtn{background-color: #14CF42;
+    color: black;
+    font-weight: bold;
+    display: block;
+  float: right;
+  /* margin-bottom: 2rem; */
+  }
+
   

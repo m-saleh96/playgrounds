@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { ListAllCategoriesComponent } from './list-all-categories/list-all-categories.component';
 import { CategoryService } from 'src/app/services/category.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListAllPlaygroundsComponent } from './list-all-playgrounds/list-all-playgrounds.component';
 
 
@@ -26,6 +27,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
   providers: [CategoryService] // Inject RegisterService to register module

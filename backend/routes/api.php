@@ -37,11 +37,11 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 
 
 Route::resource('user', userController::class);
+Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
-    Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 });
 
 //shoudl be logged in as admin to access
@@ -61,9 +61,17 @@ Route::middleware(['auth:api', 'owner'])->group(function () {
 
 });
 
-// Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
-Route::resource('review', ReviewController::class);
+Route::resource('review', ReviewController::class, ['only' => ['index', 'show']]);
+// Route::resource('review', ReviewController::class);
 Route::resource('rating', RateController::class);
-Route::put('rating/changeReview',[RateController::class,'update']);
+// Route::put('rating/changeReview',[RateController::class,'update']);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
+// Route::resource('category', categoryController::class);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
+
+
+
+
+
+
+Route::post('playground/create2',[PlaygroundController::class,'store2']);

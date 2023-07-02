@@ -4,5 +4,6 @@ export interface Review {
     rating:number,
     created_id:any,
     id:any,
-    playground_id:any
+    playground_id:any,
+    user_id:number
 }
