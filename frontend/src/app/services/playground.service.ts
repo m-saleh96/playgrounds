@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -28,7 +28,14 @@ export class PlaygroundService {
     return this.http.delete(`${this.apiUrl}/playground`, $id)
   }
 
-  update(id: number, data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/playground/${id}`, data);
+  // update(id: number, status: string): Observable<any> {
+  //   const data = { status: status };
+  //   return this.http.put(`${this.apiUrl}/playground/${id}`, data);
+  // }
+
+  update(id: number, status: string, token: string) {
+    console.log("token",token);
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.put(`${this.apiUrl}/playground/changeStatus/${id}`, { headers });
   }
 }

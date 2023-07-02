@@ -9,5 +9,7 @@ export interface Playground {
     userid:any,
     id:any,
     status:string,
-    user_id:any
+    user_id:any,
+    created_at:any,
+    updated_at:any
 }
