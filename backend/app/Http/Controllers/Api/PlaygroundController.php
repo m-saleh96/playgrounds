@@ -261,7 +261,7 @@ class PlaygroundController extends Controller
 
         }
 
-        $playground = $playground->where('status', '<>', "pending");
+        // $playground = $playground->where('status', '<>', "pending");
 
         $items_per_page = $request->input('items') ? $request->input('items') : 1;
         $playground = $playground->paginate($items_per_page);
@@ -322,6 +322,36 @@ class PlaygroundController extends Controller
         $playground = Playground::where('user_id',$id)->get();
         return response()->json($playground, 200);
     }
+
+
+    public function topRatedPlaygrounds()
+    {
+        $playgrounds = Playground::with('reviews')
+            ->withAvg('reviews.rating', 'average_rating')
+            ->orderByDesc('average_rating')
+            ->limit(10)
+            ->get();
+
+        return response()->json($playgrounds);
+    }
+    
+
+
+//     public function getTopRatedPlayground()
+// {
+//     $playground = Playground::withAvg('reviews', 'rating')
+//         ->where('status', '<>', 'pending')
+//         ->orderByDesc('reviews_avg_rating')
+//         ->first();
+
+//     if (!$playground) {
+//         return response()->json([
+//             'message' => 'No playground found',
+//         ], 404);
+//     }
+
+//     return response()->json($playground, 200);
+// }
 
 }
 
