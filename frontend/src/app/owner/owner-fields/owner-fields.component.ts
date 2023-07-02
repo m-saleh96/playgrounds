@@ -41,7 +41,6 @@ export class OwnerFieldsComponent implements OnInit{
       'price' :new FormControl(null , [Validators.required ]),
       'type' :new FormControl(null , [Validators.required ]),
       'location' :new FormControl(null , [Validators.required ]),
-      'user_id' :new FormControl(null),
       'image' :new FormControl(null),
     })
 
@@ -81,6 +80,7 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('type', this.addField.get('type')!.value);
           formData.append('location', this.addField.get('location')!.value);
           formData.append('user_id', this.owner.user.id);
+          formData.append('_method', 'put');
           if(this.selectedFile){
           formData.append('image', this.selectedFile);
           }else{
