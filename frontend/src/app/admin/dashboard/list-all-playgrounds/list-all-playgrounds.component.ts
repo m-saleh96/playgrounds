@@ -13,7 +13,7 @@ export class ListAllPlaygroundsComponent {
 
   playgrounds!: Playground []
   accessToken!: string;
-  statusUpdated = false;
+  statusUpdatedMap = new Map<number, boolean>();
   faCheck = faCheck;
 
   constructor(private playgroundService: PlaygroundService, private cookieService: CookieService) { }
@@ -29,7 +29,7 @@ export class ListAllPlaygroundsComponent {
       // playground status updated
     this.playgroundService.updateStatus(id, 'done', this.accessToken).subscribe((res) => {
       console.log(res);
-      this.statusUpdated = true;
+      this.statusUpdatedMap.set(id, true); // set statusUpdated for selected playground
 
       // reload playgrounds list
       this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
