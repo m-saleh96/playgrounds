@@ -55,6 +55,7 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
 //should be logged in as owner to access
 Route::middleware(['auth:api', 'owner'])->group(function () {
     Route::resource('playground', PlaygroundController::class)->except(['index', 'show']);
+    Route::get('playground/owner/{user}',[PlaygroundController::class,'playgroundByOwner']);
 
 });
 
