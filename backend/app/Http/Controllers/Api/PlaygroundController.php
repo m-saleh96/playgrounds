@@ -18,7 +18,8 @@ class PlaygroundController extends Controller
     public function index()
     {
 
-        $playground = Playground::where('status', '<>', "pending")->get();
+        // $playground = Playground::where('status', '<>', "pending")->get();
+        $playground = Playground::get();
         return response()->json($playground, 200);
 
     }
@@ -179,7 +180,7 @@ class PlaygroundController extends Controller
 
         }
 
-        $playground = $playground->where('status', '<>', "pending");
+        // $playground = $playground->where('status', '<>', "pending");
 
         $items_per_page = $request->input('items') ? $request->input('items') : 1;
         $playground = $playground->paginate($items_per_page);
