@@ -7,37 +7,57 @@
 
     <!-- to add category -->
     <div *ngIf="toDisplayAdd">
-
         <div class="form-group">
-            <div class="row">
-                <div class="col md-9"> <input type="text" class="form-control" placeholder="add category"
-                        [(ngModel)]="categoryName" name="review" required><br>
-
-                    <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postCategory()"> ADD
-                        </button></div>
-                </div>
-
+          <div class="row">
+            <div class="col md-9">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Add category"
+                [(ngModel)]="categoryName"
+                name="categoryName"
+                #categoryNameInput="ngModel"
+                required
+              >
+              <br>
+              <div class="col md-3">
+                <button type="submit" class="btn btn-info" (click)="validationCreate()">ADD</button>
+              </div>
             </div>
+          </div>
+          <div class="error" *ngIf="categoryNameInput.invalid && categoryNameInput.touched">
+            <span>Category name is required.</span>
+          </div>
         </div>
-
-    </div>
+      </div>
 
     <!-- to edit categories -->
     <div *ngIf="toedit">
-
         <div class="form-group">
-            <div class="row">
-                <div class="col md-9"> <input type="text" class="form-control" placeholder="add category"
-                        [(ngModel)]="categoryNameEdit" name="review" va><br>
-
-                    <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="editCategory()"> Edit
-                        </button></div>
-                </div>
+          <div class="row">
+            <div class="col md-9">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="add category"
+                [(ngModel)]="categoryNameEdit"
+                name="categoryNameEdit"
+                #categoryNameEditInput="ngModel"
+                required
+              >
+              <br>
+              <div class="col md-3">
+                <button type="submit" class="btn btn-info" (click)="validationEdit()">Edit</button>
+              </div>
             </div>
+          </div>
+          <div class="error" *ngIf="categoryNameEditInput.invalid && categoryNameEditInput.touched">
+            <span>Category name is required.</span>
+          </div>
         </div>
+      </div>
+      <span>{{errorMessage}}</span> 
 
-    </div>
-    
     <!-- to display categories -->
     <table class="table text-center">
         <thead>

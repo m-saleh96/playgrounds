@@ -16,9 +16,10 @@ export class ListAllCategoriesComponent {
   categoryName!: any;
   categoryNameEdit!: any;
   categoryId: number = 0;
+  errorMessage!: string;
+
   categories!: Categories[]
   constructor(private categoryService: CategoryService, private router: Router, private cookieService: CookieService) { }
-
   ngOnInit(): void {
 
     this.getAllCategories()
@@ -78,5 +79,37 @@ export class ListAllCategoriesComponent {
     )
     this.toedit = false
 
+  }
+
+  validationCreate() {
+    const unique = !this.categories.some(obj => obj.name === this.categoryName);
+    //console.log(unique);
+    //console.log(this.categoryName.length);
+
+    if (!unique) {
+      this.errorMessage = "not unique category"
+    }
+    else if (this.categoryName.length <= 3) {
+      this.errorMessage = "too short category name"
+    }
+    else {
+      this.postCategory();
+    }
+  }
+
+  validationEdit() {
+    const unique = !this.categories.some(obj => obj.name === this.categoryNameEdit);
+    //console.log(unique);
+    //console.log(this.categoryName.length);
+
+    if (!unique) {
+      this.errorMessage = "not unique category"
+    }
+    else if (this.categoryNameEdit.length <= 3 ) {
+      this.errorMessage = "too short category name"
+    }
+    else {
+      this.editCategory();
+    }
   }
 }
