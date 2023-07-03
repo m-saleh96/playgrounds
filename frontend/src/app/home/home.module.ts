@@ -4,6 +4,7 @@ import { HomeComponent } from './home.component';
 import { HeaderComponent } from './header/header.component';
 import { CardListComponent } from './cards/card-list/card-list.component';
 import { CardComponent } from './cards/card/card.component';
+import { TopRatedPlaygroundsComponent } from './top-rated-playgrounds/top-rated-playgrounds.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CardComponent } from './cards/card/card.component';
     HeaderComponent,
     CardListComponent,
     CardComponent,
+    TopRatedPlaygroundsComponent,
   ],
   imports: [
     CommonModule,
