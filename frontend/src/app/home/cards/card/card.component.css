@@ -29,6 +29,10 @@ img{
   transform: scale(1.1);
 }
 
+.card-img-top {
+  height: 200px; /* set a fixed height */
+  object-fit: cover; /* keep the aspect ratio and crop if necessary */
+}
 
 /* a{
   color: var(--neon-green);

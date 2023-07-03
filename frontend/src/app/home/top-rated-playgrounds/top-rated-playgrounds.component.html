@@ -1,12 +1,24 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-6 mb-4" *ngFor="let playground of topRatedPlaygrounds">
-      <div class="card h-100">
-        <img class="card-img-top" [src]="'http://localhost:8000/images/'+playground.image" alt="{{ playground.name }}">
-        <div class="card-body">
-          <h4 class="card-title">{{ playground.name }}</h4>
-          <p class="card-text">{{ playground.description }}</p>
+
+<div class="main pt-5">
+  <p class="text-center first-p">Top Rated Playgrounds</p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4 my-5" *ngFor="let playground of topRatedPlaygrounds">
+
+        <div class="card shadow h-100">
+          <img class="card-img-top" [src]="'http://localhost:8000/images/'+playground.image" alt="{{ playground.name }}">
+          <div class="card-body d-flex flex-row justify-content-between">
+            <div class="col-6">
+            <h4 class="card-title">{{ playground.name }}</h4>
+            <p class="card-text">{{ playground.description }}</p>
+            </div>
+
+            <div class="col-6 d-flex justify-content-end align-items-end">
+              <a class="btn px-2" (click)="redirectToDetails(playground.id)">more details</a>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
