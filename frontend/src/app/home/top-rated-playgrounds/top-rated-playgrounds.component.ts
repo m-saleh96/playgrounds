@@ -1,6 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Playground } from 'src/app/interfaces/playground';
 import { PlaygroundService } from 'src/app/services/playground.service';
 
 @Component({
@@ -10,9 +9,8 @@ import { PlaygroundService } from 'src/app/services/playground.service';
 })
 export class TopRatedPlaygroundsComponent implements OnInit {
   topRatedPlaygrounds!: any[];
-  @Input() playground !: Playground
 
-  constructor(private playgroundService: PlaygroundService, private router:Router) {}
+  constructor(private http: HttpClient ,private playgroundService: PlaygroundService) {}
 
   ngOnInit(): void {
     this.getTopRatedPlaygrounds();
@@ -24,7 +22,5 @@ export class TopRatedPlaygroundsComponent implements OnInit {
       .subscribe(playgrounds => this.topRatedPlaygrounds = playgrounds);
   }
 
-  redirectToDetails(id: number){
-    this.router.navigate(['playground/details/',id])
-  }
+
 }

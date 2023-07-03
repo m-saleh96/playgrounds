@@ -1,0 +1,36 @@
+
+.card{
+  /* background-color: var(--dark-gray); */
+  background-color: white;
+}
+.card:hover{
+  /* background-color: var(--main-color); */
+  transition: 0.3s;
+}
+.btn{
+  background-color: var(--neon-green);
+  color: black;
+  font-weight: bold;
+}
+.btn:hover{
+  background-color: #17da48;
+  box-shadow: 0px 0px 8px #14CF42;
+}
+img{
+  cursor: pointer;
+}
+.card {
+  overflow: hidden;
+}
+
+.card img {
+  transition: transform 0.3s ease-in-out;
+}
+.card img:hover {
+  transform: scale(1.1);
+}
+
+.card-img-top {
+  height: 200px; /* set a fixed height */
+  object-fit: cover; /* keep the aspect ratio and crop if necessary */
+}
