@@ -1,3 +1,4 @@
+
 .card{
   /* background-color: var(--dark-gray); */
   background-color: white;
@@ -33,12 +34,3 @@ img{
   height: 200px; /* set a fixed height */
   object-fit: cover; /* keep the aspect ratio and crop if necessary */
 }
-
-/* a{
-  color: var(--neon-green);
-  text-decoration: none;
-  cursor: pointer;
-}
-a:hover{
-  text-decoration: underline;
-} */

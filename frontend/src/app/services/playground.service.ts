@@ -28,6 +28,10 @@ export class PlaygroundService {
     return this.http.get(`${this.apiUrl}/playground/pending`, { headers })
 }
 
+getTopRatedPlaygrounds(): Observable<any> {
+  return this.http.get<any[]>(`${this.apiUrl}/playgrounds/top-rated`);
+}
+
 
   ownerField(id: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
