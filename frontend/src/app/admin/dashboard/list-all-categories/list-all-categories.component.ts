@@ -105,7 +105,7 @@ export class ListAllCategoriesComponent {
     if (!unique) {
       this.errorMessage = "not unique category"
     }
-    else if (this.categoryNameEdit.length <= 3 ) {
+    else if (this.categoryNameEdit.length <= 3) {
       this.errorMessage = "too short category name"
     }
     else {
