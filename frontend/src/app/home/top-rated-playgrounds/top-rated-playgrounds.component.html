@@ -1,1 +1,13 @@
-<p>top-rated-playgrounds works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6 mb-4" *ngFor="let playground of topRatedPlaygrounds">
+      <div class="card h-100">
+        <img class="card-img-top" [src]="'http://localhost:8000/images/'+playground.image" alt="{{ playground.name }}">
+        <div class="card-body">
+          <h4 class="card-title">{{ playground.name }}</h4>
+          <p class="card-text">{{ playground.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
