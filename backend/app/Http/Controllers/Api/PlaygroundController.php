@@ -157,7 +157,7 @@ class PlaygroundController extends Controller
         ], 201);
         // return response()->json($playground, 200);
     }
-    
+
     public function show2($id)
     {
         //
@@ -184,7 +184,7 @@ class PlaygroundController extends Controller
             'name' => 'required',
             'location' => 'required',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
             'size' => 'required',
             'type' => 'required',
@@ -328,7 +328,7 @@ class PlaygroundController extends Controller
     public function topRatedPlayground()
     {
         $playgrounds = Playground::where('status', '<>', 'pending')->get();
-    
+
         // $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
         //     $averageRating = $playground->reviews()->avg('rating');
         //     return $averageRating;
@@ -339,7 +339,7 @@ class PlaygroundController extends Controller
         ->get();
 
     return response()->json($playgrounds);
-        
+
     }
 
 

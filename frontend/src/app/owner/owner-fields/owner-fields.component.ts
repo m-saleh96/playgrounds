@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormControl ,Validators} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -20,15 +21,24 @@ export class OwnerFieldsComponent implements OnInit{
   fieldID!:number;
   oldPic!:any;
   errorMessage!:string;
-
-  constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService){
+  location:any[]=[];
+  cities:any[]=[];
+  city:any[]=[];
+  govern!:any;
+  governID!:number;
+  constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService , private http:HttpClient){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
 
   ngOnInit(){
     this.playGroundService.ownerField(this.owner.user.id , this.owner.access_token).subscribe((res:any)=>this.fields=res);
     this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res);
+    this.http.get('assets/egypt/governorates.json').subscribe((data:any)=>this.location=data);
+    this.http.get('assets/egypt/cities.json').subscribe((data:any)=>this.cities = data);
   }
+
+
+
 
   selectedFile: File | null = null;
     onFileSelected(event: any) {
@@ -42,6 +52,8 @@ export class OwnerFieldsComponent implements OnInit{
       'price' :new FormControl(null , [Validators.required ]),
       'type' :new FormControl(null , [Validators.required ]),
       'location' :new FormControl(null , [Validators.required ]),
+      'city' :new FormControl(null , [Validators.required ]),
+      'street' :new FormControl(null , [Validators.required ]),
       'image' :new FormControl(null),
     })
 
@@ -58,6 +70,8 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('price', this.addField.get('price')!.value);
           formData.append('type', this.addField.get('type')!.value);
           formData.append('location', this.addField.get('location')!.value);
+          formData.append('city', this.addField.get('city')!.value);
+          formData.append('street', this.addField.get('street')!.value);
           formData.append('user_id', this.owner.user.id);
           formData.append('image', this.selectedFile);
           this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
@@ -81,6 +95,8 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('price', this.addField.get('price')!.value);
           formData.append('type', this.addField.get('type')!.value);
           formData.append('location', this.addField.get('location')!.value);
+          formData.append('city', this.addField.get('city')!.value);
+          formData.append('street', this.addField.get('street')!.value);
           formData.append('user_id', this.owner.user.id);
           formData.append('_method', 'put');
           if(this.selectedFile){
@@ -120,14 +136,26 @@ export class OwnerFieldsComponent implements OnInit{
     this.activeAddbutton = true;
     this.activeupdatebutton = false;
   }
+
+
   updateform(id:number){
     window.scroll(0,0);
     this.fieldID=id;
     this.activeForm = true;
     this.activeupdatebutton = true;
     this.activeAddbutton = false;
+
     const field = this.fields.find((elem: any) => elem.id === id);
+
     if (field) {
+      this.govern = field.location;
+      this.location.forEach(elem=>{
+        if(elem.governorate_name_en == this.govern){
+          this.governID = elem.id;
+        }
+      })
+
+      this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
       this.oldPic = field.image;
       this.addField.patchValue({
         'name': field.name,
@@ -136,8 +164,20 @@ export class OwnerFieldsComponent implements OnInit{
         'price':field.price,
         'type':field.type,
         'location':field.location,
+        'city':field.city,
+        'street':field.street,
         'user_id':field.user_id,
       });
     }
+  }
+
+  filter(e:any){
+    let govern = e.target.value;
+    this.location.forEach(elem=>{
+      if(elem.governorate_name_en == govern){
+        this.governID = elem.id;
+      }
+    })
+    this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
   }
 }
