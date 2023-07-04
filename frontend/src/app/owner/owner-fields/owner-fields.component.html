@@ -5,7 +5,9 @@
   </div>
   <button (click)="addform()" class="btn btn-primary text-white">Add Field</button>
 </div>
-
+<div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center">
+  {{errorMessage}}
+</div>
 <form *ngIf="activeForm" class="w-75 m-auto py-5"  [formGroup]="addField" (ngSubmit)="add()" enctype="multipart/form-data">
 
   <div class="form-group my-2">
