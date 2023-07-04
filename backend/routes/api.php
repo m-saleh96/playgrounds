@@ -34,6 +34,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::get('a','a');
+    Route::get('sendmail','sendmail');
+    
 });
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
@@ -77,6 +79,8 @@ Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlayground']);
 
 
+
+Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);

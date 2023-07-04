@@ -25,9 +25,11 @@ img{
     font-weight: bold;
     display: block;
   float: right;
-  /* margin-bottom: 2rem; */
+  width: 20rem;
+  margin-bottom: 2rem;
   }
 
 span{
   color: red;
 }
+

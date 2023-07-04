@@ -14,7 +14,6 @@ export class TopRatedPlaygroundsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTopRatedPlaygrounds();
-    this.topRatedPlaygrounds.splice(3);
   }
 
   getTopRatedPlaygrounds(): void {

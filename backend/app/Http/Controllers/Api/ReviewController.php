@@ -28,9 +28,7 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //
-        $validated = validator::make($request->all(), [
+            $validated = validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'playground_id' => 'required|exists:playgrounds,id',
             'review' => 'required',
@@ -39,6 +37,14 @@ class ReviewController extends Controller
         if ($validated->fails()) {
             return response()->json($validated->errors(), 400);
         }
+        $review = Review::where('user_id', '=', $request->user_id)
+        ->where('playground_id', '=', $request->playground_id)->get();
+    if ($review) {
+    return response()->json([
+        'message' => 'this user have Review ',
+    ], 404);
+    }
+
         $review = Review::updateOrCreate(
             ['playground_id' => $request->playground_id, 'user_id' =>$request->user_id],
               ['rating' =>$request->rating,"review"=>$request->review]

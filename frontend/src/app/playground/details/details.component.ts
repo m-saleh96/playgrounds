@@ -27,7 +27,9 @@ export class DetailsComponent {
    token:string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
 
-  playgrounds !: Playground[];
+  // playgrounds !: Playground[];
+  playground :Playground={};
+
   reviews !: Review[];
 
   // @Input() todos: any[] = [];
@@ -41,7 +43,12 @@ export class DetailsComponent {
     this.playgroundId = Number(this.route.snapshot.paramMap.get('id'))
 
     //get playground details and save it in interface to display it on loading page
-    this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {this.playgrounds = [res]});
+    this.playgroundService.getById(this.playgroundId).subscribe((res: any) => {this.playground = res.playground;
+console.log(this.playground);
+
+    }
+    
+    );
 
     //get reviews  and save it in interface to display it on loading page
     this.reviewService.listByPlaygroundId(this.playgroundId).subscribe((res: any) => {this.reviews = res
@@ -49,6 +56,7 @@ export class DetailsComponent {
     
     });
 
+   
   }
 
   // Go to adding playground page
@@ -80,9 +88,7 @@ postReview(){
            playground_id:this.playgroundId
          };
 
-      // const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-      console.log(data);
 
       this.reviewService.create(data, this.token).subscribe(
             (response) => {console.log('Response: ', response);setTimeout(() => {location.reload();}, 1); // Reload page after 2 seconds
@@ -91,15 +97,12 @@ postReview(){
           )
           this.toDisplay=false
 
-      // window.location.reload();
 
   }
  
   
 // Delete review
 delete(id: number){
-  // const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-
     this.reviewService.deleteReview(id, this.token).subscribe(
       (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
           error => console.error('Error deleting data', error)
@@ -116,7 +119,6 @@ edit(id: number) {
 }
 
 editCategory() {
-  const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 console.log(this.reviewId);
  
  
@@ -128,10 +130,9 @@ const data: { review: string, rating: number, user_id: number, playground_id:num
   playground_id:this.playgroundId,
   _method: "put"
 };
-  this.reviewService.editReview(this.reviewId, data, token).subscribe((res) => {
+  this.reviewService.editReview(this.reviewId, data, this.token).subscribe((res) => {
     console.log(res);
     setTimeout(() => { location.reload(); }, 1);
-    // this.categories[this.categoryId]=res;setTimeout(() => {location.reload();}, 1);
   }
   )
   this.toedit = false
