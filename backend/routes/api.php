@@ -82,9 +82,16 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 
 Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
-
+// for chating 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
+
+// for complaint messages
+Route::post('/complaints', [ComplaintController::class, 'store']);
+Route::get('/complaints', [ComplaintController::class, 'index']);
+
+
+
 
 
 
