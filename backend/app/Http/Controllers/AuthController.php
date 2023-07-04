@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Mail;
+use App\Mail\firstmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
@@ -13,9 +15,22 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+
+
+
+     public function sendmail(Request $request){
+        $mailData=[
+            'title' => 'mail from title',
+            'body' => 'This is test body from mail'];
+        // Mail::to('gergesvictor512@gmail.com')->send(new testmail($mailData));
+        Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
+
+        return response()->json(['message' => 'Email send successfully']);
+    }
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register','sendmail']]);
     }
 
     public function register2(){

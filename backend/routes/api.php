@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ComplaintController;
+
 use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::get('a','a');
+    Route::get('sendmail','sendmail');
+    
 });
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
@@ -77,8 +81,17 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 
 
 
+Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
+// for chating 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
+
 Route::resource('timeslot', TimeSlotsController::class);
+
+// for complaint messages
+Route::post('/complaints', [ComplaintController::class, 'store']);
+Route::get('/complaints', [ComplaintController::class, 'index']);
+
+

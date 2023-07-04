@@ -1,15 +1,9 @@
-<p>list works!</p>
-<tbody>
-    <div *ngFor="let playground of playgrounds">
-        <span>{{playground.name| uppercase}}</span>
-        <span>{{playground.price}}</span>
-        <img class="img-fluid" [src]="'http://localhost:8000/images/'+playground.image" width="50px">
-        <span>{{playground.type}}</span>
-        <span>{{playground.location}}</span>
-        <span>{{playground.size}}</span>
-        <span>{{playground.description}}</span>
-
-
-    </div>
-
-</tbody>
+<div>
+    <h2>{{ playground.name | uppercase }}</h2>
+    <p>Price: {{ playground.price }}</p>
+    <img [src]="'http://localhost:8000/images/' + playground.image" width="50px">
+    <p>Type: {{ playground.type }}</p>
+    <p>Location: {{ playground.location }}</p>
+    <p>Size: {{ playground.size }}</p>
+    <p>Description: {{ playground.description }}</p>
+  </div>
