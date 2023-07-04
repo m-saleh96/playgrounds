@@ -328,12 +328,17 @@ class PlaygroundController extends Controller
     {
         $playgrounds = Playground::where('status', '<>', 'pending')->get();
     
-        $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
-            $averageRating = $playground->reviews()->avg('rating');
-            return $averageRating;
-        })->take(2);
-    
-        return response()->json($topRatedPlaygrounds, 200);
+        // $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
+        //     $averageRating = $playground->reviews()->avg('rating');
+        //     return $averageRating;
+        // })->take(2);
+        // return response()->json($topRatedPlaygrounds, 200);
+        $playgrounds = Playground::orderByDesc('rating')
+        ->take(3)
+        ->get();
+
+    return response()->json($playgrounds);
+        
     }
     
 
