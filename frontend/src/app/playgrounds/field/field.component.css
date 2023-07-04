@@ -1,3 +1,15 @@
 img:hover{
   cursor: pointer;
 }
+
+td{
+  font-size: 18px;
+}
+
+tr>td:first-child{
+  color: green;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+

@@ -4,11 +4,15 @@ import { OwnerComponent } from './owner.component';
 import { RouterModule, Routes } from '@angular/router';
 import { OwnerFieldsComponent } from './owner-fields/owner-fields.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OwnerGuard } from '../guards/owner.guard';
+
+
 
 
   const routes: Routes=[
   { path:'owner',
     component:OwnerComponent,
+    canActivate:[OwnerGuard],
     children:[]
   },
   ]
@@ -23,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  providers:[OwnerGuard]
 })
 export class OwnerModule { }

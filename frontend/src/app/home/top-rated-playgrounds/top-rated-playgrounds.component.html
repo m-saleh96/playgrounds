@@ -1,0 +1,13 @@
+
+<div class="main pt-5">
+  <p class="text-center first-p">Top Rated Playgrounds</p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4 my-5" *ngFor="let playground of topRatedPlaygrounds">
+
+        <app-top-rated-card-playgrounds [playground]="playground"></app-top-rated-card-playgrounds>
+
+      </div>
+    </div>
+  </div>
+</div>

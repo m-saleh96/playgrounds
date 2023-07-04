@@ -6,6 +6,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { WelcomeComponent } from './admin/dashboard/welcome/welcome.component';
 import { UsersComponent } from './admin/dashboard/users/users.component';
 import { ListAllCategoriesComponent } from './admin/dashboard/list-all-categories/list-all-categories.component';
+import { ListAllPlaygroundsComponent } from './admin/dashboard/list-all-playgrounds/list-all-playgrounds.component';
 
 const routes: Routes = [
     {path:'' , redirectTo:'home' , pathMatch:'full'},
@@ -15,25 +16,6 @@ const routes: Routes = [
 
     { path:'home', component: HomeComponent},
     { path:'playgrounds', component: PlaygroundsComponent},
-
-    {
-      path: 'admin',
-      component:DashboardComponent,
-      children:[
-        {
-          path: 'welcome',
-          component:WelcomeComponent
-        },
-        {
-          path: 'users',
-          component:UsersComponent
-        },
-        {
-          path: 'category',
-          component:ListAllCategoriesComponent
-        },
-      ]
-    }
 ];
 
 @NgModule({
