@@ -31,11 +31,13 @@ class PlaygroundController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store2(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
+            // 'city' => 'required',
+            // 'street' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
@@ -54,6 +56,8 @@ class PlaygroundController extends Controller
             [
                 'name' => $request->name,
                 'location' => $request->location,
+                'city' => $request->city,
+                'street' => $request->street,
                 'description' => $request->description,
                 'image' => $img_name,
                 'price' => $request->price,
@@ -76,12 +80,14 @@ class PlaygroundController extends Controller
 
 
 
-    public function store2(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
             'description' => 'required',
+            // 'city' => 'required',
+            // 'street' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'subimage.*' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:5120',
             'price' => 'required',
@@ -99,6 +105,8 @@ class PlaygroundController extends Controller
             [
                 'name' => $request->name,
                 'location' => $request->location,
+                'city' => $request->city,
+                'street' => $request->street,
                 'description' => $request->description,
                 'image' => $img_name,
                 'price' => $request->price,
@@ -182,6 +190,8 @@ class PlaygroundController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
+              // 'city' => 'required',
+            // 'street' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
@@ -279,6 +289,17 @@ class PlaygroundController extends Controller
     }
 
 
+
+    public function rejected(Request $request, Playground $playground)
+    {
+
+        $playground->status = "rejected";
+        $playground->save();
+        return response()->json([
+            'message' => 'Playground updated',
+            'playground' => $playground
+        ], 200);
+    }
 
     public function changeStates(Request $request, Playground $playground)
     {

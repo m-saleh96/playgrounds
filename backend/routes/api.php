@@ -49,6 +49,7 @@ Route::middleware('auth:api')->group(function () {
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
+    Route::put('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
 
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
