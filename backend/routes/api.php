@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
+use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
@@ -80,4 +81,4 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
-
+Route::resource('timeslot', TimeSlotsController::class);

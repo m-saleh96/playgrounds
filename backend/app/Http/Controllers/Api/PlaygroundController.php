@@ -183,7 +183,7 @@ class PlaygroundController extends Controller
             'name' => 'required',
             'location' => 'required',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
             'size' => 'required',
             'type' => 'required',
@@ -201,7 +201,26 @@ class PlaygroundController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
-        $playground->update($request->all());
+       
+        $playground->update(  
+            [
+                'name' => $request->name,
+                'location' => $request->location,
+                'description' => $request->description,
+                // 'image' => $img_name,
+                'price' => $request->price,
+                'size' => $request->size,
+                'type' => $request->type,
+                'user_id' => $request->user_id,
+            ]
+        );
+      if($request->hasFile('image')){
+        $img = $request->file('image');
+        $img_name = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $img_name);
+        $playground->image = $img_name;
+        $playground->save();
+      }
         return response()->json([
             'message' => 'Playground updated',
             'playground' => $playground
@@ -261,7 +280,7 @@ class PlaygroundController extends Controller
 
         }
 
-        // $playground = $playground->where('status', '<>', "pending");
+        $playground = $playground->where('status', '<>', "pending");
 
         $items_per_page = $request->input('items') ? $request->input('items') : 1;
         $playground = $playground->paginate($items_per_page);
