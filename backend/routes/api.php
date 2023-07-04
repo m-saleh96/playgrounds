@@ -90,14 +90,3 @@ Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints', [ComplaintController::class, 'index']);
 
-
-
-
-
-
-Route::post('/complaints', [ComplaintController::class, 'store']);
-
-
-
-
-
