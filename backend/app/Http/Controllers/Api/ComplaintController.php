@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Complaint;
 use Illuminate\Http\Request;
-
+use App\Models\User;
 class ComplaintController extends Controller
 {
     public function store(Request $request)
@@ -14,24 +14,28 @@ class ComplaintController extends Controller
             'userId' => 'required|exists:users,id',
             'playgroundId' => 'required|exists:playgrounds,id',
             'complaintMessage' => 'required|string',
+            
         ]);
-
-        $user = $request->user();
-        if (!$user || $user->role !== 'player') {
+    
+        $user = User::findOrFail($validatedData['userId']); 
+    
+        if ($user->role === 'player') {
+            $complaint = Complaint::create([
+                'user_id' => $validatedData['userId'],
+                'playground_id' => $validatedData['playgroundId'],
+                'message' => $validatedData['complaintMessage'],
+            ]);
+    
             return response()->json([
-                'message' => 'Only authenticated players can send complaints.'
-            ], 403);
+                'message' => 'Complaint submitted successfully.',
+                'complaint' => $complaint,
+            ]);
         }
-
-        $complaint = Complaint::create([
-            'user_id' => $validatedData['userId'],
-            'playground_id' => $validatedData['playgroundId'],
-            'message' => $validatedData['complaintMessage'],
-        ]);
-
+    
         return response()->json([
-            'message' => 'Complaint submitted successfully.',
-            'complaint' => $complaint,
-        ]);
+            'message' => 'You are not allowed to send this complaint.',
+        ], 403);
     }
+    
+    
 }
