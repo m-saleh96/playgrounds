@@ -14,7 +14,6 @@
         <th scope="col">status</th>
         <th scope="col">user_id</th>
         <th scope="col">created_at</th>
-        <th scope="col">updated_at</th>
         <th colspan="2">Action</th>
       </tr>
     </thead>
@@ -24,14 +23,13 @@
         <td>{{ playground.name }}</td>
         <td>{{ playground.location }}</td>
         <td>{{ playground.description }}</td>
-        <td>{{ playground.image }}</td>
+        <td><img class="img-fluid" [src]="'http://localhost:8000/images/'+playground?.image" alt="{{ playground.name }}" width="50px"></td>
         <td>{{ playground.price }}</td>
         <td>{{ playground.size }}</td>
         <td>{{ playground.type }}</td>
         <td>{{ playground.status }}</td>
         <td>{{ playground.user_id }}</td>
-        <td>{{ playground.created_at }}</td>
-        <td>{{ playground.updated_at }}</td>
+        <td>{{ playground.created_at | date:'MM/dd/yyyy' }}</td>
         <!-- <td><button type="button" class="btn btn-warning">Edit</button></td>
         <td><button type="button" class="btn btn-danger">Delete</button></td> -->
         <td><button type="button" class="btn btn-primary" (click)="acceptPlayground(playground.id)">Accept</button></td>
