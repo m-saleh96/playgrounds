@@ -31,6 +31,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
     Route::get('a','a');
+    Route::get('sendmail','sendmail');
+    
 });
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
@@ -68,7 +70,6 @@ Route::resource('rating', RateController::class);
 Route::resource('category', categoryController::class)->only(['index', 'show']);
 // Route::resource('category', categoryController::class);
 Route::resource('playground', PlaygroundController::class)->only(['index', 'show']);
-
 
 
 
