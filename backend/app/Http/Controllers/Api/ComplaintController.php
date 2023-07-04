@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 class ComplaintController extends Controller
 {
+
+    public function index()
+    {
+        $complaints = Complaint::all();
+
+        return response()->json([
+            'complaints' => $complaints,
+        ]);
+    }
     public function store(Request $request)
     {
         $validatedData = $request->validate([
