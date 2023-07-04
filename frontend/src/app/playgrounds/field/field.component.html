@@ -1,17 +1,32 @@
 <div class="card mb-3">
   <div class="row no-gutters">
-    <div class="col-md-4">
-      <img [src]="'http://localhost:8000/images/'+playground.image" class="card-img" alt="..." (click)="redirectToDetails(playground.id)">
+    <div class="col-md-6">
+      <img [src]="'http://localhost:8000/images/'+playground.image" class="card-img" alt="..." (click)="redirectToDetails(playground.id)" height="200px">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-6">
       <div class="card-body">
-        <h5 class="card-title">{{playground.name}}</h5>
-        <p class="card-text">{{playground.location}}</p>
-        <p class="card-text">{{playground.description}}</p>
-        <p class="card-text">{{playground.price}}</p>
-        <p class="card-text">{{playground.size}}</p>
-        <p class="card-text">{{playground.status}}</p>
-        <p class="card-text">{{playground.type}}</p>
+        <table>
+          <tr>
+            <td>Name </td>
+            <td>{{playground.name}}</td>
+          </tr>
+          <tr>
+            <td>Type</td>
+            <td>{{playground.type}}</td>
+          </tr>
+          <tr>
+            <td>Price</td>
+            <td>{{playground.price}}</td>
+          </tr>
+          <tr>
+            <td>Location</td>
+            <td>{{playground.location}}</td>
+          </tr>
+          <tr>
+            <td>Review</td>
+            <td></td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>

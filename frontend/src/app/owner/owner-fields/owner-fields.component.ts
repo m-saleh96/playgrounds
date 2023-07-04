@@ -19,15 +19,15 @@ export class OwnerFieldsComponent implements OnInit{
   activeupdatebutton:boolean = false;
   fieldID!:number;
   oldPic!:any;
+  errorMessage!:string;
 
   constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
 
   ngOnInit(){
-    // this.playGroundService.listById(this.owner.user.id).subscribe((res:any)=>this.fields=res);
-    this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res)
-
+    this.playGroundService.ownerField(this.owner.user.id , this.owner.access_token).subscribe((res:any)=>this.fields=res);
+    this.categoryService.getAllCategory().subscribe((res:any)=>this.category=res);
   }
 
   selectedFile: File | null = null;
@@ -42,7 +42,6 @@ export class OwnerFieldsComponent implements OnInit{
       'price' :new FormControl(null , [Validators.required ]),
       'type' :new FormControl(null , [Validators.required ]),
       'location' :new FormControl(null , [Validators.required ]),
-      'user_id' :new FormControl(null),
       'image' :new FormControl(null),
     })
 
@@ -67,9 +66,10 @@ export class OwnerFieldsComponent implements OnInit{
               this.activeAddbutton = false;
               window.location.reload();
             }
-            else{
-              this.flag = true;
-            }})
+          })
+        } else{
+          this.errorMessage = "Please fill all the required fields";
+          this.flag = true;
         }
 
       } else if(this.activeupdatebutton){
@@ -82,30 +82,29 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('type', this.addField.get('type')!.value);
           formData.append('location', this.addField.get('location')!.value);
           formData.append('user_id', this.owner.user.id);
+          formData.append('_method', 'put');
           if(this.selectedFile){
           formData.append('image', this.selectedFile);
           }else{
             formData.append('image', this.oldPic);
           }
 
-        this.playGroundService.update(this.fieldID ,formData).subscribe((data:any)=>{
+          this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
           if (data) {
             this.activeForm = false;
             this.activeupdatebutton = false;
             window.location.reload();
-          }
-          else{
-            this.flag = true;
-          }})
+            }
+          })
         }
       }
     }
 
 
 
-    deleteField(id: number) {
+  deleteField(id: number) {
     this.fields = this.fields.filter((elem:any)=>(elem.id)!=id)
-    this.playGroundService.delete(id).subscribe((res:any) => {
+    this.playGroundService.delete(id , this.owner.access_token).subscribe((res:any) => {
       if (res) {
         window.location.reload();
       }
@@ -129,7 +128,7 @@ export class OwnerFieldsComponent implements OnInit{
     this.activeAddbutton = false;
     const field = this.fields.find((elem: any) => elem.id === id);
     if (field) {
-      this.oldPic = field.picture;
+      this.oldPic = field.image;
       this.addField.patchValue({
         'name': field.name,
         'description':field.description,

@@ -13,6 +13,16 @@ getAllCategory(): Observable<any>  {
     return this.http.get(`${this.apiUrl}/category`);
   }
 
+
+addCategory(body:Object, token: string): Observable<any>  {
+  const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+  });
+       return this.http.post(`${this.apiUrl}/category`, body, { headers });
+  }
+
+
 getCategory(id:number, token: string): Observable<any>  {
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
@@ -26,7 +36,7 @@ editCategory(id: number, body:Object,  token: string): Observable<any> {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`
   });
-    return this.http.put<any>(`${this.apiUrl}/category/${id}`,body, { headers });
+    return this.http.post<any>(`${this.apiUrl}/category/${id}`,body, { headers });
   }
 
 deleteCategory(id: number,  token: string): Observable<any>  {

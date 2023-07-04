@@ -7,6 +7,7 @@ use App\Models\ImagePlayGround;
 use App\Models\Playground;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Complaint;
 use Illuminate\Support\Facades\Validator;
 
 class PlaygroundController extends Controller
@@ -186,14 +187,14 @@ class PlaygroundController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
               // 'city' => 'required',
             // 'street' => 'required',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
             'size' => 'required',
             'type' => 'required',
@@ -211,7 +212,26 @@ class PlaygroundController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
-        $playground->update($request->all());
+       
+        $playground->update(  
+            [
+                'name' => $request->name,
+                'location' => $request->location,
+                'description' => $request->description,
+                // 'image' => $img_name,
+                'price' => $request->price,
+                'size' => $request->size,
+                'type' => $request->type,
+                'user_id' => $request->user_id,
+            ]
+        );
+      if($request->hasFile('image')){
+        $img = $request->file('image');
+        $img_name = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $img_name);
+        $playground->image = $img_name;
+        $playground->save();
+      }
         return response()->json([
             'message' => 'Playground updated',
             'playground' => $playground
@@ -319,11 +339,11 @@ class PlaygroundController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-    
+
         $admin = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -331,7 +351,7 @@ class PlaygroundController extends Controller
             'role' => 'admin',
             'phone'=>$request->phone
         ]);
-    
+
         return response()->json([
             'message' => 'Admin user created successfully',
             'admin' => $admin,
@@ -343,6 +363,25 @@ class PlaygroundController extends Controller
         $playground = Playground::where('user_id',$id)->get();
         return response()->json($playground, 200);
     }
+
+
+    public function topRatedPlayground()
+    {
+        $playgrounds = Playground::where('status', '<>', 'pending')->get();
+    
+        // $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
+        //     $averageRating = $playground->reviews()->avg('rating');
+        //     return $averageRating;
+        // })->take(2);
+        // return response()->json($topRatedPlaygrounds, 200);
+        $playgrounds = Playground::orderByDesc('rating')
+        ->take(3)
+        ->get();
+
+    return response()->json($playgrounds);
+        
+    }
+
 
 }
 

@@ -17,14 +17,21 @@ export class DetailsComponent {
   playgroundId!: number;
   isLogin:boolean=false;
   toDisplay = false;
+  toedit: boolean = false;
   rating: any;
   review: any;
   errorMessage:any='';
-  user_id: number=0;
+  user_id: number = Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id);
+  reviewId!:number;
+  currentUser:number= JSON.parse(this.cookieService.get('userData') || '{}').user?.id;
+   token:string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-  playgrounds !: Playground[];
+
+  // playgrounds !: Playground[];
+  playground :Playground={};
+
   reviews !: Review[];
-  
+
   // @Input() todos: any[] = [];
   @Output() setTasks = new EventEmitter();
 
@@ -36,11 +43,20 @@ export class DetailsComponent {
     this.playgroundId = Number(this.route.snapshot.paramMap.get('id'))
 
     //get playground details and save it in interface to display it on loading page
-    this.playgroundService.listById(this.playgroundId).subscribe((res: any) => {this.playgrounds = [res]});
+    this.playgroundService.getById(this.playgroundId).subscribe((res: any) => {this.playground = res.playground;
+console.log(this.playground);
+
+    }
+    
+    );
 
     //get reviews  and save it in interface to display it on loading page
-    this.reviewService.listById(this.playgroundId).subscribe((res: any) => {this.reviews = res});
+    this.reviewService.listByPlaygroundId(this.playgroundId).subscribe((res: any) => {this.reviews = res
+    console.log(res);
+    
+    });
 
+   
   }
 
   // Go to adding playground page
@@ -51,7 +67,7 @@ export class DetailsComponent {
 // Open small form to add review (if you are login) if not go to login page
   checklogin(){
       if(JSON.parse(this.cookieService.get('userData') || '{}').user?.id >=1){
-        this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
+        // this.user_id=Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id)
           // console.log(JSON.parse(this.cookieService.get('userData') || '{}').access_token);
 
         this.toDisplay=true
@@ -72,19 +88,54 @@ postReview(){
            playground_id:this.playgroundId
          };
 
-      const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
 
-      console.log(data);
 
-      this.reviewService.create(data, token).subscribe(
+      this.reviewService.create(data, this.token).subscribe(
             (response) => {console.log('Response: ', response);setTimeout(() => {location.reload();}, 1); // Reload page after 2 seconds
           },
             (error) => {console.log('Error: ', error);}
           )
           this.toDisplay=false
 
-      // window.location.reload();
 
   }
+ 
   
+// Delete review
+delete(id: number){
+    this.reviewService.deleteReview(id, this.token).subscribe(
+      (response) => {console.log('Data deleted successfully ');setTimeout(() => {location.reload();}, 1);},
+          error => console.error('Error deleting data', error)
+    )   
+}
+
+// edit review
+edit(id: number) {
+  console.log(id);
+  
+  this.reviewId=id
+  this.toedit = true;
+
+}
+
+editCategory() {
+console.log(this.reviewId);
+ 
+ 
+
+const data: { review: string, rating: number, user_id: number, playground_id:number, _method:any } = {
+  review:String( this.review),
+  rating:Number( this.rating),
+  user_id: this.user_id,
+  playground_id:this.playgroundId,
+  _method: "put"
+};
+  this.reviewService.editReview(this.reviewId, data, this.token).subscribe((res) => {
+    console.log(res);
+    setTimeout(() => { location.reload(); }, 1);
+  }
+  )
+  this.toedit = false
+
+}
 }

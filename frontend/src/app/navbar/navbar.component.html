@@ -18,10 +18,10 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="playgrounds" routerLinkActive="active">Field</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin">
               <a class="nav-link" routerLink="admin/welcome" routerLinkActive="active">DashBoard</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isOwner">
               <a class="nav-link" routerLink="owner" routerLinkActive="active">owner</a>
             </li>
           </ul>
