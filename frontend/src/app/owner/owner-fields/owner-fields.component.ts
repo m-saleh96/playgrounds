@@ -19,6 +19,7 @@ export class OwnerFieldsComponent implements OnInit{
   activeupdatebutton:boolean = false;
   fieldID!:number;
   oldPic!:any;
+  errorMessage!:string;
 
   constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
@@ -65,9 +66,10 @@ export class OwnerFieldsComponent implements OnInit{
               this.activeAddbutton = false;
               window.location.reload();
             }
-            else{
-              this.flag = true;
-            }})
+          })
+        } else{
+          this.errorMessage = "Please fill all the required fields";
+          this.flag = true;
         }
 
       } else if(this.activeupdatebutton){
@@ -92,10 +94,8 @@ export class OwnerFieldsComponent implements OnInit{
             this.activeForm = false;
             this.activeupdatebutton = false;
             window.location.reload();
-          }
-          else{
-            this.flag = true;
-          }})
+            }
+          })
         }
       }
     }
