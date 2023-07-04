@@ -10,7 +10,7 @@
             <input [class.is-valid]="registerForm.get('name')?.errors ==null && registerForm.get('name')?.touched"
             formControlName='name' type="text" class="form-control">
             <p *ngIf="registerForm.get('name')?.errors !=null && registerForm.get('name')?.touched"
-            class="py-2 text-danger">Name inValid</p>
+            class="py-2 text-danger">Name inValid Should be min 3 characters and max 20 characters</p>
         </div>
         <div class="form-group my-2">
           <label>Email</label>
