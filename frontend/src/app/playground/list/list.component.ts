@@ -10,15 +10,15 @@ import { PlaygroundService } from 'src/app/services/playground.service';
 })
 export class ListComponent {
 
-  playgrounds !:Playground[];
+  playground :Playground={};
 
   constructor(private http: HttpClient , private playgroundService: PlaygroundService){}
 
 
   ngOnInit(): void {
-
-    this.playgroundService.listAll().subscribe((res: any) => this.playgrounds = res);
-  console.log(this.playgrounds);
-  
+    this.playgroundService.getById(1).subscribe((res: any) => {
+      this.playground = res.playground;
+      console.log(this.playground);
+    });
   }
 }

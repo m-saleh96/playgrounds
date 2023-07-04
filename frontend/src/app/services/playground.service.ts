@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Playground } from '../interfaces/playground';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class PlaygroundService {
     return this.http.get(`${this.apiUrl}/playground`)
   }
 
-  listById(id: any): Observable<any> {
-    return this.http.get(`${this.apiUrl}/playground/${id}`)
+  getById(id: any): Observable <Playground> {
+    return this.http.get<Playground>(`${this.apiUrl}/playground/${id}`)
   }
 
 
