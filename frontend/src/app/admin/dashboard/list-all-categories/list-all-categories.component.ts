@@ -60,10 +60,12 @@ export class ListAllCategoriesComponent {
   }
 
   // open edit form
-  edit(id: number) {
+  edit(id: number, i: number) {
     this.categoryId = id;
     this.toedit = true;
-    this.toDisplayAdd=false
+    this.toDisplayAdd = false
+    this.categoryNameEdit = this.categories[i].name
+    console.log(this.categoryNameEdit);
 
   }
   //editCategory
@@ -83,7 +85,7 @@ export class ListAllCategoriesComponent {
   }
 
   validationCreate() {
-    this.toedit=false;
+    this.toedit = false;
     const unique = !this.categories.some(obj => obj.name === this.categoryName);
     //console.log(unique);
     //console.log(this.categoryName.length);
@@ -107,7 +109,7 @@ export class ListAllCategoriesComponent {
     if (!unique) {
       this.errorMessage = "not unique category"
     }
-    else if (this.categoryNameEdit.length <= 3 ) {
+    else if (this.categoryNameEdit.length <= 3) {
       this.errorMessage = "too short category name"
     }
     else {
