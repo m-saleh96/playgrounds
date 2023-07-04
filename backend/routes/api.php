@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\Api\ComplaintController;
 use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
@@ -82,7 +82,10 @@ Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 
+
+
 Route::post('/playgrounds/complaint', [ComplaintController::class, 'store']);
+
 
 
 
