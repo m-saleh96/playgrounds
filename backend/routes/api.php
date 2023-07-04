@@ -79,3 +79,5 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
+
+

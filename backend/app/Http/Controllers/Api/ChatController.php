@@ -15,6 +15,7 @@ class ChatController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
+    
     public function sendMessage(Request $request)
     {
         $request->validate([
@@ -22,18 +23,32 @@ class ChatController extends Controller
             'receiver_id' => 'required|exists:users,id',
             'message' => 'required|string',
         ]);
-
-        $message = ChatMessage::create([
-            'sender_id' => $request->input('sender_id'),
-            'receiver_id' => $request->input('receiver_id'),
-            'message' => $request->input('message'),
-        ]);
-
+    
+        $sender = User::findOrFail($request->input('sender_id'));
+        $receiver = User::findOrFail($request->input('receiver_id'));
+    
+        // Check if the sender is a player and the receiver is an owner
+        if ($sender->role === 'player' && $receiver->role === 'owner') {
+            $message = ChatMessage::create([
+                'sender_id' => $sender->id,
+                'receiver_id' => $receiver->id,
+                'message' => $request->input('message'),
+            ]);
+    
+            return response()->json([
+                'message' => 'Message sent successfully',
+                'data' => $message,
+            ]);
+        }
+    
         return response()->json([
-            'message' => 'Message sent successfully',
-            'data' => $message,
-        ]);
+            'message' => 'You are not allowed to start a chat with this user',
+        ], 403);
     }
+    
+
+
+
 
     /**
      * Get the chat messages between a sender and receiver.
