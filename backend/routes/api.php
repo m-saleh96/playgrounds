@@ -94,3 +94,10 @@ Route::get('/complaints', [ComplaintController::class, 'index']);
 
 
 
+
+Route::post('/complaints', [ComplaintController::class, 'store']);
+
+
+
+
+
