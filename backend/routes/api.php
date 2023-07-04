@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,3 +75,7 @@ Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlayground']);
 
 
+
+
+Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
+Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
