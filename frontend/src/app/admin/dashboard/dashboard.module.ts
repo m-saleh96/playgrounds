@@ -16,6 +16,7 @@ import { OwnersComponent } from './owners/owners.component';
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path:'users', component: UsersComponent },
+  { path:'owners', component: OwnersComponent },
   { path: 'admin', component: DashboardComponent,
     canActivate: [AdminGuard],
     children:[
@@ -28,13 +29,18 @@ const routes: Routes = [
       component:UsersComponent
     },
     {
-      path: 'category',
-      component:ListAllCategoriesComponent
+      path: 'owners',
+      component:OwnersComponent
     },
     {
       path: 'adminplaygrounds',
       component:ListAllPlaygroundsComponent
-    }
+    },
+    {
+      path: 'category',
+      component:ListAllCategoriesComponent
+    },
+
   ]},
 ]
 
