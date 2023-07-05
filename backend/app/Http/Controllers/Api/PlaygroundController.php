@@ -159,9 +159,10 @@ class PlaygroundController extends Controller
         foreach ($imagePlayGround as $obj) {
          $outputArray[] = $obj['subImage'];
         }
+        $playground['subImage'] = $outputArray;
         return response()->json([
             'playground' => $playground,
-            'subImages'=>$outputArray
+            // 'subImages'=>$outputArray
         ], 201);
         // return response()->json($playground, 200);
     }
