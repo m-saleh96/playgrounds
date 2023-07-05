@@ -43,7 +43,6 @@ getTopRatedPlaygrounds(): Observable<any> {
   ownerField(id: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.get(`${this.apiUrl}/playground/owner/${id}` , {headers} )
-
   }
 
   create(formData: any , token:any): Observable<any> {
@@ -75,7 +74,9 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.put(`${this.apiUrl}/playground/rejected/${id}`, {status}, {headers});
   }
 
-
-
+  displayOwners(id: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.get(`${this.apiUrl}/owner` , {headers} )
+  }
 
 }
