@@ -22,16 +22,12 @@ export class PlaygroundService {
   }
 
 
-  listPending(token: string, page: number, pageSize: number): Observable<any> {
+  listPending(token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
     });
 
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('pageSize', pageSize.toString());
-
-    return this.http.get(`${this.apiUrl}/playground/pending`, { headers, params });
+    return this.http.get(`${this.apiUrl}/playground/pending`, { headers });
   }
 
 
