@@ -273,8 +273,8 @@ class PlaygroundController extends Controller
 
         }
 
-        if ($request->input('location')) {
-            $playground->whereIn('location', $request->input('location'));
+        if ($request->input('city')) {
+            $playground->whereIn('city', $request->input('city'));
 
         }
 
