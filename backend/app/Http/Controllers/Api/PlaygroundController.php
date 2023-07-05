@@ -281,9 +281,13 @@ class PlaygroundController extends Controller
 
         }
 
+        if($request->input('rating')){
+            $playground->where('rating', '>=', intval($request->input('rating')));
+        }
+
         $playground = $playground->where('status', '<>', "pending");
 
-        $items_per_page = $request->input('items') ? $request->input('items') : 1;
+        $items_per_page = $request->input('items') ? $request->input('items') : 4;
         $playground = $playground->paginate($items_per_page);
         return response()->json($playground, 200);
 
