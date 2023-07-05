@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -22,12 +22,17 @@ export class PlaygroundService {
   }
 
 
-  listPending(token: string): Observable<any> {
+  listPending(token: string, page: number, pageSize: number): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
-  })
-    return this.http.get(`${this.apiUrl}/playground/pending`, { headers })
-}
+    });
+
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('pageSize', pageSize.toString());
+
+    return this.http.get(`${this.apiUrl}/playground/pending`, { headers, params });
+  }
 
 getTopRatedPlaygrounds(): Observable<any> {
   return this.http.get<any[]>(`${this.apiUrl}/playgrounds/top-rated`);
