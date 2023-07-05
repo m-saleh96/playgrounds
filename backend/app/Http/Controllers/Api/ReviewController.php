@@ -38,8 +38,8 @@ class ReviewController extends Controller
             return response()->json($validated->errors(), 400);
         }
         $review = Review::where('user_id', '=', $request->user_id)
-        ->where('playground_id', '=', $request->playground_id)->get();
-    if ($review) {
+        ->where('playground_id', '=', $request->playground_id)->first();
+    if (!is_null ($review)) {
     return response()->json([
         'message' => 'this user have Review ',
     ], 404);
