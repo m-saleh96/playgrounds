@@ -1,28 +1,25 @@
-<div class="container">
+<div class="container" >
     <div class="section">
 
         <div class="row">
 
             <div class="col-8">
                 <img id="mainImg" [src]="'http://localhost:8000/images/'+playground.image">
+                <!-- <img id="mainImg" [src]="'http://localhost:8000/images/'+playground.subimage"> -->
 
             </div>
             <div class="col-4">
                 <div class="row">
-                    <img class="allImg" src='https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg'>
-                </div>
-                <div class="row">
-                    <img class="allImg" src="https://i.pinimg.com/236x/7a/56/3d/7a563dc2145d91a175e63989ea8155b5.jpg">
-                </div>
-                <div class="row">
-                    <img class="allImg" src="https://i.pinimg.com/236x/b1/b4/5d/b1b45dadcc2bc7e274ad92183785254c.jpg">
-                </div>
+                  <div *ngFor="let image of playground.subImage">
+                    <!-- <h1>{{image}}</h1> -->
 
-            </div>
-        </div>
-    </div>
+                    <img class="allImg" [src]="'http://localhost:8000/images/' + image" alt="Image">
+                  </div>
+                </div>
+              </div>
 
     <div class="section">
+
         <h2>{{playground.name}}</h2>
         <p>{{playground.location}}</p>
         <h4>description: {{playground.description}}</h4>

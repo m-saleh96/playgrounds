@@ -1,0 +1,17 @@
+
+<div class="container">
+    <div class="form-group">
+      <div class="row">
+          <div class="col md-9"> <input type="text" class="form-control" placeholder="add complaintMessage"
+                  [(ngModel)]="complaintMessage" name="review"><br>
+              <div class="col md-9"> <input type="number" class="form-control" placeholder="add playground_id"
+                      [(ngModel)]="playground_id" name="playground_id" >
+              </div>
+              <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postComplians()" > Add Complain
+                  </button></div>
+          </div>
+      </div>
+    </div>
+    {{error}}
+    </div>
+    
