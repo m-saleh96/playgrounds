@@ -17,7 +17,9 @@ class Playground extends Model
         'size',
         'type',
         'status',
-        'user_id'
+        'user_id',
+        'city',
+        'street'
     ];
 
     public function user()

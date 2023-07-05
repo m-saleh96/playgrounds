@@ -45,11 +45,30 @@
     <option *ngFor="let category of category" [value]="category.name" >{{category.name}}</option>
     </select>
   </div>
+
   <div class="form-group my-2">
     <label>location</label>
-    <input [class.is-valid]="addField.get('location')?.errors ==null && addField.get('location')?.touched"
-    formControlName='location' type="text" class="form-control">
-    <p *ngIf="addField.get('location')?.errors !=null && addField.get('location')?.touched"
+    <select id="" [class.is-valid]="addField.get('location')?.errors ==null && addField.get('location')?.touched"
+    formControlName='location' type="text" class="form-select" [(ngModel)]="govern" (change)="filter($event)">
+    <option *ngFor="let location of location" [value]="location.governorate_name_en" >{{location.governorate_name_en}}</option>
+    </select>
+  </div>
+
+
+  <div class="form-group my-2">
+    <label>City</label>
+    <select id="" [class.is-valid]="addField.get('city')?.errors ==null && addField.get('city')?.touched"
+    formControlName='city' type="text" class="form-select">
+    <option *ngFor="let city of city" [value]="city.city_name_en" >{{city.city_name_en}}</option>
+    </select>
+    <p *ngIf="addField.get('city')?.errors !=null && addField.get('city')?.touched"
+    class="py-2 text-danger">inValid</p>
+  </div>
+  <div class="form-group my-2">
+    <label>Street</label>
+    <input [class.is-valid]="addField.get('street')?.errors ==null && addField.get('street')?.touched"
+    formControlName='street' type="text" class="form-control">
+    <p *ngIf="addField.get('street')?.errors !=null && addField.get('street')?.touched"
     class="py-2 text-danger">inValid</p>
   </div>
   <div class="form-group my-2">

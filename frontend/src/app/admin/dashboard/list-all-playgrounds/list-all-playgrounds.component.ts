@@ -28,7 +28,7 @@ export class ListAllPlaygroundsComponent implements OnInit{
 
   acceptPlayground(id: number) {
       // playground status updated
-    this.playgroundService.updateStatus(id, 'done', this.accessToken).subscribe((res) => {
+    this.playgroundService.updateStatusAccept(id, 'done', this.accessToken).subscribe((res) => {
       console.log(res);
 
       // reload playgrounds list
@@ -37,6 +37,18 @@ export class ListAllPlaygroundsComponent implements OnInit{
       // this.getPlaygrounds();
     });
   }
+
+  rejectPlayground(id: number) {
+    // playground status updated
+    this.playgroundService.updateStatusRejected(id, 'rejected', this.accessToken).subscribe((res) => {
+    console.log(res);
+
+    // reload playgrounds list
+    this.playgroundService.listPending(this.accessToken, this.currentPage, this.pageSize).subscribe((res: any) => this.playgrounds = res);
+
+    });
+  }
+
 
   getPlaygrounds(): void {
     // this.playgroundService.listPending(this.accessToken).subscribe((res: any) => this.playgrounds = res);

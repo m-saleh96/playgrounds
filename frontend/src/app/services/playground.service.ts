@@ -34,6 +34,7 @@ export class PlaygroundService {
     return this.http.get(`${this.apiUrl}/playground/pending`, { headers, params });
   }
 
+
 getTopRatedPlaygrounds(): Observable<any> {
   return this.http.get<any[]>(`${this.apiUrl}/playgrounds/top-rated`);
 }
@@ -60,11 +61,18 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/playground/${id}` ,{ headers } )
   }
 
-  updateStatus(id: number, status: string, token: string) {
+  updateStatusAccept(id: number, status: string, token: string) {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
   })
     return this.http.put(`${this.apiUrl}/playground/changeStatus/${id}`,{status}, { headers });
+  }
+
+  updateStatusRejected(id: number, status: string, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put(`${this.apiUrl}/playground/rejected/${id}`, {status}, {headers});
   }
 
 

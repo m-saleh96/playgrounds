@@ -1,5 +1,4 @@
-
-<div class="container" >
+<div class="container">
     <div class="section">
 
         <div class="row">
@@ -24,9 +23,9 @@
     </div>
 
     <div class="section">
-      <h2>{{playground.name}}</h2>
-      <p>{{playground.location}}</p>
-      <h4>description: {{playground.description}}</h4>
+        <h2>{{playground.name}}</h2>
+        <p>{{playground.location}}</p>
+        <h4>description: {{playground.description}}</h4>
 
         <h1>playground-Overview</h1>
         <h4>location: {{playground.location}}</h4>
@@ -40,49 +39,49 @@
 
     <div class="section">
         <h1>playground-Reviews</h1>
-    <div *ngIf="toDisplay">
+        <div *ngIf="toDisplay">
 
 
-<!-- add new review form -->
-        <div class="form-group">
-            <div class="row">
-                <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
-                        [(ngModel)]="review" name="review"><br>
-                    <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
-                            [(ngModel)]="rating" name="rating" max="5" min="0">
+            <!-- add new review form -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
+                            [(ngModel)]="review" name="review"><br>
+                        <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
+                                [(ngModel)]="rating" name="rating" max="5" min="1">
+                        </div>
+                        <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postReview()" > ADD
+                            </button></div>
                     </div>
-                    <div class="col md-3"> <button type="submit" class="btn btn-info"  (click)="postReview()"> ADD
-                        </button></div>
                 </div>
             </div>
+
         </div>
 
-    </div>
 
+        <!--  edit review form-->
+        <div *ngIf="toedit">
 
-<!--  edit review form-->
-  <div *ngIf="toedit">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
+                            [(ngModel)]="review" name="review"><br>
+                        <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
+                                [(ngModel)]="rating" name="rating" max="5" min="1">
+                        </div><br>
 
-    <div class="form-group">
-        <div class="row">
-            <div class="col md-9"> <input type="text" class="form-control" placeholder="add review"
-                [(ngModel)]="review" name="review"><br>
-            <div class="col md-9"> <input type="number" class="form-control" placeholder="add rating"
-                    [(ngModel)]="rating" name="rating" max="5" min="0">
-            </div><br>
-
-                <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="editCategory()"> Edit
-                    </button></div>
+                        <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="editCategory()"> Edit
+                            </button></div>
+                    </div>
+                </div>
             </div>
+
         </div>
-    </div>
 
-</div>
+        <a class="btn px-2" (click)="checklogin()" class="btn btn-success" *ngIf="!userHasReview"> add Review</a>
 
-        <a class="btn px-2" (click)="checklogin()" class="btn btn-success" *ngIf="!user_id in reviews"> add Review</a>
-
-<!-- list reviews -->
-        <div class="row" *ngFor="let review of reviews">
+        <!-- list reviews -->
+        <div class="row" *ngFor="let review of reviews; index as i">
             <div class="col-md-6 my-3">
                 <img src="https://i.pinimg.com/236x/e8/9d/29/e89d292e76d2ffee19e7f17f7f9c6734.jpg" id="user">
                 <strong>{{review.user_name}}</strong>
@@ -91,8 +90,10 @@
                 <b>Rating: {{review.rating}} </b>
                 <br>
                 <td>
-                    <button type="button" class="btn btn-danger" *ngIf="review.user_id==currentUser" (click)="delete(review.id)">Delete</button>
-                    <button type="button" class="btn btn-warning" *ngIf="review.user_id==currentUser" (click)="edit(review.id)">Edit</button>
+                    <button type="button" class="btn btn-danger" *ngIf="review.user_id==currentUser"
+                        (click)="delete(review.id)">Delete</button>
+                    <button type="button" class="btn btn-warning" *ngIf="review.user_id==currentUser"
+                        (click)="edit(review.id,i)">Edit</button>
                 </td>
             </div>
 

@@ -32,11 +32,13 @@ class PlaygroundController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store2(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
+            // 'city' => 'required',
+            // 'street' => 'required',
             'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
@@ -55,6 +57,8 @@ class PlaygroundController extends Controller
             [
                 'name' => $request->name,
                 'location' => $request->location,
+                'city' => $request->city,
+                'street' => $request->street,
                 'description' => $request->description,
                 'image' => $img_name,
                 'price' => $request->price,
@@ -77,12 +81,14 @@ class PlaygroundController extends Controller
 
 
 
-    public function store2(Request $request)
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
             'description' => 'required',
+            // 'city' => 'required',
+            // 'street' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'subimage.*' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:5120',
             'price' => 'required',
@@ -100,6 +106,8 @@ class PlaygroundController extends Controller
             [
                 'name' => $request->name,
                 'location' => $request->location,
+                'city' => $request->city,
+                'street' => $request->street,
                 'description' => $request->description,
                 'image' => $img_name,
                 'price' => $request->price,
@@ -157,7 +165,7 @@ class PlaygroundController extends Controller
         ], 201);
         // return response()->json($playground, 200);
     }
-    
+
     public function show2($id)
     {
         //
@@ -183,8 +191,10 @@ class PlaygroundController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'location' => 'required',
+              // 'city' => 'required',
+            // 'street' => 'required',
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'price' => 'required',
             'size' => 'required',
             'type' => 'required',
@@ -202,7 +212,26 @@ class PlaygroundController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
-        $playground->update($request->all());
+       
+        $playground->update(  
+            [
+                'name' => $request->name,
+                'location' => $request->location,
+                'description' => $request->description,
+                // 'image' => $img_name,
+                'price' => $request->price,
+                'size' => $request->size,
+                'type' => $request->type,
+                'user_id' => $request->user_id,
+            ]
+        );
+      if($request->hasFile('image')){
+        $img = $request->file('image');
+        $img_name = time() . '.' . $img->extension();
+        $img->move(public_path('images'), $img_name);
+        $playground->image = $img_name;
+        $playground->save();
+      }
         return response()->json([
             'message' => 'Playground updated',
             'playground' => $playground
@@ -262,9 +291,13 @@ class PlaygroundController extends Controller
 
         }
 
-        // $playground = $playground->where('status', '<>', "pending");
+        if($request->input('rating')){
+            $playground->where('rating', '>=', intval($request->input('rating')));
+        }
 
-        $items_per_page = $request->input('items') ? $request->input('items') : 1;
+        $playground = $playground->where('status', '<>', "pending");
+
+        $items_per_page = $request->input('items') ? $request->input('items') : 4;
         $playground = $playground->paginate($items_per_page);
         return response()->json($playground, 200);
 
@@ -280,6 +313,17 @@ class PlaygroundController extends Controller
     }
 
 
+
+    public function rejected(Request $request, Playground $playground)
+    {
+
+        $playground->status = "rejected";
+        $playground->save();
+        return response()->json([
+            'message' => 'Playground updated',
+            'playground' => $playground
+        ], 200);
+    }
 
     public function changeStates(Request $request, Playground $playground)
     {
@@ -328,7 +372,7 @@ class PlaygroundController extends Controller
     public function topRatedPlayground()
     {
         $playgrounds = Playground::where('status', '<>', 'pending')->get();
-    
+
         // $topRatedPlaygrounds = $playgrounds->sortByDesc(function ($playground) {
         //     $averageRating = $playground->reviews()->avg('rating');
         //     return $averageRating;
@@ -339,7 +383,7 @@ class PlaygroundController extends Controller
         ->get();
 
     return response()->json($playgrounds);
-        
+
     }
 
 
