@@ -10,11 +10,13 @@ import { CategoryService } from 'src/app/services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListAllPlaygroundsComponent } from './list-all-playgrounds/list-all-playgrounds.component';
 import { AdminGuard } from 'src/app/guards/admin.guard';
+import { OwnersComponent } from './owners/owners.component';
 
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path:'users', component: UsersComponent },
+  { path:'owners', component: OwnersComponent },
   { path: 'admin', component: DashboardComponent,
     canActivate: [AdminGuard],
     children:[
@@ -27,13 +29,18 @@ const routes: Routes = [
       component:UsersComponent
     },
     {
-      path: 'category',
-      component:ListAllCategoriesComponent
+      path: 'owners',
+      component:OwnersComponent
     },
     {
       path: 'adminplaygrounds',
       component:ListAllPlaygroundsComponent
-    }
+    },
+    {
+      path: 'category',
+      component:ListAllCategoriesComponent
+    },
+
   ]},
 ]
 
@@ -45,6 +52,7 @@ const routes: Routes = [
     UsersComponent,
     ListAllCategoriesComponent,
     ListAllPlaygroundsComponent,
+    OwnersComponent,
   ],
   imports: [
     CommonModule,
