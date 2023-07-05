@@ -1,0 +1,29 @@
+<div class="container">
+
+  <table class="table text-center">
+
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">phone</th>
+        <th scope="col">created_at</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let owner of owners">
+        <td>{{ owner.id }}</td>
+        <td>{{ owner.name }}</td>
+        <td>{{ owner.email }}</td>
+        <td>{{ owner.phone }}</td>
+        <td>{{ owner.created_at | date:'MM/dd/yyyy'}}</td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
