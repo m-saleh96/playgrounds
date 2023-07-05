@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\ReservationsController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\TimeSlotsController;
@@ -54,6 +55,7 @@ Route::middleware('auth:api')->group(function () {
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
+    Route::get('owner',[userController::class,'owner']);
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::put('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
@@ -83,7 +85,6 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 
 
 
-Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
 // for chating 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
@@ -91,6 +92,7 @@ Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 
 Route::resource('timeslot', TimeSlotsController::class);
+Route::resource('reservation', ReservationsController::class);
 
 // for complaint messages
 

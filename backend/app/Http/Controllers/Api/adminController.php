@@ -20,6 +20,12 @@ class adminController extends Controller
         return response($user);
         //
     }
+    public function oner()
+    {
+        $user= User::where('role', "owner")->get();
+        return response($user);
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
