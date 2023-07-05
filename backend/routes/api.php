@@ -48,16 +48,17 @@ Route::get('review/playground/{playground}',[ReviewController::class,'showByPlay
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
+
+    Route::post('/complaints', [ComplaintController::class, 'store']);
 });
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
-
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
-
     Route::resource('category', categoryController::class)->except(['index', 'show']);
+    Route::get('/complaints', [ComplaintController::class, 'index']);
 });
 
 //should be logged in as owner to access
@@ -91,7 +92,6 @@ Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 Route::resource('timeslot', TimeSlotsController::class);
 
 // for complaint messages
-Route::post('/complaints', [ComplaintController::class, 'store']);
-Route::get('/complaints', [ComplaintController::class, 'index']);
+
 
 
