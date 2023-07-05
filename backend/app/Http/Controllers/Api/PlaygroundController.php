@@ -212,8 +212,8 @@ class PlaygroundController extends Controller
                 'message' => 'Record not found',
             ], 404);
         }
-       
-        $playground->update(  
+
+        $playground->update(
             [
                 'name' => $request->name,
                 'location' => $request->location,

@@ -44,14 +44,29 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
     <div class="my-2 ms-3" [hidden]="!showLocationContent">
-      <div>
-        <input type="checkbox" name="cairo" id="cairo" [(ngModel)]="cairo" (change)="filter($event)">
-        <label class="ms-1" for="cairo">cairo</label>
-      </div>
-      <div>
-        <input type="checkbox" name="mansoura" id="mansoura" [(ngModel)]="mansoura" (change)="filter($event)">
-        <label class="ms-1" for="mansoura">mansoura</label>
-      </div>
+
+      <table>
+        <tr>
+          <td><label>Gov</label></td>
+          <td>
+            <select id="" type="text"  name="location" [(ngModel)]="govern" (change)="filter($event)">
+              <option *ngFor="let location of location" [value]="location.governorate_name_en" >{{location.governorate_name_en}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label>City</label></td>
+          <td>
+            <select id="" type="text" name="city"  (change)="filter($event)">
+              <option *ngFor="let city of city" [value]="city.city_name_en" >{{city.city_name_en}}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+
+
+
     </div>
   </div>
   <div class="text-center" *ngIf="result">

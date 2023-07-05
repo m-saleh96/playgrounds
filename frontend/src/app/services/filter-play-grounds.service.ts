@@ -23,6 +23,7 @@ export class FilterPlayGroundsService {
   price_from:number = 0;
   type:any[]=[];
   lastPage!:number;
+  city!:string;
 
   filter(page:number): Observable<any> {
 
@@ -32,13 +33,9 @@ export class FilterPlayGroundsService {
       url += `type[]=${elm}&`
     })
 
-    if (this.cairo) {
-      url += 'location[]=cairo&'
+    if (this.city) {
+      url += `city[]=${this.city}&`
     }
-    if (this.mansoura) {
-      url += 'location[]=mansoura&'
-    }
-
 
     return this.http.get(url)
   }
