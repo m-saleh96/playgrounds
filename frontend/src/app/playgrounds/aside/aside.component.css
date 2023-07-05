@@ -11,3 +11,10 @@ aside{
 button{
   background-color: rgb(235, 235, 235);
 }
+
+tr>td:first-child{
+  padding: 5px 10px 5px 0;
+}
+select{
+  width: 100%;
+}

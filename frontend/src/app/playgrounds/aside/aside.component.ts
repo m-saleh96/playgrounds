@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component ,EventEmitter,Output , OnInit, Input, OnChanges } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { FilterPlayGroundsService } from 'src/app/services/filter-play-grounds.service';
@@ -17,18 +18,23 @@ export class AsideComponent implements OnInit , OnChanges{
   categories:any[]=[];
   lastPage!:number;
   type:any[]=[];
-  cairo!:boolean;
-  mansoura!:boolean;
+  location:any[]=[];
+  cities:any[]=[];
+  city:any[]=[];
+  govern!:any;
+  governID!:number;
   price_to:number=1000;
   price_from:number=1;
 
   result!:number;
 
-  constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService){}
+  constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService ,private http : HttpClient){}
 
   ngOnInit(): void {
     this.filterPlaygrounds();
-    this.categoryService.getAllCategory().subscribe((data:any)=>this.categories=data)
+    this.categoryService.getAllCategory().subscribe((data:any)=>this.categories=data);
+    this.http.get('assets/egypt/governorates.json').subscribe((data:any)=>this.location=data);
+    this.http.get('assets/egypt/cities.json').subscribe((data:any)=>this.cities = data);
   }
 
 
@@ -66,6 +72,7 @@ export class AsideComponent implements OnInit , OnChanges{
   }
 
   filter(event: any){
+    //filter with type
     if (event.target.type==="checkbox") {
       const type = event.target.name;
       if (event.target.checked) {
@@ -78,11 +85,29 @@ export class AsideComponent implements OnInit , OnChanges{
       }
     }
 
+    // filter with location
+    if (event.target.name == "location") {
+      let govern = event.target.value;
+      this.location.forEach(elem=>{
+        if(elem.governorate_name_en == govern){
+          this.governID = elem.id;
+        }
+      })
+      this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
+      const selectedCity = this.city.find(city => city.governorate_id === this.governID);
+      this.filterService.city = selectedCity.city_name_en;
+
+    }
+
+    if (event.target.name == "city") {
+      this.filterService.city = event.target.value;
+    }
+
+
+
     this.filterService.type = this.type;
     this.filterService.price_to = this.price_to;
     this.filterService.price_from = this.price_from;
-    this.filterService.cairo = this.cairo;
-    this.filterService.mansoura = this.mansoura;
 
     this.filterPlaygrounds();
     this.filterService.filter(this.page).subscribe(data=>{
