@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListAllPlaygroundsComponent } from './list-all-playgrounds/list-all-playgrounds.component';
 import { AdminGuard } from 'src/app/guards/admin.guard';
+import { OwnersComponent } from './owners/owners.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
     UsersComponent,
     ListAllCategoriesComponent,
     ListAllPlaygroundsComponent,
+    OwnersComponent,
   ],
   imports: [
     CommonModule,
