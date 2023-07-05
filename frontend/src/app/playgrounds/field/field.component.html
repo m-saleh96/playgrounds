@@ -31,8 +31,16 @@
             <td>{{playground.price}} EGP</td>
           </tr>
           <tr>
-            <td>Review</td>
-            <td>{{playground.rating}}</td>
+            <td>Rating</td>
+            <td>
+              <div class="rating">
+                <span class="star" [ngClass]="{'filled': playground.rating >= 1}">&#9734;</span>
+                <span class="star" [ngClass]="{'filled': playground.rating >= 2}">&#9734;</span>
+                <span class="star" [ngClass]="{'filled': playground.rating >= 3}">&#9734;</span>
+                <span class="star" [ngClass]="{'filled': playground.rating >= 4}">&#9734;</span>
+                <span class="star" [ngClass]="{'filled': playground.rating >= 5}">&#9734;</span>
+              </div>
+            </td>
           </tr>
         </table>
       </div>
