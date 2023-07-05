@@ -34,9 +34,12 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('reviews')">Reviews</button>
     <div class="my-2 ms-3" [hidden]="!showReviewsContent">
-      <div>
-        <input type="checkbox" name="tennis" id="tennis">
-        <label class="ms-1" for="tennis">tennis</label>
+      <div class="rating">
+        <span class="star" (click)="setRating(1)" [ngClass]="{'filled': currentRating >= 1}">&#9734;</span>
+        <span class="star" (click)="setRating(2)" [ngClass]="{'filled': currentRating >= 2}">&#9734;</span>
+        <span class="star" (click)="setRating(3)" [ngClass]="{'filled': currentRating >= 3}">&#9734;</span>
+        <span class="star" (click)="setRating(4)" [ngClass]="{'filled': currentRating >= 4}">&#9734;</span>
+        <span class="star" (click)="setRating(5)" [ngClass]="{'filled': currentRating >= 5}">&#9734;</span>
       </div>
     </div>
   </div>
@@ -44,14 +47,26 @@
   <div class="mb-3">
     <button class="btn w-100 text-start" (click)="toggleContent('location')">Location</button>
     <div class="my-2 ms-3" [hidden]="!showLocationContent">
-      <div>
-        <input type="checkbox" name="cairo" id="cairo" [(ngModel)]="cairo" (change)="filter($event)">
-        <label class="ms-1" for="cairo">cairo</label>
-      </div>
-      <div>
-        <input type="checkbox" name="mansoura" id="mansoura" [(ngModel)]="mansoura" (change)="filter($event)">
-        <label class="ms-1" for="mansoura">mansoura</label>
-      </div>
+
+      <table>
+        <tr>
+          <td><label>Gov</label></td>
+          <td>
+            <select id="" type="text" class="form-select" name="location" [(ngModel)]="govern" (change)="filter($event)">
+              <option *ngFor="let location of location" [value]="location.governorate_name_en" >{{location.governorate_name_en}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label>City</label></td>
+          <td>
+            <select id="" type="text" name="city" class="form-select" (change)="filter($event)">
+              <option *ngFor="let city of city" [value]="city.city_name_en" >{{city.city_name_en}}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
     </div>
   </div>
   <div class="text-center" *ngIf="result">
