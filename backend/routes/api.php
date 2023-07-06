@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
-use App\Http\Controllers\Api\ReservationsController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\StripeController;
@@ -47,22 +46,27 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
+
+Route::middleware(['auth:api', 'player'])->group(function () {
+    Route::resource('review', ReviewController::class)->only(['store']);
+    Route::post('/complaints', [ComplaintController::class, 'store']);});
+Route::middleware(['auth:api', 'sameplayer'])->group(function () {
+    Route::resource('review', ReviewController::class)->only(['update','destroy']);});
+
+    
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
-
-    Route::post('/complaints', [ComplaintController::class, 'store']);
 });
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
-    Route::get('owner',[userController::class,'owner']);
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
-    Route::put('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
+
     Route::resource('category', categoryController::class)->except(['index', 'show']);
-    Route::get('/complaints', [ComplaintController::class, 'index']);
 });
 
 //should be logged in as owner to access
@@ -86,6 +90,7 @@ Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlaygr
 
 
 
+Route::post('playground/create2',[PlaygroundController::class,'store2']);
 
 // for chating 
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
