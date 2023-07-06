@@ -66,7 +66,11 @@ export class RecievesComponent implements OnInit {
 
       console.log(data);
 
-      this.ownerRecieve.addSlot(data , this.token).subscribe(res=>console.log(res))
+      this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
+        if (res) {
+          window.location.reload();
+        }
+      })
 
     } else {
       this.errorMessage = "Please fill all the required fields"
