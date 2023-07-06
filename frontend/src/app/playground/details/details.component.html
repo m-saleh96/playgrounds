@@ -1,0 +1,139 @@
+<div class="main">
+  <div class="col-8">
+    <img id="mainImg"
+      [src]="'http://localhost:8000/images/' + playground.image"/>
+    <!-- <img id="mainImg" [src]="'http://localhost:8000/images/'+playground.subimage"> -->
+  </div>
+  <div class="col-4">
+    <div class="row">
+      <div *ngFor="let image of playground.subImage">
+        <!-- <h1>{{image}}</h1> -->
+
+        <img class="allImg"
+          [src]="'http://localhost:8000/images/' + image" alt="Image"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="py-5">Playground Description</h2>
+      <table>
+        <tbody>
+          <tr class="row">
+            <th scope="row" class="col-md-3">Name</th>
+            <td class="col-md-9">{{ playground.name }}</td>
+          </tr>
+          <tr class="row">
+            <th scope="row" class="col-lg-3">Location</th>
+            <td class="col-lg-9">{{ playground.location }}</td>
+          </tr>
+          <tr class="row">
+            <th scope="row" class="col-lg-3">Description</th>
+            <td class="col-lg-9">{{ playground.description }}</td>
+          </tr>
+          <tr class="row">
+            <th scope="row" class="col-lg-3">Price</th>
+            <td class="col-lg-9">{{ playground.price }}</td>
+          </tr>
+          <tr class="row">
+            <th scope="row" class="col-lg-3">Size</th>
+            <td class="col-lg-9">{{ playground.size }}</td>
+          </tr>
+          <tr class="row">
+            <th scope="row" class="col-lg-3">Type</th>
+            <td class="col-lg-9">{{ playground.type }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2 class="py-5">Reviews</h2>
+      <div *ngIf="toDisplay">
+        <!-- add new review form -->
+        <div class="form-group">
+          <div class="row">
+            <div class="col md-9">
+              <input type="text" class="form-control" placeholder="add review" [(ngModel)]="review" name="review"/>
+              <div class="col md-9">
+                <input type="number" class="form-control" placeholder="add rating" [(ngModel)]="rating" name="rating" max="5" min="1"/>
+              </div>
+              <div class="col md-3">
+                <button type="submit" class="btn btn-info" (click)="postReview()">ADD</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="btn px-2" (click)="checklogin()" class="btn btn-success" *ngIf="!userHasReview">add Review</a>
+
+      <!-- list reviews -->
+      <div class="row" *ngFor="let review of reviews; index as i">
+        <div class="col-md-6">
+            <span class="user-initial">{{ review.user_name.charAt(0) }}</span>
+
+          <span class="txt">{{ review.user_name }} </span>
+          <span>{{ review.created_id | date : "mediumDate" }}</span>
+          <p class="pt-4">Review: {{ review.review }}</p>
+          <p>Rating: {{ review.rating }} </p>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              *ngIf="review.user_id == currentUser"
+              (click)="delete(review.id)">
+              Delete
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              *ngIf="review.user_id == currentUser"
+              (click)="edit(review.id, i)">
+              Edit
+            </button>
+          </td>
+
+        </div>     <hr>
+      </div>
+
+      <!-- Start edit review form-->
+      <div *ngIf="toedit">
+        <div class="form-group">
+          <div class="row">
+            <div class="col md-9">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="add review"
+                [(ngModel)]="review"
+                name="review"/><br/>
+              <div class="col md-9">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="add rating"
+                  [(ngModel)]="rating"
+                  name="rating"
+                  max="5"
+                  min="1"/>
+              </div>
+              <br/>
+
+              <div class="col md-3">
+                <button
+                  type="submit"
+                  class="btn btn-info"
+                  (click)="editCategory()">
+                  Edit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End edit review form -->
+    </div>
+  </div>
+</div>

@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Playground } from '../interfaces/playground';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PlaygroundService {
   // const part from api
   private apiUrl: string = environment.apiUrl

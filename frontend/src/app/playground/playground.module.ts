@@ -6,9 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlaygroundService } from '../services/playground.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaygroundComponent } from './playground.component';
+import { ComplainComponent } from './complain/complain.component';
 
 // routes for playground module
 const routes: Routes = [
+  {path:'complain', component: ComplainComponent },
   {path:'details/:id', component : DetailsComponent},
   {path:'card', component : CardComponent},
 ]
@@ -17,6 +19,7 @@ const routes: Routes = [
     PlaygroundComponent,
     CardComponent,
     DetailsComponent,
+    ComplainComponent,
   ],
   imports: [
     CommonModule,
