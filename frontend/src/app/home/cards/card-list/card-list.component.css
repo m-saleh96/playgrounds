@@ -10,6 +10,8 @@
   color: var(--neon-green);
   font-family: 'Kite One', sans-serif;
   /* font-family: 'Pompiere', cursive; */
+  font-family: 'Titillium Web', sans-serif;
+
 }
 .my-btn{
   background-color: var(--neon-green);
