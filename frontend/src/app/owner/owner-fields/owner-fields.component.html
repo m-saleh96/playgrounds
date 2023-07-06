@@ -73,7 +73,7 @@
   <div class="form-group my-2">
     <label>image</label>
     <input [class.is-valid]="addField.get('image')?.errors ==null && addField.get('image')?.touched"
-      formControlName='image' type="file" (change)="onFileSelected($event)" class="form-control">
+    formControlName='image' type="file" (change)="onFileSelected($event)" class="form-control">
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 

@@ -49,7 +49,7 @@ console.log(this.playgrounds);
     else{
       this.error="You are not allowed to send this complaint."
     }
-    this.complaintMessage="";
+    this.complaintMessage=" ";
     this.playground_id=0;
    // ;setTimeout(() => { location.reload(); }, 3);
   }

@@ -40,22 +40,21 @@ export class OwnerFieldsComponent implements OnInit{
 
 
 
-
   selectedFile: File | null = null;
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
-  selectedSubImgFiles: any | null = null;
-  onSubSelected(event: any) {
-    this.selectedSubImgFiles = event.target.files;
-    if (this.selectedSubImgFiles) {
-      for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
-        const file = this.selectedSubImgFiles[i];
-        console.log(file);
+    selectedSubImgFiles: any | null = null;
+    onSubSelected(event: any) {
+      this.selectedSubImgFiles = event.target.files;
+      if (this.selectedSubImgFiles) {
+        for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
+          const file = this.selectedSubImgFiles[i];
+        }
       }
     }
-  }
+
 
 
   addField: FormGroup = new FormGroup({
@@ -73,39 +72,42 @@ export class OwnerFieldsComponent implements OnInit{
 
 
 
-  add() {
-    if (this.activeAddbutton) {
-      if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
-        const formData = new FormData();
-        formData.append('name', this.addField.get('name')!.value);
-        formData.append('description', this.addField.get('description')!.value);
-        formData.append('size', this.addField.get('size')!.value);
-        formData.append('price', this.addField.get('price')!.value);
-        formData.append('type', this.addField.get('type')!.value);
-        formData.append('location', this.addField.get('location')!.value);
-        formData.append('city', this.addField.get('city')!.value);
-        formData.append('street', this.addField.get('street')!.value);
-        formData.append('user_id', this.owner.user.id);
-        formData.append('image', this.selectedFile);
-        if (this.selectedSubImgFiles) {
-          for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
-            const file = this.selectedSubImgFiles[i];
-            formData.append('subimage[]', file);
-          }
-          this.playGroundService.create(formData, this.owner.access_token).subscribe((data: any) => {
+  add(){
+    console.log('work');
+
+      if (this.activeAddbutton) {
+        if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
+          const formData = new FormData();
+          formData.append('name', this.addField.get('name')!.value);
+          formData.append('description', this.addField.get('description')!.value);
+          formData.append('size', this.addField.get('size')!.value);
+          formData.append('price', this.addField.get('price')!.value);
+          formData.append('type', this.addField.get('type')!.value);
+          formData.append('location', this.addField.get('location')!.value);
+          formData.append('city', this.addField.get('city')!.value);
+          formData.append('street', this.addField.get('street')!.value);
+          formData.append('user_id', this.owner.user.id);
+          formData.append('image', this.selectedFile);
+          if (this.selectedSubImgFiles) {
+            for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
+              const file = this.selectedSubImgFiles[i];
+              formData.append('subimage[]', file);
+            }
+            this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
             if (data) {
               this.activeForm = false;
               this.activeAddbutton = false;
               window.location.reload();
-            }
-          })
-        } else {
+            }})
+          } else{
           this.errorMessage = "Please fill all the required fields";
           this.flag = true;
         }
+      }
+    } else if(this.activeupdatebutton){
+      console.log('work');
 
-      } else if (this.activeupdatebutton) {
-        if (this.addField.valid) {
+        if (this.addField.valid ) {
           const formData = new FormData();
           formData.append('name', this.addField.get('name')!.value);
           formData.append('description', this.addField.get('description')!.value);
@@ -122,18 +124,17 @@ export class OwnerFieldsComponent implements OnInit{
           } else {
             formData.append('image', this.oldPic);
           }
-
-          this.playGroundService.update(this.fieldID, formData, this.owner.access_token).subscribe((data: any) => {
-            if (data) {
-              this.activeForm = false;
-              this.activeupdatebutton = false;
-              window.location.reload();
+          console.log('work');
+          this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
+          if (data) {
+            this.activeForm = false;
+            this.activeupdatebutton = false;
+            window.location.reload();
+            console.log('work');
             }
           })
         }
       }
-    }
-
   }
 
   deleteField(id: number) {
@@ -162,6 +163,7 @@ export class OwnerFieldsComponent implements OnInit{
     this.activeForm = true;
     this.activeupdatebutton = true;
     this.activeAddbutton = false;
+    console.log(this.activeupdatebutton);
 
     const field = this.fields.find((elem: any) => elem.id === id);
 
@@ -198,7 +200,6 @@ export class OwnerFieldsComponent implements OnInit{
     })
     this.city = this.cities.filter(elem => elem.governorate_id == this.governID);
   }
-
 
 recieve(id:number){
   this.router.navigate(['/owner/recieve',id])
