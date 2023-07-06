@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ComplainService } from 'src/app/services/complain.service';
 import { CookieService } from 'ngx-cookie-service';
+import { PlaygroundService } from 'src/app/services/playground.service';
+import { Playground } from 'src/app/interfaces/playground';
 
 @Component({
   selector: 'app-complain',
@@ -15,9 +17,19 @@ export class ComplainComponent {
   token: string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
   complaintMessage!:string;
   playground_id!:number;
+  playgrounds !: Playground[];
 
-  constructor(private http: HttpClient, private complainService: ComplainService, private router: Router, private cookieService: CookieService){}
+  constructor(private http: HttpClient, private complainService: ComplainService, private router: Router, private cookieService: CookieService, private playgroundService: PlaygroundService){}
 
+  ngOnInit(): void {
+
+    this.playgroundService.listAll().subscribe((res: any) => {
+      this.playgrounds = res.data;   
+console.log(this.playgrounds);
+
+    });
+
+  }
 
   postComplians(){
     if (JSON.parse(this.cookieService.get('userData') || '{}').user?.role=="player") {
@@ -37,7 +49,7 @@ export class ComplainComponent {
     else{
       this.error="You are not allowed to send this complaint."
     }
-    this.complaintMessage="";
+    this.complaintMessage=" ";
     this.playground_id=0;
    // ;setTimeout(() => { location.reload(); }, 3);
   }
