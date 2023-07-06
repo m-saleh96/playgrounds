@@ -22,7 +22,6 @@ export class OwnerFieldsComponent implements OnInit{
   fieldID!:number;
   oldPic!:any;
   errorMessage!:string;
-  displaySubImg: boolean=false;
   location:any[]=[];
   cities:any[]=[];
   city:any[]=[];
@@ -48,6 +47,18 @@ export class OwnerFieldsComponent implements OnInit{
       this.selectedFile = event.target.files[0];
     }
 
+    selectedSubImgFiles: any | null = null;
+    onSubSelected(event: any) {
+      this.selectedSubImgFiles = event.target.files;
+      if (this.selectedSubImgFiles) {
+        for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
+          const file = this.selectedSubImgFiles[i];
+          console.log(file);
+        }
+      }
+    }
+    
+
     addField:FormGroup = new FormGroup({
       'name' :new FormControl(null , [Validators.required]),
       'description' :new FormControl(null , [Validators.required ]),
@@ -66,7 +77,7 @@ export class OwnerFieldsComponent implements OnInit{
   add()
     {
       if (this.activeAddbutton) {
-        if (this.addField.valid && this.selectedFile) {
+        if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
           const formData = new FormData();
           formData.append('name', this.addField.get('name')!.value);
           formData.append('description', this.addField.get('description')!.value);
@@ -78,8 +89,11 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('street', this.addField.get('street')!.value);
           formData.append('user_id', this.owner.user.id);
           formData.append('image', this.selectedFile);
-          formData.append('subimage', this.selectedFile);
-
+          if (this.selectedSubImgFiles) {
+            for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
+              const file = this.selectedSubImgFiles[i];
+              formData.append('subimage[]', file);
+            }
           this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
             if (data) {
               this.activeForm = false;
@@ -122,7 +136,7 @@ export class OwnerFieldsComponent implements OnInit{
       }
     }
 
-
+  }
 
   deleteField(id: number) {
     this.fields = this.fields.filter((elem:any)=>(elem.id)!=id)

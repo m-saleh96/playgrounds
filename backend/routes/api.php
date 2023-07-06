@@ -44,7 +44,6 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
-//should be logged in to access
 
 Route::middleware(['auth:api', 'player'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['store']);
@@ -52,10 +51,11 @@ Route::middleware(['auth:api', 'player'])->group(function () {
 Route::middleware(['auth:api', 'sameplayer'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['update','destroy']);});
 
+    
+//should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
 });
-
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
@@ -95,7 +95,6 @@ Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 // for complaint messages
-
-//payment
-Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
+Route::post('/complaints', [ComplaintController::class, 'store']);
+Route::get('/complaints', [ComplaintController::class, 'index']);
 
