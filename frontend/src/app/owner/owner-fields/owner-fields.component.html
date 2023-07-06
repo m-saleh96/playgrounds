@@ -81,7 +81,7 @@
 
 <!-- add sub images -->
   <button id="subImg" type="button" class="btn btn-info" (click)="addsubImg()" > Add sub images</button>
-  
+
   <div *ngIf="displaySubImg">
     <div class="form-group my-2">
     <label> image 1: </label>
@@ -127,7 +127,7 @@
       <tr *ngFor="let row of fields">
           <td>{{row.name}}</td>
           <td><button type="button" class="btn btn-dark" >Show Details</button></td>
-          <td><button type="button" class="btn btn-info" >Show Recieves</button></td>
+          <td><button type="button" class="btn btn-info" (click)="recieve(row.id)">Show Recieves</button></td>
           <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
           <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
       </tr>
