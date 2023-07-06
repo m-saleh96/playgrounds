@@ -94,7 +94,7 @@ Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 Route::resource('timeslot', TimeSlotsController::class);
 Route::resource('reservation', ReservationsController::class);
 
-// for complaint messages
-
+//payment
+Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
 
 
