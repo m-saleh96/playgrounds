@@ -2,11 +2,21 @@
 <div class="container">
     <div class="form-group">
       <div class="row">
-          <div class="col md-9"> <input type="text" class="form-control" placeholder="add complaintMessage"
-                  [(ngModel)]="complaintMessage" name="review"><br>
-              <div class="col md-9"> <input type="number" class="form-control" placeholder="add playground_id"
-                      [(ngModel)]="playground_id" name="playground_id" >
-              </div>
+        <label>Select Complain</label>
+        <div class="col md-9">
+          <input type="text" class="form-control" placeholder="add Message"
+            [(ngModel)]="complaintMessage" name="review" required #complaintInput="ngModel">
+        </div>
+        <div *ngIf="complaintInput.touched && !complaintMessage" class="py-2 text-danger">Complaint message is required.</div>
+        
+
+        <div class="form-group my-2">
+            <label>select Playground</label>
+            <select id="" [(ngModel)]="playground_id" class="form-select"> select playground
+              <option *ngFor="let p of playgrounds" [value]="p.id">{{ p.name }}</option>
+            </select>
+          </div>
+              
               <br>
               <div class="col md-3"> <button type="submit" class="btn btn-info" (click)="postComplians()" > Add Complain
                   </button></div>
@@ -14,5 +24,4 @@
       </div>
     </div>
    <span>{{error}}</span> 
-    </div>
     

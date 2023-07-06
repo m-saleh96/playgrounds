@@ -12,7 +12,7 @@ export class PlaygroundService {
   constructor(private http: HttpClient) { }
 
   listAll(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/playground`)
+    return this.http.get(`${this.apiUrl}/playground/search?item=50`)
   }
 
   getById(id: any): Observable <Playground> {
