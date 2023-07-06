@@ -44,6 +44,14 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
+
+Route::middleware(['auth:api', 'player'])->group(function () {
+    Route::resource('review', ReviewController::class)->only(['store']);
+    Route::post('/complaints', [ComplaintController::class, 'store']);});
+Route::middleware(['auth:api', 'sameplayer'])->group(function () {
+    Route::resource('review', ReviewController::class)->only(['update','destroy']);});
+
+    
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);

@@ -5,19 +5,21 @@
   
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Complain</th>
-          <th  scope="col">User</th>
-          <th  scope="col">playground </th>
+          <th scope="col">Playground Id</th>
+          <th  scope="col">Message</th>
+          <th  scope="col">player name</th>
+          <th  scope="col">playground name</th>
+          <th  scope="col">playground owner</th>
 
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngFor="let complains of complains">
         <tr>
-          <th scope="row">{{complains.id}}</th>
+            <td>{{complains.playground_id}}</td>
           <td>{{complains.message}}</td>
-          <td>{{complains.user_id}}</td>
-          <td>{{complains.playground_id}}</td>
+          <td>{{complains.player_name}}</td>
+          <td>{{complains.playground_name}}</td>
+          <td>{{complains.playground_owner}}</td>
 
           <!-- <td><button type="button" class="btn btn-danger" (click)="delete(category.id)">Delete</button></td> -->
   

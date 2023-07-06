@@ -19,7 +19,7 @@ export class ListComplainsComponent {
    
     //get complains and save it in interface to display it on loading page
   this.complainService.listComplains(this.token).subscribe((res: any) => {
-      this.complains = res.complaints;   
+      this.complains = res;   
       console.log(this.complains);
       
     });

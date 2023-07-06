@@ -1,7 +1,9 @@
 export interface Complain {
 
-    "user_id"?: number,
-    "playground_id"?: number,
-    "message"?: string,
-    "id"?:number
+    "playground_id": number,
+        "player_id": number,
+        "message": string,
+        "player_name": string,
+        "playground_name": string,
+        "playground_owner": string
 }
