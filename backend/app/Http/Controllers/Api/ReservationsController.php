@@ -20,7 +20,7 @@ class ReservationsController extends Controller
         //
         $reservations=reservations ::all();
 
-        return response($reservations);
+        return response($reservations); 
     }
 
     /**
