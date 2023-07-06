@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('complaints', function (Blueprint $table) {
-            $table->string('playground_name')->after('playground_id'); // Add the 'playground_name' column
+            $table->string('playground_name')->after('playground_id');
+            $table->string('location')->after('playground_name'); 
         });
     }
 
@@ -26,6 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('complaints', function (Blueprint $table) {
+            $table->dropColumn('location');
             $table->dropColumn('playground_name');
         });
     }

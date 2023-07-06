@@ -12,6 +12,7 @@ class Complaint extends Model
         'user_id',
         'playground_id',
         'playground_name',
+        'location',
         'message',
     ];
 }
