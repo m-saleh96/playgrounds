@@ -1,0 +1,29 @@
+<div>
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <div class="text-center">
+      <div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center my-3">
+        {{errorMessage}}
+      </div>
+      <table class="d-inline-block">
+        <tr>
+          <td><label>Select Day</label></td>
+          <td><input type="date" class="form-control" formControlName="day" [min]="getCurrentDate()"></td>
+        </tr>
+      </table><br>
+      <table class="d-inline-block">
+        <tr>
+          <td>Time From</td>
+          <td><input type="time" class="form-control" formControlName="startTime"></td>
+          <td>Time to</td>
+          <td><input type="time" class="form-control" formControlName="endTime"></td>
+        </tr>
+        <tr *ngIf="myForm.hasError('invalidTimeRange')">
+          <td colspan="4" class="text-danger">Invalid time range. Please make sure the start time is less than the end time.</td>
+        </tr>
+      </table>
+      <div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>

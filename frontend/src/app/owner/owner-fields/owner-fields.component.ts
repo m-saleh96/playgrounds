@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup , FormControl ,Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PlaygroundService } from 'src/app/services/playground.service';
@@ -10,23 +11,23 @@ import { PlaygroundService } from 'src/app/services/playground.service';
   templateUrl: './owner-fields.component.html',
   styleUrls: ['./owner-fields.component.css']
 })
-export class OwnerFieldsComponent implements OnInit {
-  owner!: any;
-  fields: any[] = [];
-  category!: any[];
-  flag: boolean = false;
-  activeForm: boolean = false;
-  activeAddbutton: boolean = false;
-  activeupdatebutton: boolean = false;
-  fieldID!: number;
-  oldPic!: any;
-  errorMessage!: string;
-  location: any[] = [];
-  cities: any[] = [];
-  city: any[] = [];
-  govern!: any;
-  governID!: number;
-  constructor(private playGroundService: PlaygroundService, private categoryService: CategoryService, private cookieService: CookieService, private http: HttpClient) {
+export class OwnerFieldsComponent implements OnInit{
+  owner!:any;
+  fields:any[]=[];
+  category!:any[];
+  flag:boolean=false;
+  activeForm:boolean=false;
+  activeAddbutton:boolean = false;
+  activeupdatebutton:boolean = false;
+  fieldID!:number;
+  oldPic!:any;
+  errorMessage!:string;
+  location:any[]=[];
+  cities:any[]=[];
+  city:any[]=[];
+  govern!:any;
+  governID!:number;
+  constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService , private http:HttpClient,  private router: Router){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
 
@@ -199,5 +200,8 @@ export class OwnerFieldsComponent implements OnInit {
   }
 
 
+recieve(id:number){
+  this.router.navigate(['/owner/recieve',id])
 }
 
+}
