@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ComplainService } from './complain.service';
+import { OwnerRecieveService } from './owner-recieve.service';
 
-describe('ComplainService', () => {
-  let service: ComplainService;
+describe('OwnerRecieveService', () => {
+  let service: OwnerRecieveService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ComplainService);
+    service = TestBed.inject(OwnerRecieveService);
   });
 
   it('should be created', () => {

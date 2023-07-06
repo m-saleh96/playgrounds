@@ -12,6 +12,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "nafezly/payments": "^2.4",
+        "stripe/stripe-php": "^10.16",
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {
