@@ -41,10 +41,19 @@ class ComplaintController extends Controller
     public function index()
     {
         $complaints = Complaint::all();
-
-        return response()->json([
-            'complaints' => $complaints,
-        ]);
+        $complaints->load('player', 'playground');
+        $filteredComplaints = $complaints->map(function ($complaint) {
+            return [
+                'playground_id' => $complaint->playground_id,
+                'player_id' => $complaint->user_id,
+                'message' => $complaint->message,
+                'player_name' => $complaint->player->name,
+                'playground_name' => $complaint->playground->name,
+                'playground_owner' => $complaint->playground->user->name,
+            ];
+        });
+        
+        return response()->json($filteredComplaints, 200);        
     }
     
 }

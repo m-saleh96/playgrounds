@@ -1,0 +1,24 @@
+<p>payment works!</p>
+
+
+<button (click)="showPayment()">click</button>
+
+<div [innerHTML]="htmlContent"></div>
+
+{{htmlContent}}
+
+<link rel='stylesheet' href="https://atfawry.fawrystaging.com/atfawry/plugin/assets/payments/css/fawrypay-payments.css"> 
+<script type='text/javascript' src="https://atfawry.fawrystaging.com/atfawry/plugin/assets/payments/js/fawrypay-payments.js"></script> 
+<script> const chargeRequest = {}; chargeRequest.language= "ar-eg"; chargeRequest.merchantCode= ""; 
+chargeRequest.merchantRefNumber= "64a5e2833a749"; chargeRequest.customer = {}; 
+chargeRequest.customer.name = "ibra ibra"; chargeRequest.customer.mobile = "01144078667"; 
+chargeRequest.customer.email = "ibrahimmuhammad13720@gmail.com"; chargeRequest.customer.customerProfileId = "1";
+ chargeRequest.order = {}; chargeRequest.order.description = "Credit"; chargeRequest.order.expiry = ''; 
+ chargeRequest.paymentMethod='CARD'; chargeRequest.order.orderItems = []; 
+ chargeRequest.returnUrl= "http://127.0.0.1:8000/api/payment?payment=fawry"; 
+ const item = {}; item.productSKU = 1; item.description = 'Credit'; item.price = "100"; item.quantity = "1"; 
+ chargeRequest.order.orderItems.push(item); chargeRequest.signature = "64a5e2833a749111100"; 
+ setTimeout(function(){ FawryPay.checkout( chargeRequest, { locale : "ar", 
+ //default en mode: DISPLAY_MODE.POPUP, //required allowed values [POPUP, INSIDE_PAGE, SIDE_PAGE , SEPARATED] 
+}); },100); 
+ </script>

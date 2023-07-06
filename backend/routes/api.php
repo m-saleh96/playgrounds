@@ -87,11 +87,6 @@ Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 // for complaint messages
-            // player
-
-
-
-
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints', [ComplaintController::class, 'index']);
 
