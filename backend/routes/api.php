@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\ReservationsController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
+use App\Http\Controllers\Api\StripeController;
 use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
@@ -97,4 +98,4 @@ Route::resource('reservation', ReservationsController::class);
 //payment
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
 
-
+Route::post('stripe',[StripeController::class,'StripePost']);
