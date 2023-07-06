@@ -16,7 +16,8 @@ export class RecievesComponent implements OnInit {
   errorMessage!:string;
   playGroundId!:number;
   token!:any;
-
+  timeSlots: any[] = [];
+  day!:any;
   constructor(private fb: FormBuilder , private route:ActivatedRoute , private ownerRecieve:OwnerRecieveService , private cookieService:CookieService) {
     this.route.params.subscribe(param=>{
       this.playGroundId = param['id'];
@@ -50,32 +51,47 @@ export class RecievesComponent implements OnInit {
     return null;
   }
 
-  submitForm(): void {
+  addTime(){
     if (this.myForm.valid) {
       this.flag=false;
-      const playgroundId = this.playGroundId;
-      const day = this.myForm.controls['day'].value;
+
+      this.day = this.myForm.controls['day'].value;
+
       const startTime = this.myForm.controls['startTime'].value;
       const endTime = this.myForm.controls['endTime'].value;
 
       const formattedStartTime = this.formatTime(startTime);
       const formattedEndTime = this.formatTime(endTime);
 
-      const time = [{ start: formattedStartTime, end: formattedEndTime }];
-      const data = { playground_id: playgroundId, day: day, time: time };
+      const time = { start: formattedStartTime, end: formattedEndTime };
 
-      console.log(data);
 
-      this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
-        if (res) {
-          window.location.reload();
-        }
-      })
+      if (this.timeSlots.length==0) {
+        this.timeSlots.push(time);
+      } else if(this.timeSlots[this.timeSlots.length - 1]['end'] <=formattedStartTime){
+        this.timeSlots.push(time);
+      } else if (this.timeSlots[this.timeSlots.length - 1]['end'] > formattedStartTime){
+        this.flag = true;
+        this.errorMessage = `You can't choose time from less than ${this.timeSlots[this.timeSlots.length - 1]['end']}.`;
+      } else if(this.timeSlots[0]['start'] > formattedEndTime ){
+        this.flag = true;
+        this.errorMessage = `You can't choose time to more than ${this.timeSlots[0]['start']}.`;
+      }
 
     } else {
       this.errorMessage = "Please fill all the required fields"
       this.flag=true
     }
+  }
+
+  submitForm(): void {
+    const data = { playground_id: this.playGroundId, day: this.day, time: this.timeSlots };
+    this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
+      if (res) {
+        window.location.reload();
+      }
+    })
+
   }
 
   formatTime(timeString: string): string {
@@ -90,5 +106,15 @@ export class RecievesComponent implements OnInit {
     });
 
     return formattedTime;
+  }
+
+
+  resetform(){
+    this.timeSlots = [];
+    this.day = this.myForm.controls['day'].value;
+  }
+
+  deleteSlot(i:any){
+    this.timeSlots.splice(i,1)
   }
 }

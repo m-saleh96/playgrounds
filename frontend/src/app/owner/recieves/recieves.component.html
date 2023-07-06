@@ -4,10 +4,13 @@
       <div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center my-3">
         {{errorMessage}}
       </div>
+      <div class="alert alert-danger w-50 m-auto text-center my-3" *ngIf="myForm.hasError('invalidTimeRange')">
+        Invalid time range. Please make sure the start time is less than the end time.
+      </div>
       <table class="d-inline-block">
         <tr>
           <td><label>Select Day</label></td>
-          <td><input type="date" class="form-control" formControlName="day" [min]="getCurrentDate()"></td>
+          <td><input type="date" class="form-control" formControlName="day" [min]="getCurrentDate()" (change)="resetform()"></td>
         </tr>
       </table><br>
       <table class="d-inline-block">
@@ -17,12 +20,27 @@
           <td>Time to</td>
           <td><input type="time" class="form-control" formControlName="endTime"></td>
         </tr>
-        <tr *ngIf="myForm.hasError('invalidTimeRange')">
-          <td colspan="4" class="text-danger">Invalid time range. Please make sure the start time is less than the end time.</td>
-        </tr>
       </table>
       <div>
+        <table *ngIf="timeSlots.length != 0" class="d-inline-block table-bordered my-2">
+          <tr>
+            <td class="px-4">From</td>
+            <td class="px-4">To</td>
+            <td>delete</td>
+          </tr>
+          <tr *ngFor="let time of timeSlots; let i = index">
+            <td>{{time.start}}</td>
+            <td>{{time.end}}</td>
+            <td class="px-4"><a (click)="deleteSlot(i)"><i class="fa-solid fa-trash"></i></a></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <a class="btn btn-info mx-2" (click)="addTime()">Add time</a>
         <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+      <div class="my-3 text-danger">
+        <span>note : please select all time for same day before submit !!</span>
       </div>
     </div>
   </form>
