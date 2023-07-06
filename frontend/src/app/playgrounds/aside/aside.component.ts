@@ -25,8 +25,9 @@ export class AsideComponent implements OnInit , OnChanges{
   governID!:number;
   price_to:number=1000;
   price_from:number=1;
-
+  currentRating: number = 0;
   result!:number;
+
 
   constructor(private filterService:FilterPlayGroundsService , private categoryService:CategoryService ,private http : HttpClient){}
 
@@ -53,7 +54,15 @@ export class AsideComponent implements OnInit , OnChanges{
     });
   }
 
+  resetFilter():void{
+    this.filterService.filter(this.page).subscribe(data=>{
+      this.filterService.setPage(1);
+      this.result = data.total;
+    })
+  }
 
+
+  // control open and close aside section
   showTypeContent: boolean = true;
   showPriceContent: boolean = false;
   showReviewsContent: boolean = false;
@@ -71,7 +80,8 @@ export class AsideComponent implements OnInit , OnChanges{
     }
   }
 
-  filter(event: any){
+
+  filter(event: any):void{
     //filter with type
     if (event.target.type==="checkbox") {
       const type = event.target.name;
@@ -93,27 +103,31 @@ export class AsideComponent implements OnInit , OnChanges{
           this.governID = elem.id;
         }
       })
+
       this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
       const selectedCity = this.city.find(city => city.governorate_id === this.governID);
       this.filterService.city = selectedCity.city_name_en;
-
     }
 
     if (event.target.name == "city") {
       this.filterService.city = event.target.value;
     }
 
-
-
+    // filter with price and keep send array of type
     this.filterService.type = this.type;
     this.filterService.price_to = this.price_to;
     this.filterService.price_from = this.price_from;
 
     this.filterPlaygrounds();
-    this.filterService.filter(this.page).subscribe(data=>{
-      this.filterService.setPage(1);
-      this.result = data.total;
-    })
+    this.resetFilter();
+  }
+
+  // rating filter
+  setRating(rating: number): void {
+    this.currentRating = rating;
+    this.filterService.rating = rating;
+    this.filterPlaygrounds();
+    this.resetFilter();
   }
 
 }

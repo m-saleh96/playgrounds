@@ -24,6 +24,7 @@ export class FilterPlayGroundsService {
   type:any[]=[];
   lastPage!:number;
   city!:string;
+  rating!:number;
 
   filter(page:number): Observable<any> {
 
@@ -36,6 +37,11 @@ export class FilterPlayGroundsService {
     if (this.city) {
       url += `city[]=${this.city}&`
     }
+
+    if (this.rating) {
+      url += `rating=${this.rating}&`
+    }
+
 
     return this.http.get(url)
   }

@@ -21,6 +21,7 @@ export class OwnerFieldsComponent implements OnInit{
   fieldID!:number;
   oldPic!:any;
   errorMessage!:string;
+  displaySubImg: boolean=false;
   location:any[]=[];
   cities:any[]=[];
   city:any[]=[];
@@ -55,6 +56,7 @@ export class OwnerFieldsComponent implements OnInit{
       'city' :new FormControl(null , [Validators.required ]),
       'street' :new FormControl(null , [Validators.required ]),
       'image' :new FormControl(null),
+      'subimage' :new FormControl(null),
     })
 
 
@@ -74,6 +76,8 @@ export class OwnerFieldsComponent implements OnInit{
           formData.append('street', this.addField.get('street')!.value);
           formData.append('user_id', this.owner.user.id);
           formData.append('image', this.selectedFile);
+          formData.append('subimage', this.selectedFile);
+
           this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
             if (data) {
               this.activeForm = false;
@@ -180,4 +184,8 @@ export class OwnerFieldsComponent implements OnInit{
     })
     this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
   }
+
+addsubImg(){
+  this.displaySubImg=true
+}
 }
