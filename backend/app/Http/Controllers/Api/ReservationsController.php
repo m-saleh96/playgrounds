@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\reservations;
 use Illuminate\Http\Request;
+use Nafezly\Payments\Classes\FawryPayment;
 use Validator;
 use App\Models\TimeSlot;
-
+use Nafezly\Payments\PaymobPayment;
 class ReservationsController extends Controller
 {
     /**
@@ -20,7 +21,7 @@ class ReservationsController extends Controller
         //
         $reservations=reservations ::all();
 
-        return response($reservations);
+        return response($reservations); 
     }
 
     /**
@@ -87,5 +88,23 @@ class ReservationsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function payment_verify(Request $request){
+        $payment = new FawryPayment();
+        // $payment->verify($request->merchantRefNumber);
+        // return response()->json($payment, 200);
+       $payment=  $payment->pay(
+            $amount = 100,
+            $user_id =1,
+            $user_first_name = "ibra", 
+            $user_last_name = "ibra", 
+            $user_email = "ibrahimmuhammad13720@gmail.com", 
+            $user_phone = "01144078667", 
+            $source = null
+        );
+    $payment = $payment->generate_html($payment);
+        return response()->json($payment, 200);
+        
     }
 }
