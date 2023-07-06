@@ -117,13 +117,13 @@ class PlaygroundController extends Controller
             ]
         );
         $imgs = $request->file('subimage');
-        $count=0;
+        $count=1;
         foreach($imgs as $image){
-            $img_name = time() . '.' . $image->extension();
-            $image->move(public_path('images'), $img_name);
+            $img_name2 = time() .$count. '.' . $image->extension();
+            $image->move(public_path('images'), $img_name2);
             $imagePlayGround=ImagePlayGround::create([
             'playgrounds_id'=>$playground->id,
-            'subImage'=>$img_name]);
+            'subImage'=>$img_name2]);
             $count++;}
         $imagePlayGround = ImagePlayGround::where('playgrounds_id',$playground->id)->select('subImage')->get();
         $outputArray = [];

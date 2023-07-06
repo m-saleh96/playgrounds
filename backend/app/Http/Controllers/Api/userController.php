@@ -31,8 +31,16 @@ class userController extends Controller
     public function owner()
     {
         $user= User::where('role', "owner")->get();
-
         return response($user);
+    
+    }
+    public function deleteowner(User $user)
+    {
+         $user->delete();
+        return response()->json(['message' =>"delete successfully"]);
+
+
+    }
         
     }
     /**
