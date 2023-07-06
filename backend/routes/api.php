@@ -45,17 +45,9 @@ Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
 //should be logged in to access
-<<<<<<< HEAD
-Route::middleware(['auth:api', 'player'])->group(function () {
-    Route::resource('review', ReviewController::class)->only(['store']);
-    Route::post('/complaints', [ComplaintController::class, 'store']);});
-Route::middleware(['auth:api', 'sameplayer'])->group(function () {
-    Route::resource('review', ReviewController::class)->only(['update','destroy']);});
-=======
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
 });
->>>>>>> 59acb0c7d645e152cc1109ac0458ef0b434d9c4a
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
@@ -95,14 +87,11 @@ Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 // for complaint messages
-<<<<<<< HEAD
             // player
 
 
 
 
-=======
 Route::post('/complaints', [ComplaintController::class, 'store']);
 Route::get('/complaints', [ComplaintController::class, 'index']);
->>>>>>> 59acb0c7d645e152cc1109ac0458ef0b434d9c4a
 

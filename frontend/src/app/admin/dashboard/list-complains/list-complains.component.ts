@@ -11,16 +11,16 @@ import { Complain } from 'src/app/interfaces/complain';
 })
 export class ListComplainsComponent {
   token: string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+  // complains : Complain={};
   complains !: Complain[];
-
   constructor(private http: HttpClient, private complainService: ComplainService, private cookieService: CookieService){}
 
   ngOnInit(): void {
    
     //get complains and save it in interface to display it on loading page
   this.complainService.listComplains(this.token).subscribe((res: any) => {
-      this.complains = res;   
-      console.log(res);
+      this.complains = res.complaints;   
+      console.log(this.complains);
       
     });
 

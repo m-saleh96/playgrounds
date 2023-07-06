@@ -12,12 +12,12 @@
 
         </tr>
       </thead>
-      <tbody *ngFor="let c of complains; index as i">
+      <tbody>
         <tr>
-          <th scope="row">{{c.id}}</th>
-          <td>{{c.message}}</td>
-          <td>{{c.user_id}}</td>
-          <td>{{c.playground_id}}</td>
+          <th scope="row">{{complains.id}}</th>
+          <td>{{complains.message}}</td>
+          <td>{{complains.user_id}}</td>
+          <td>{{complains.playground_id}}</td>
 
           <!-- <td><button type="button" class="btn btn-danger" (click)="delete(category.id)">Delete</button></td> -->
   
