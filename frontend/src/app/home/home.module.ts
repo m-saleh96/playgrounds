@@ -6,6 +6,7 @@ import { CardListComponent } from './cards/card-list/card-list.component';
 import { CardComponent } from './cards/card/card.component';
 import { TopRatedPlaygroundsComponent } from './top-rated-playgrounds/top-rated-playgrounds.component';
 import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/top-rated-card-playgrounds.component';
+import { ThirdPartComponent } from './third-part/third-part.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/t
     CardComponent,
     TopRatedPlaygroundsComponent,
     TopRatedCardPlaygroundsComponent,
+    ThirdPartComponent,
   ],
   imports: [
     CommonModule,
