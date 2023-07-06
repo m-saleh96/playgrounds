@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\resetPasswordController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
 use App\Http\Controllers\Api\StripeController;
@@ -39,6 +40,19 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('sendmail','sendmail');
     
 });
+Route::controller(resetPasswordController::class)->group(function () {
+    Route::post('sendcode', 'sendtoken');
+    Route::post('cheeckcode', 'cheeckcode');
+    Route::post('resetpassword', 'resetpassword');
+    // Route::post('register', 'register');
+    // Route::post('logout', 'logout');
+    // Route::post('refresh', 'refresh');
+    // Route::get('a','a');
+    // Route::get('sendmail','sendmail');
+    
+});
+
+// sendtoken
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
 
@@ -97,8 +111,10 @@ Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
 
+
 Route::resource('timeslot', TimeSlotsController::class);
 Route::resource('reservation', ReservationsController::class);
+
 
 //payment
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
