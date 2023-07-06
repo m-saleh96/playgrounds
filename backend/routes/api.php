@@ -42,12 +42,6 @@ Route::controller(resetPasswordController::class)->group(function () {
     Route::post('sendcode', 'sendtoken');
     Route::post('cheeckcode', 'cheeckcode');
     Route::post('resetpassword', 'resetpassword');
-    // Route::post('register', 'register');
-    // Route::post('logout', 'logout');
-    // Route::post('refresh', 'refresh');
-    // Route::get('a','a');
-    // Route::get('sendmail','sendmail');
-    
 });
 
 // sendtoken
