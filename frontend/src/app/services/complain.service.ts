@@ -15,4 +15,13 @@ createComplian(Data: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.post(`${this.apiUrl}/complaints`, Data , {headers} )
   }
+
+
+listComplains(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.apiUrl}/complaints`,  { headers })
+  }
 }

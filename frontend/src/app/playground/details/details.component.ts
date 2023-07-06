@@ -43,7 +43,7 @@ export class DetailsComponent {
 
     //get playground details and save it in interface to display it on loading page
   this.playgroundService.getById(this.playgroundId).subscribe((res: any) => {
-      this.playground = res.playground;   
+      this.playground = res.playground;
     });
 
     //get reviews  and save it in interface to display it on loading page
@@ -54,7 +54,7 @@ export class DetailsComponent {
   }
 
   checkUserHasReview(): void {
-  
+
     this.userHasReview = this.reviews.some(review => review.user_id === this.currentUser);
   }
 

@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\PlaygroundController;
 use App\Http\Controllers\Api\resetPasswordController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
+use App\Http\Controllers\Api\StripeController;
+use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
@@ -52,12 +54,18 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
-//should be logged in to access
+
 Route::middleware(['auth:api', 'player'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['store']);
     Route::post('/complaints', [ComplaintController::class, 'store']);});
 Route::middleware(['auth:api', 'sameplayer'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['update','destroy']);});
+
+    
+//should be logged in to access
+Route::middleware('auth:api')->group(function () {
+    Route::resource('review', ReviewController::class)->except(['index', 'show']);
+});
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
@@ -96,10 +104,13 @@ Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
-// for complaint messages
 
 
+Route::resource('timeslot', TimeSlotsController::class);
+Route::resource('reservation', ReservationsController::class);
 
-Route::post('/complaints', [ComplaintController::class, 'store']);
-Route::get('/complaints', [ComplaintController::class, 'index']);
 
+//payment
+Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
+
+Route::post('stripe',[StripeController::class,'StripePost']);
