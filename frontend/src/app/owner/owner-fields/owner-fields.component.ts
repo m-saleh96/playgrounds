@@ -41,7 +41,6 @@ export class OwnerFieldsComponent implements OnInit{
 
 
 
-
   selectedFile: File | null = null;
     onFileSelected(event: any) {
       this.selectedFile = event.target.files[0];
@@ -53,11 +52,10 @@ export class OwnerFieldsComponent implements OnInit{
       if (this.selectedSubImgFiles) {
         for (let i = 0; i < this.selectedSubImgFiles.length; i++) {
           const file = this.selectedSubImgFiles[i];
-          console.log(file);
         }
       }
     }
-    
+
 
     addField:FormGroup = new FormGroup({
       'name' :new FormControl(null , [Validators.required]),
@@ -74,8 +72,9 @@ export class OwnerFieldsComponent implements OnInit{
 
 
 
-  add()
-    {
+  add(){
+    console.log('work');
+
       if (this.activeAddbutton) {
         if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
           const formData = new FormData();
@@ -94,19 +93,20 @@ export class OwnerFieldsComponent implements OnInit{
               const file = this.selectedSubImgFiles[i];
               formData.append('subimage[]', file);
             }
-          this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
+            this.playGroundService.create(formData , this.owner.access_token).subscribe((data:any)=>{
             if (data) {
               this.activeForm = false;
               this.activeAddbutton = false;
               window.location.reload();
-            }
-          })
-        } else{
+            }})
+          } else{
           this.errorMessage = "Please fill all the required fields";
           this.flag = true;
         }
+      }
+    } else if(this.activeupdatebutton){
+      console.log('work');
 
-      } else if(this.activeupdatebutton){
         if (this.addField.valid ) {
           const formData = new FormData();
           formData.append('name', this.addField.get('name')!.value);
@@ -124,18 +124,17 @@ export class OwnerFieldsComponent implements OnInit{
           }else{
             formData.append('image', this.oldPic);
           }
-
+          console.log('work');
           this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
           if (data) {
             this.activeForm = false;
             this.activeupdatebutton = false;
             window.location.reload();
+            console.log('work');
             }
           })
         }
       }
-    }
-
   }
 
   deleteField(id: number) {
@@ -164,6 +163,7 @@ export class OwnerFieldsComponent implements OnInit{
     this.activeForm = true;
     this.activeupdatebutton = true;
     this.activeAddbutton = false;
+    console.log(this.activeupdatebutton);
 
     const field = this.fields.find((elem: any) => elem.id === id);
 
@@ -200,10 +200,6 @@ export class OwnerFieldsComponent implements OnInit{
     })
     this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
   }
-
-addsubImg(){
-  this.displaySubImg=true
-}
 
 recieve(id:number){
   this.router.navigate(['/owner/recieve',id])
