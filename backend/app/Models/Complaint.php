@@ -13,4 +13,15 @@ class Complaint extends Model
         'playground_id',
         'message',
     ];
+
+
+    public function player()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function playground()
+    {
+        return $this->belongsTo(Playground::class, 'playground_id');
+    }
 }

@@ -10,11 +10,13 @@ import { PlaygroundModule } from './playground/playground.module';
 import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { OwnerModule } from './owner/owner.module';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
