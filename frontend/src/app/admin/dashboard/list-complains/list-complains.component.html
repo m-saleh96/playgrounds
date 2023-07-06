@@ -1,0 +1,27 @@
+<div class="container">
+
+    <!-- to list complains -->
+    <table class="table text-center">
+  
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Complain</th>
+          <th  scope="col">User</th>
+          <th  scope="col">playground </th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let c of complains; index as i">
+        <tr>
+          <th scope="row">{{c.id}}</th>
+          <td>{{c.message}}</td>
+          <td>{{c.user_id}}</td>
+          <td>{{c.playground_id}}</td>
+
+          <!-- <td><button type="button" class="btn btn-danger" (click)="delete(category.id)">Delete</button></td> -->
+  
+      </tbody>
+    </table>
+  
+  </div>
