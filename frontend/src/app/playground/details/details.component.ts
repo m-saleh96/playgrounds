@@ -28,9 +28,8 @@ export class DetailsComponent {
   userHasReview!:boolean;
 
   // playgrounds !: Playground[];
-  playground: Playground = {};
-
-  reviews !: Review[];
+  playground: Playground = {} ;
+    reviews !: Review[];
 
   // @Input() todos: any[] = [];
   @Output() setTasks = new EventEmitter();
@@ -44,20 +43,14 @@ export class DetailsComponent {
 
     //get playground details and save it in interface to display it on loading page
   this.playgroundService.getById(this.playgroundId).subscribe((res: any) => {
-      this.playground = res.playground;
-    }
-
-    );
+      this.playground = res.playground;   
+    });
 
     //get reviews  and save it in interface to display it on loading page
     this.reviewService.listByPlaygroundId(this.playgroundId).subscribe((res: any) => {
       this.reviews = res
-// console.log(this.reviews);
       this.checkUserHasReview();
     });
-    
-    console.log(this.review);
-
   }
 
   checkUserHasReview(): void {

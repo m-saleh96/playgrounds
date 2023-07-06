@@ -11,5 +11,8 @@ export interface Playground {
     status?:string,
     user_id?:any,
     created_at?:any,
-    updated_at?:any
+    updated_at?:any,
+    subImage?:string[],
+    street?:string,
+    city?:string
 }

@@ -321,7 +321,7 @@ class PlaygroundController extends Controller
         $playground->status = "rejected";
         $playground->save();
         return response()->json([
-            'message' => 'Playground updated',
+            'message' => 'Playground updated to rejected',
             'playground' => $playground
         ], 200);
     }
@@ -332,7 +332,7 @@ class PlaygroundController extends Controller
         $playground->status = "done";
         $playground->save();
         return response()->json([
-            'message' => 'Playground updated',
+            'message' => 'Playground updated to done',
             'playground' => $playground
         ], 200);
     }
