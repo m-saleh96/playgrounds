@@ -88,6 +88,14 @@ $this->otp=new Otp;
         $user= User::where('email', $request->email)->first();
         $user->Update(['password'=>Hash::make($request->password)]);
         $user->tokens()->delete();
+        $mailData=[
+            'title' => 'Hallo mr/miss '.$user->name,
+            'body' => 'Your password has been modified',
+            'code' =>""
+        ];
+
+        Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
+
         return response()->json(['message' => 'reset passwore  done']);
         
     }
