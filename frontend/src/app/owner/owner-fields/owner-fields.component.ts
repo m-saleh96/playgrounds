@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormControl ,Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PlaygroundService } from 'src/app/services/playground.service';
@@ -26,7 +27,8 @@ export class OwnerFieldsComponent implements OnInit{
   city:any[]=[];
   govern!:any;
   governID!:number;
-  constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService , private http:HttpClient){
+  constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService ,
+  private http:HttpClient , private router:Router){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
 
@@ -199,6 +201,12 @@ export class OwnerFieldsComponent implements OnInit{
     this.city = this.cities.filter(elem=>elem.governorate_id == this.governID);
   }
 
+addsubImg(){
+  this.displaySubImg=true
+}
 
-}  
+recieve(id:number){
+  this.router.navigate(['/owner/recieve',id])
+}
 
+}

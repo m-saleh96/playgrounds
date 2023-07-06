@@ -78,6 +78,25 @@
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 
+
+<!-- add sub images -->
+  <button id="subImg" type="button" class="btn btn-info" (click)="addsubImg()" > Add sub images</button>
+
+  <div *ngIf="displaySubImg">
+    <div class="form-group my-2">
+    <label> image 1: </label>
+    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
+    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
+    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
+  </div>
+
+  <div class="form-group my-2">
+    <label> image 2: </label>
+    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
+    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
+    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
+  </div>
+
   <div class="form-group my-2">
     <label>sub image</label>
     <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
@@ -106,7 +125,7 @@
       <tr *ngFor="let row of fields">
           <td>{{row.name}}</td>
           <td><button type="button" class="btn btn-dark" >Show Details</button></td>
-          <td><button type="button" class="btn btn-info" >Show Recieves</button></td>
+          <td><button type="button" class="btn btn-info" (click)="recieve(row.id)">Show Recieves</button></td>
           <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
           <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
       </tr>
