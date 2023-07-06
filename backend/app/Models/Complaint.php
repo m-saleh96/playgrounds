@@ -11,8 +11,6 @@ class Complaint extends Model
     protected $fillable = [
         'user_id',
         'playground_id',
-        'playground_name',
-        'location',
         'message',
     ];
 }
