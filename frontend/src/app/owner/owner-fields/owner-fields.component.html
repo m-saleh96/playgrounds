@@ -78,35 +78,14 @@
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 
-
-<!-- add sub images -->
-  <button id="subImg" type="button" class="btn btn-info" (click)="addsubImg()" > Add sub images</button>
-  
-  <div *ngIf="displaySubImg">
-    <div class="form-group my-2">
-    <label> image 1: </label>
-    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
-    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
-  </div>
-
   <div class="form-group my-2">
-    <label> image 2: </label>
+    <label>sub image</label>
     <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
+    formControlName='subimage' type="file" multiple (change)="onSubSelected($event)" class="form-control">
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
+  <!-- <input type="file" multiple (change)="onSubSelected($event)" /> -->
 
-  <div class="form-group my-2">
-    <label> image 3: </label>
-    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
-    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
-  </div>
-</div>
-
-
-<br><br><br>
   <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2" *ngIf="activeAddbutton">Add</button>
   <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2" *ngIf="activeupdatebutton">update</button>
 </form>
