@@ -418,6 +418,11 @@ class PlaygroundController extends Controller
     }
 
 
-  
+    public function deleteFavorite(Request $request, Favorite $favorite)
+    {
+        $favorite->delete();
+        return response()->json(['message' => 'Favorite deleted successfully']);
+    }
+
 }
 
