@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Complaint;
 use Illuminate\Support\Facades\Validator;
-
+use App\Models\Favorite;
 class PlaygroundController extends Controller
 {
     /**
@@ -387,6 +387,38 @@ class PlaygroundController extends Controller
 
     }
 
+
+   
+
+    public function addFavorite(Request $request)
+    {
+        $userId = $request->user_id;
+        $playgroundId = $request->playground_id;
+    
+        // Check if the user has already added this playground as a favorite
+        $user = User::find($userId);
+        if ($user->favoritePlaygrounds()->where('playground_id', $playgroundId)->exists()) {
+            return response()->json(['message' => 'This playground is already a favorite.'], 400);
+        }
+    
+
+        $user->favoritePlaygrounds()->attach($playgroundId);
+    
+        return response()->json(['message' => 'Favorite added successfully.']);
+    }
+
+        public function listFavorites()
+    {
+        $favorites = Favorite::with('playground')->get();
+        return response()->json($favorites);
+    }
+
+
+    public function deleteFavorite(Request $request, Favorite $favorite)
+    {
+        $favorite->delete();
+        return response()->json(['message' => 'Favorite deleted successfully']);
+    }
 
 }
 
