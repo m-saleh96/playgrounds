@@ -90,6 +90,6 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Playground::class, 'favorites', 'user_id', 'playground_id')
             ->withTimestamps();
     }
-    
+   
 
 }

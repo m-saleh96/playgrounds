@@ -390,25 +390,21 @@ class PlaygroundController extends Controller
 
    
 
-    public function addFavorite(Request $request, Playground $playground)
+    public function addFavorite(Request $request)
     {
-        $user = $request->user();
-        
-        if ($user) {
-            $favorite = Favorite::create([
-                'user_id' => $user->id,
-                'playground_id' => $playground->id,
-            ]);
+        $userId = $request->user_id;
+        $playgroundId = $request->playground_id;
     
-            return response()->json([
-                'message' => 'Playground added to favorites',
-                'favorite' => $favorite,
-            ], 200);
-        } else {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
+        // Check if the user has already added this playground as a favorite
+        $user = User::find($userId);
+        if ($user->favoritePlaygrounds()->where('playground_id', $playgroundId)->exists()) {
+            return response()->json(['message' => 'This playground is already a favorite.'], 400);
         }
+    
+
+        $user->favoritePlaygrounds()->attach($playgroundId);
+    
+        return response()->json(['message' => 'Favorite added successfully.']);
     }
 
         public function listFavorites()
