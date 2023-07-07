@@ -47,6 +47,8 @@ export class RecievesComponent implements OnInit {
       if (error.status === 404 && error.error.message === 'No time slots for this playground') {
         this.activeForm = true;
         this.tableData = false;
+        this.flag = true;
+        this.errorMessage = "No time added please add day and time"
       }
     }
     );
@@ -121,19 +123,23 @@ export class RecievesComponent implements OnInit {
 
   submitForm(): void {
     const data = { playground_id: this.playGroundId, day: this.day, time: this.timeSlots };
-    this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
-      if (res) {
-        window.location.reload();
+    if (this.timeSlots.length == 0) {
+      this.flag = true;
+      this.errorMessage = "please add at least one time"
+    } else {
+      this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
+        if (res) {
+          window.location.reload();
+        }
+      },
+      (error) => {
+        if (error.status === 400 && error.error.day[0] === 'The day has already been taken.') {
+          this.flag=true;
+          this.errorMessage = error.error.day;
+        }
       }
-    },
-    (error) => {
-      if (error.status === 400 && error.error.day[0] === 'The day has already been taken.') {
-        this.flag=true;
-        this.errorMessage = error.error.day;
-      }
+      )
     }
-    )
-
   }
 
   formatTime(timeString: string): string {
@@ -156,9 +162,6 @@ export class RecievesComponent implements OnInit {
     this.day = this.myForm.controls['day'].value;
   }
 
-  deleteSlot(i:any){
-    this.timeSlots.splice(i,1)
-  }
 
   deleteTime(id:number){
     this.ownerRecieve.deletTime(id).subscribe(res=>{
