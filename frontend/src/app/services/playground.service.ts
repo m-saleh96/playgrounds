@@ -78,4 +78,8 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.get(`${this.apiUrl}/admin/${id}` , {headers} )
   }
 
+  displayUsers(token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.get(`${this.apiUrl}/user` , {headers} )
+  }
 }
