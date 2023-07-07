@@ -14,3 +14,14 @@ th{
 i{
   cursor: pointer;
 }
+
+form{
+  position: relative;
+}
+.close{
+  position: absolute;
+  top: -40px;
+  left:25%;
+  font-size: 25px;
+  color: black;
+}
