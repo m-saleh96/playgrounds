@@ -25,4 +25,14 @@ export class UsersComponent {
       this.users = res;
     });
   }
+
+  deleteUser(id: number) {
+    // delete user
+    this.playgroundService.deleteUsers(id, this.accessToken).subscribe((res) => {
+    console.log(res);
+
+    // reload users list
+    this.playgroundService.displayUsers(this.accessToken).subscribe((res: any) => this.users = res);
+    });
+  }
 }
