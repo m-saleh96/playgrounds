@@ -27,6 +27,7 @@ export class OwnerFieldsComponent implements OnInit{
   city:any[]=[];
   govern!:any;
   governID!:number;
+
   constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService , private http:HttpClient,  private router: Router){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
