@@ -32,7 +32,7 @@ export class UsersComponent {
     console.log(res);
 
     // reload users list
-    this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => this.users = res);
+    this.playgroundService.displayUsers(this.accessToken).subscribe((res: any) => this.users = res);
     });
   }
 }
