@@ -411,7 +411,11 @@ class PlaygroundController extends Controller
         }
     }
 
-   
+        public function listFavorites()
+    {
+        $favorites = Favorite::with('playground')->get();
+        return response()->json($favorites);
+    }
 
 
   
