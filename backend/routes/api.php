@@ -73,7 +73,10 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+    Route::get('/complaints', [ComplaintController::class, 'index']);
 
+    Route::get('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
+    
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
     Route::get('owner', [adminController::class, 'owner']);
     // 
@@ -100,20 +103,8 @@ Route::resource('playground', PlaygroundController::class)->only(['index', 'show
 
 Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlayground']);
-
-
-
-Route::post('playground/create2',[PlaygroundController::class,'store2']);
-
-// for chating 
-Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
-Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
-
-
-
 Route::resource('timeslot', TimeSlotsController::class);
 Route::resource('reservation', ReservationsController::class);
-
 
 //payment
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
