@@ -1,4 +1,3 @@
-
 <div class="container pt-2 text-end pb-3">
   <div class="text-center">
     <h3 class="text-success">Hello, {{owner.user.name}}</h3>
@@ -8,49 +7,49 @@
 <div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center">
   {{errorMessage}}
 </div>
-<form *ngIf="activeForm" class="w-75 m-auto py-5"  [formGroup]="addField" (ngSubmit)="add()" enctype="multipart/form-data">
+<form *ngIf="activeForm" class="w-75 m-auto py-5" [formGroup]="addField" (ngSubmit)="add()"
+  enctype="multipart/form-data">
 
   <div class="form-group my-2">
-      <label>Name</label>
-      <input [class.is-valid]="addField.get('name')?.errors ==null && addField.get('name')?.touched"
+    <label>Name</label>
+    <input [class.is-valid]="addField.get('name')?.errors ==null && addField.get('name')?.touched"
       formControlName='name' type="text" class="form-control">
-      <p *ngIf="addField.get('name')?.errors !=null && addField.get('name')?.touched"
-      class="py-2 text-danger">inValid</p>
+    <p *ngIf="addField.get('name')?.errors !=null && addField.get('name')?.touched" class="py-2 text-danger">inValid</p>
   </div>
   <div class="form-group my-2">
-      <label>Description</label>
-      <input [class.is-valid]="addField.get('description')?.errors ==null && addField.get('description')?.touched"
+    <label>Description</label>
+    <input [class.is-valid]="addField.get('description')?.errors ==null && addField.get('description')?.touched"
       formControlName='description' type="text" class="form-control">
-      <p *ngIf="addField.get('description')?.errors !=null && addField.get('description')?.touched"
+    <p *ngIf="addField.get('description')?.errors !=null && addField.get('description')?.touched"
       class="py-2 text-danger">inValid</p>
   </div>
   <div class="form-group my-2">
-      <label>size</label>
-      <input [class.is-valid]="addField.get('size')?.errors ==null && addField.get('size')?.touched"
+    <label>size</label>
+    <input [class.is-valid]="addField.get('size')?.errors ==null && addField.get('size')?.touched"
       formControlName='size' type="number" class="form-control" min="0">
-      <p *ngIf="addField.get('size')?.errors !=null && addField.get('size')?.touched"
-      class="py-2 text-danger">inValid</p>
+    <p *ngIf="addField.get('size')?.errors !=null && addField.get('size')?.touched" class="py-2 text-danger">inValid</p>
   </div>
   <div class="form-group my-2">
-      <label>Price</label>
-      <input [class.is-valid]="addField.get('price')?.errors ==null && addField.get('price')?.touched"
+    <label>Price</label>
+    <input [class.is-valid]="addField.get('price')?.errors ==null && addField.get('price')?.touched"
       formControlName='price' type="number" class="form-control" min="0">
-      <p *ngIf="addField.get('price')?.errors !=null && addField.get('price')?.touched"
-      class="py-2 text-danger">inValid</p>
+    <p *ngIf="addField.get('price')?.errors !=null && addField.get('price')?.touched" class="py-2 text-danger">inValid
+    </p>
   </div>
   <div class="form-group my-2">
     <label>category</label>
     <select id="" [class.is-valid]="addField.get('type')?.errors ==null && addField.get('type')?.touched"
-    formControlName='type' type="text" class="form-select">
-    <option *ngFor="let category of category" [value]="category.name" >{{category.name}}</option>
+      formControlName='type' type="text" class="form-select">
+      <option *ngFor="let category of category" [value]="category.name">{{category.name}}</option>
     </select>
   </div>
 
   <div class="form-group my-2">
     <label>location</label>
     <select id="" [class.is-valid]="addField.get('location')?.errors ==null && addField.get('location')?.touched"
-    formControlName='location' type="text" class="form-select" [(ngModel)]="govern" (change)="filter($event)">
-    <option *ngFor="let location of location" [value]="location.governorate_name_en" >{{location.governorate_name_en}}</option>
+      formControlName='location' type="text" class="form-select" [(ngModel)]="govern" (change)="filter($event)">
+      <option *ngFor="let location of location" [value]="location.governorate_name_en">{{location.governorate_name_en}}
+      </option>
     </select>
   </div>
 
@@ -58,18 +57,18 @@
   <div class="form-group my-2">
     <label>City</label>
     <select id="" [class.is-valid]="addField.get('city')?.errors ==null && addField.get('city')?.touched"
-    formControlName='city' type="text" class="form-select">
-    <option *ngFor="let city of city" [value]="city.city_name_en" >{{city.city_name_en}}</option>
+      formControlName='city' type="text" class="form-select">
+      <option *ngFor="let city of city" [value]="city.city_name_en">{{city.city_name_en}}</option>
     </select>
-    <p *ngIf="addField.get('city')?.errors !=null && addField.get('city')?.touched"
-    class="py-2 text-danger">inValid</p>
+    <p *ngIf="addField.get('city')?.errors !=null && addField.get('city')?.touched" class="py-2 text-danger">inValid</p>
   </div>
+  
   <div class="form-group my-2">
     <label>Street</label>
     <input [class.is-valid]="addField.get('street')?.errors ==null && addField.get('street')?.touched"
-    formControlName='street' type="text" class="form-control">
-    <p *ngIf="addField.get('street')?.errors !=null && addField.get('street')?.touched"
-    class="py-2 text-danger">inValid</p>
+      formControlName='street' type="text" class="form-control">
+    <p *ngIf="addField.get('street')?.errors !=null && addField.get('street')?.touched" class="py-2 text-danger">inValid
+    </p>
   </div>
   <div class="form-group my-2">
     <label>image</label>
@@ -78,60 +77,39 @@
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 
-
-<!-- add sub images -->
-  <button id="subImg" type="button" class="btn btn-info" (click)="addsubImg()" > Add sub images</button>
-  
-  <div *ngIf="displaySubImg">
-    <div class="form-group my-2">
-    <label> image 1: </label>
-    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
-    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
-  </div>
-
   <div class="form-group my-2">
-    <label> image 2: </label>
+    <label>sub image</label>
     <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
+      formControlName='subimage' type="file" multiple (change)="onSubSelected($event)" class="form-control">
     <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
   </div>
 
-  <div class="form-group my-2">
-    <label> image 3: </label>
-    <input [class.is-valid]="addField.get('subimage')?.errors ==null && addField.get('subimage')?.touched"
-    formControlName='subimage' type="file" (change)="onFileSelected($event)" class="form-control">
-    <img class="img-fluid" [src]="'http://localhost:8000/images/'+oldPic" width="80px" *ngIf="oldPic">
-  </div>
-</div>
-
-
-<br><br><br>
-  <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2" *ngIf="activeAddbutton">Add</button>
-  <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2" *ngIf="activeupdatebutton">update</button>
+  <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2"
+    *ngIf="activeAddbutton">Add</button>
+  <button [disabled]="addField.invalid" type="submit" class="btn btn-danger text-white my-2"
+    *ngIf="activeupdatebutton">update</button>
 </form>
 
 
 
 <table class="table table-bordered text-center">
   <thead>
-      <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Details</th>
-          <th scope="col">Recieves</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-      </tr>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Details</th>
+      <th scope="col">Recieves</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let row of fields">
-          <td>{{row.name}}</td>
-          <td><button type="button" class="btn btn-dark" >Show Details</button></td>
-          <td><button type="button" class="btn btn-info" >Show Recieves</button></td>
-          <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
-          <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
-      </tr>
+    <tr *ngFor="let row of fields">
+      <td>{{row.name}}</td>
+      <td><button type="button" class="btn btn-dark">Show Details</button></td>
+      <td><button type="button" class="btn btn-info">Show Recieves</button></td>
+      <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
+      <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
+    </tr>
 
   </tbody>
 </table>
-

@@ -5,25 +5,44 @@
   height: 100%;
   z-index: 3;
 }
+
 .carousel-item{
   z-index: 0;
   background-color: var(--main-color2);
 }
+
+h1, h2{
+  font-size: 3rem;
+}
+
 .btn{
   background-color: var(--neon-green);
   border-radius: 50px;
   font-weight: bold;
 }
+
 #myCarousel {
   height: 90vh;
 }
+
 .img-right {
   margin-left: 12%;
 }
+
 .carousel-item img {
   object-fit: cover;
   height: 90vh;
 }
+
+.txt{
+  color: var(--light-gray);
+  font-size: 20rem;
+  position: absolute;
+  z-index: -1;
+}
+
+
+
 /* .overlay {
   position: absolute;
   top: 0;
@@ -33,10 +52,3 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 } */
-
-.txt{
-  color: var(--light-gray);
-  font-size: 20rem;
-  position: absolute;
-  z-index: -1;
-}

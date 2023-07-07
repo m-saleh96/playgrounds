@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListAllPlaygroundsComponent } from './list-all-playgrounds/list-all-playgrounds.component';
 import { AdminGuard } from 'src/app/guards/admin.guard';
 import { OwnersComponent } from './owners/owners.component';
+import { ListComplainsComponent } from './list-complains/list-complains.component';
+import { ComplainService } from 'src/app/services/complain.service';
 
 
 const routes: Routes = [
@@ -40,6 +42,10 @@ const routes: Routes = [
       path: 'category',
       component:ListAllCategoriesComponent
     },
+    {
+      path: 'listComplains',
+      component:ListComplainsComponent
+    },
 
   ]},
 ]
@@ -53,6 +59,7 @@ const routes: Routes = [
     ListAllCategoriesComponent,
     ListAllPlaygroundsComponent,
     OwnersComponent,
+    ListComplainsComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +67,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
-  providers: [CategoryService,AdminGuard ] // Inject RegisterService to register module
+  providers: [CategoryService,AdminGuard, ComplainService ] // Inject RegisterService to register module
 
 })
 export class DashboardModule { }

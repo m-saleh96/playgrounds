@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\resetPasswordController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
+use App\Http\Controllers\Api\StripeController;
+use App\Http\Controllers\Api\TimeSlotsController;
 use App\Http\Controllers\Api\userController;
 use App\Http\Controllers\AuthController;
 use App\Models\Playground;
@@ -37,6 +40,19 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('sendmail','sendmail');
     
 });
+Route::controller(resetPasswordController::class)->group(function () {
+    Route::post('sendcode', 'sendtoken');
+    Route::post('cheeckcode', 'cheeckcode');
+    Route::post('resetpassword', 'resetpassword');
+    // Route::post('register', 'register');
+    // Route::post('logout', 'logout');
+    // Route::post('refresh', 'refresh');
+    // Route::get('a','a');
+    // Route::get('sendmail','sendmail');
+    
+});
+
+// sendtoken
 
 Route::get('playground/search',[PlaygroundController::class,'search']);
 
@@ -44,7 +60,6 @@ Route::get('playground/search',[PlaygroundController::class,'search']);
 Route::resource('user', userController::class);
 Route::get('review/playground/{playground}',[ReviewController::class,'showByPlayground']);
 
-//should be logged in to access
 
 Route::middleware(['auth:api', 'player'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['store']);
@@ -52,10 +67,11 @@ Route::middleware(['auth:api', 'player'])->group(function () {
 Route::middleware(['auth:api', 'sameplayer'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['update','destroy']);});
 
+    
+//should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
 });
-
 
 //shoudl be logged in as admin to access
 Route::middleware(['auth:api', 'admin'])->group(function () {
@@ -94,9 +110,13 @@ Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
 Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
 
-// for complaint messages
-
-Route::post('/complaints', [ComplaintController::class, 'store']);
-Route::get('/complaints', [ComplaintController::class, 'index']);
 
 
+Route::resource('timeslot', TimeSlotsController::class);
+Route::resource('reservation', ReservationsController::class);
+
+
+//payment
+Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
+
+Route::post('stripe',[StripeController::class,'StripePost']);
