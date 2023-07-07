@@ -75,12 +75,13 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
     Route::get('/complaints', [ComplaintController::class, 'index']);
 
-    Route::get('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
+    Route::put('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
     
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
     Route::get('owner', [adminController::class, 'owner']);
     // 
 Route::resource('admin', adminController::class);
+Route::resource('user', userController::class);
 
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });
