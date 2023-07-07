@@ -39,7 +39,8 @@ export class OwnerFieldsComponent implements OnInit{
     (error) => {
       console.log(error.error.message);
       if (error.status === 401 && error.error.message === 'Unauthenticated.') {
-        this.router.navigate(['login'])
+        this.cookieService.delete('userData');
+        window.location.reload();
       }
     }
     );
