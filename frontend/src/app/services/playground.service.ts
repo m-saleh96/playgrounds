@@ -75,7 +75,7 @@ getTopRatedPlaygrounds(): Observable<any> {
 
   deleteOwners(id: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
-    return this.http.get(`${this.apiUrl}/admin/${id}` , {headers} )
+    return this.http.delete(`${this.apiUrl}/admin/${id}` , {headers} )
   }
 
   displayUsers(token:any): Observable<any> {
