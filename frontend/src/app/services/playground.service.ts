@@ -68,9 +68,14 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.put(`${this.apiUrl}/playground/rejected/${id}`, {status}, {headers});
   }
 
-  displayOwners(id: any , token:any): Observable<any> {
+  displayOwners(token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.get(`${this.apiUrl}/owner` , {headers} )
+  }
+
+  deleteOwners(id: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.get(`${this.apiUrl}/admin/${id}` , {headers} )
   }
 
 }
