@@ -37,10 +37,9 @@ export class OwnerFieldsComponent implements OnInit{
       this.fields = res
     } ,
     (error) => {
-      console.log(error.status);
-      if (error.status === 401 && error.error.error === 'Unauthorized') {
-        this.cookieService.delete('userData');
-        window.location.reload();
+      console.log(error.error.message);
+      if (error.status === 401 && error.error.message === 'Unauthenticated.') {
+        this.router.navigate(['login'])
       }
     }
     );
@@ -208,6 +207,10 @@ export class OwnerFieldsComponent implements OnInit{
 
 recieve(id:number){
   this.router.navigate(['/owner/recieve',id])
+}
+
+redirectToDetails(id: number){
+  this.router.navigate(['playground/details/',id])
 }
 
 }

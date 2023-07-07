@@ -1,6 +1,6 @@
 <div>
   <div class="container text-end pb-3 w-75">
-    <button (click)="addform()" class="btn btn-success text-white">Add Field</button>
+    <button (click)="addform()" class="btn btn-success text-white">Add</button>
   </div>
   <form [formGroup]="myForm" (ngSubmit)="submitForm()" *ngIf="activeForm">
     <div class="text-center">
@@ -29,12 +29,10 @@
           <tr>
             <td class="px-4">From</td>
             <td class="px-4">To</td>
-            <td>delete</td>
           </tr>
           <tr *ngFor="let time of timeSlots; let i = index">
             <td>{{time.start}}</td>
             <td>{{time.end}}</td>
-            <td class="px-4"><a (click)="deleteSlot(i)"><i class="fa-solid fa-trash"></i></a></td>
           </tr>
         </table>
       </div>

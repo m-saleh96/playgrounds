@@ -107,7 +107,7 @@
     <tr *ngFor="let row of fields">
       <td>{{row.name}}</td>
       <td>{{row.status}}</td>
-      <td><button type="button" class="btn btn-dark">Show Details</button></td>
+      <td><button type="button" class="btn btn-dark" (click)="redirectToDetails(row.id)">Show Details</button></td>
       <td><button type="button" class="btn btn-info" (click)="recieve(row.id )">Show Recieves</button></td>
       <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
       <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
