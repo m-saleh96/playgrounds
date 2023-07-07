@@ -11,15 +11,19 @@
       <div class="row">
         <div class="col md-9">
           <input type="text" class="form-control" placeholder="Add category" [(ngModel)]="categoryName" name="categoryName" #categoryNameInput="ngModel" required>
+
           <div class="error" *ngIf="categoryNameInput.invalid && categoryNameInput.touched">
             <span>category name is required.</span>
           </div>
+
           <div class="col md-12 mt-3">
             <span class="error">{{errorMessage}}</span>
           </div>
+
           <div class="col md-3">
             <button type="submit" class="btn btn-info mt-3" (click)="validationCreate()">add</button>
           </div>
+          
         </div>
       </div>
     </div>
@@ -31,19 +35,23 @@
  <div *ngIf="toedit" id="edit_form" class="modal-overlay">
   <div class="form-container form-group">
     <button type="button" class="form-close" (click)="closeEditForm()">&#215;</button>
+
     <div class="row">
       <div class="col md-9">
         <input type="text" class="form-control" placeholder="Edit category" [(ngModel)]="categoryNameEdit"
           name="categoryNameEdit" #categoryNameEditInput="ngModel" [value]="categoryNameEdit" required>
+
           <div class="error" *ngIf="categoryNameEditInput.invalid && categoryNameEditInput.touched">
             <span>category name is required.</span>
           </div>
+
           <div class="col md-12 mt-3">
             <span class="error">{{errorMessage}}</span>
           </div>
+
           <div class="col md-3">
-          <button type="submit" class="btn btn-info mt-3" (click)="validationEdit()">Edit</button><br>
-        </div>
+            <button type="submit" class="btn btn-info mt-3" (click)="validationEdit()">Edit</button><br>
+          </div>
 
       </div>
     </div>
