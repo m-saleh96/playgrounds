@@ -18,4 +18,14 @@ export class OwnerRecieveService {
     return this.http.post(`${this.apiUrl}/timeslot`, formData , {headers} )
   }
 
+  getTime(id: any): Observable<any> {
+    return this.http.get(`${this.apiUrl}/timeslot/${id}`)
+  }
+
+  deletTime(id: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/timeslot/${id}`)
+  }
+
+
+
 }
