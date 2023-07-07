@@ -19,7 +19,7 @@ class userController extends Controller
 
     public function index()
     {
-        $user= User::where('role', "user")->get();
+        $user= User::where('role', "player")->get();
 
         return response($user);
         // return response()->json([

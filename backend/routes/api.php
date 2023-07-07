@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\adminController;
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\ReservationsController;
 use App\Http\Controllers\Api\resetPasswordController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
@@ -44,12 +46,6 @@ Route::controller(resetPasswordController::class)->group(function () {
     Route::post('sendcode', 'sendtoken');
     Route::post('cheeckcode', 'cheeckcode');
     Route::post('resetpassword', 'resetpassword');
-    // Route::post('register', 'register');
-    // Route::post('logout', 'logout');
-    // Route::post('refresh', 'refresh');
-    // Route::get('a','a');
-    // Route::get('sendmail','sendmail');
-    
 });
 
 // sendtoken
@@ -77,8 +73,14 @@ Route::middleware('auth:api')->group(function () {
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::put('playground/changeStatus/{playground}',[PlaygroundController::class,'changeStates']);
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
+    Route::get('/complaints', [ComplaintController::class, 'index']);
 
+    Route::get('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
+    
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
+    Route::get('owner', [adminController::class, 'owner']);
+    // 
+Route::resource('admin', adminController::class);
 
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });
@@ -101,20 +103,8 @@ Route::resource('playground', PlaygroundController::class)->only(['index', 'show
 
 Route::post('playground/create2',[PlaygroundController::class,'store2']);
 Route::get('playgrounds/top-rated', [PlaygroundController::class,'topRatedPlayground']);
-
-
-
-Route::post('playground/create2',[PlaygroundController::class,'store2']);
-
-// for chating 
-Route::post('chat/send-message', [ChatController::class, 'sendMessage']);
-Route::post('chat/get-messages', [ChatController::class, 'getChatMessages']);
-
-
-
 Route::resource('timeslot', TimeSlotsController::class);
 Route::resource('reservation', ReservationsController::class);
-
 
 //payment
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');

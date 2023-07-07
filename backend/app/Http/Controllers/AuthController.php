@@ -22,7 +22,9 @@ class AuthController extends Controller
      public function sendmail(Request $request){
         $mailData=[
             'title' => 'mail from title',
-            'body' => 'This is test body from mail'];
+            'body' => 'This is test body from mail'
+            ,'code'=>''
+        ];
         // Mail::to('gergesvictor512@gmail.com')->send(new testmail($mailData));
         Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
 
