@@ -81,6 +81,7 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::get('owner', [adminController::class, 'owner']);
     // 
 Route::resource('admin', adminController::class);
+Route::resource('user', userController::class);
 
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });
