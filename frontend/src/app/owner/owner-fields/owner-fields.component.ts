@@ -73,8 +73,6 @@ export class OwnerFieldsComponent implements OnInit{
 
 
   add(){
-    console.log('work');
-
       if (this.activeAddbutton) {
         if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
           const formData = new FormData();
@@ -105,8 +103,6 @@ export class OwnerFieldsComponent implements OnInit{
         }
       }
     } else if(this.activeupdatebutton){
-      console.log('work');
-
         if (this.addField.valid ) {
           const formData = new FormData();
           formData.append('name', this.addField.get('name')!.value);
@@ -124,13 +120,11 @@ export class OwnerFieldsComponent implements OnInit{
           } else {
             formData.append('image', this.oldPic);
           }
-          console.log('work');
           this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
           if (data) {
             this.activeForm = false;
             this.activeupdatebutton = false;
             window.location.reload();
-            console.log('work');
             }
           })
         }
