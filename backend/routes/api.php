@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\adminController;
 use App\Http\Controllers\Api\categoryController;
 use App\Http\Controllers\Api\PlaygroundController;
+use App\Http\Controllers\Api\ReservationsController;
 use App\Http\Controllers\Api\resetPasswordController;
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\RateController;
@@ -73,6 +75,9 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::get('playground/pending',[PlaygroundController::class,'pending']);
 
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
+    Route::get('owner', [adminController::class, 'owner']);
+    // 
+Route::resource('admin', adminController::class);
 
     Route::resource('category', categoryController::class)->except(['index', 'show']);
 });

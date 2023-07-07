@@ -20,7 +20,7 @@ class adminController extends Controller
         return response($user);
         //
     }
-    public function oner()
+    public function owner()
     {
         $user= User::where('role', "owner")->get();
         return response($user);
@@ -76,9 +76,9 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-public function destroy( User $user)
+public function destroy( User $admin)
     {
-         $user->delete();
+         $admin->delete();  
         return response()->json(['message' =>"delete successfully"]);
 
     
