@@ -11,6 +11,7 @@ import { OwnerRecieveService } from 'src/app/services/owner-recieve.service';
 })
 export class RecievesComponent implements OnInit {
 
+  recieve:any[]=[];
   myForm: FormGroup;
   flag:boolean=false;
   errorMessage!:string;
@@ -18,6 +19,9 @@ export class RecievesComponent implements OnInit {
   token!:any;
   timeSlots: any[] = [];
   day!:any;
+  activeForm:boolean=false;
+  tableData:boolean=true;
+
   constructor(private fb: FormBuilder , private route:ActivatedRoute , private ownerRecieve:OwnerRecieveService , private cookieService:CookieService) {
     this.route.params.subscribe(param=>{
       this.playGroundId = param['id'];
@@ -32,6 +36,36 @@ export class RecievesComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
+    this.getAllTime();
+  }
+
+  getAllTime(){
+    this.ownerRecieve.getTime(this.playGroundId).subscribe(res=>{
+      this.recieve=res
+    },
+    (error) => {
+      if (error.status === 404 && error.error.message === 'No time slots for this playground') {
+        this.activeForm = true;
+        this.tableData = false;
+        this.flag = true;
+        this.errorMessage = "No time added please add day and time"
+      }
+    }
+    );
+  }
+
+  addform(){
+    if (this.activeForm) {
+      this.activeForm = false;
+    } else {
+      this.activeForm = true;
+    }
+    if (this.tableData) {
+      this.tableData = false;
+    } else {
+      this.tableData = true;
+    }
+
   }
 
   getCurrentDate() {
@@ -68,6 +102,9 @@ export class RecievesComponent implements OnInit {
 
       if (this.timeSlots.length==0) {
         this.timeSlots.push(time);
+      } else if(formattedStartTime >= this.timeSlots[this.timeSlots.length - 1]['start'] && formattedStartTime < this.timeSlots[this.timeSlots.length - 1]['end']){
+        this.flag = true;
+        this.errorMessage = `You can't choose time from less than ${this.timeSlots[this.timeSlots.length - 1]['end']}.`;
       } else if(this.timeSlots[this.timeSlots.length - 1]['end'] <=formattedStartTime){
         this.timeSlots.push(time);
       } else if (this.timeSlots[this.timeSlots.length - 1]['end'] > formattedStartTime){
@@ -86,12 +123,23 @@ export class RecievesComponent implements OnInit {
 
   submitForm(): void {
     const data = { playground_id: this.playGroundId, day: this.day, time: this.timeSlots };
-    this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
-      if (res) {
-        window.location.reload();
+    if (this.timeSlots.length == 0) {
+      this.flag = true;
+      this.errorMessage = "please add at least one time"
+    } else {
+      this.ownerRecieve.addSlot(data , this.token).subscribe(res=>{
+        if (res) {
+          window.location.reload();
+        }
+      },
+      (error) => {
+        if (error.status === 400 && error.error.day[0] === 'The day has already been taken.') {
+          this.flag=true;
+          this.errorMessage = error.error.day;
+        }
       }
-    })
-
+      )
+    }
   }
 
   formatTime(timeString: string): string {
@@ -114,7 +162,12 @@ export class RecievesComponent implements OnInit {
     this.day = this.myForm.controls['day'].value;
   }
 
-  deleteSlot(i:any){
-    this.timeSlots.splice(i,1)
+
+  deleteTime(id:number){
+    this.ownerRecieve.deletTime(id).subscribe(res=>{
+      if (!res) {
+        window.location.reload();
+      }
+    })
   }
 }

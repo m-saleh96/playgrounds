@@ -27,12 +27,22 @@ export class OwnerFieldsComponent implements OnInit{
   city:any[]=[];
   govern!:any;
   governID!:number;
+
   constructor(private playGroundService:PlaygroundService , private categoryService:CategoryService , private cookieService:CookieService , private http:HttpClient,  private router: Router){
     this.owner = JSON.parse(this.cookieService.get('userData') || '{}')
   }
 
   ngOnInit() {
-    this.playGroundService.ownerField(this.owner.user.id, this.owner.access_token).subscribe((res: any) => this.fields = res);
+    this.playGroundService.ownerField(this.owner.user.id, this.owner.access_token).subscribe((res: any) => {
+      this.fields = res
+    } ,
+    (error) => {
+      console.log(error.error.message);
+      if (error.status === 401 && error.error.message === 'Unauthenticated.') {
+        this.router.navigate(['login'])
+      }
+    }
+    );
     this.categoryService.getAllCategory().subscribe((res: any) => this.category = res);
     this.http.get('assets/egypt/governorates.json').subscribe((data: any) => this.location = data);
     this.http.get('assets/egypt/cities.json').subscribe((data: any) => this.cities = data);
@@ -73,8 +83,6 @@ export class OwnerFieldsComponent implements OnInit{
 
 
   add(){
-    console.log('work');
-
       if (this.activeAddbutton) {
         if (this.addField.valid && this.selectedFile && this.selectedSubImgFiles) {
           const formData = new FormData();
@@ -105,8 +113,6 @@ export class OwnerFieldsComponent implements OnInit{
         }
       }
     } else if(this.activeupdatebutton){
-      console.log('work');
-
         if (this.addField.valid ) {
           const formData = new FormData();
           formData.append('name', this.addField.get('name')!.value);
@@ -124,13 +130,11 @@ export class OwnerFieldsComponent implements OnInit{
           } else {
             formData.append('image', this.oldPic);
           }
-          console.log('work');
           this.playGroundService.update(this.fieldID ,formData , this.owner.access_token).subscribe((data:any)=>{
           if (data) {
             this.activeForm = false;
             this.activeupdatebutton = false;
             window.location.reload();
-            console.log('work');
             }
           })
         }
@@ -203,6 +207,10 @@ export class OwnerFieldsComponent implements OnInit{
 
 recieve(id:number){
   this.router.navigate(['/owner/recieve',id])
+}
+
+redirectToDetails(id: number){
+  this.router.navigate(['playground/details/',id])
 }
 
 }
