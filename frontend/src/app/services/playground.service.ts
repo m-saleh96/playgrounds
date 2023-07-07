@@ -20,25 +20,13 @@ export class PlaygroundService {
   }
 
 
-  listPending(token: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Authorization' : `Bearer ${token}`
-    });
-
-    return this.http.get(`${this.apiUrl}/playground/pending`, { headers });
-  }
-
-
-getTopRatedPlaygrounds(): Observable<any> {
-  return this.http.get<any[]>(`${this.apiUrl}/playgrounds/top-rated`);
-}
-
-
   ownerField(id: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.get(`${this.apiUrl}/playground/owner/${id}` , {headers} )
   }
 
+
+  //playground part
   create(formData: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.post(`${this.apiUrl}/playground`, formData , {headers} )
@@ -54,6 +42,24 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.delete(`${this.apiUrl}/playground/${id}` ,{ headers } )
   }
 
+
+  //top rated playground
+  getTopRatedPlaygrounds(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/playgrounds/top-rated`);
+  }
+
+
+  //pending playgrounds
+  listPending(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization' : `Bearer ${token}`
+    });
+
+    return this.http.get(`${this.apiUrl}/playground/pending`, { headers });
+  }
+
+
+  //playground status part
   updateStatusAccept(id: number, status: string, token: string) {
     const headers = new HttpHeaders({
       'Authorization' : `Bearer ${token}`
@@ -68,6 +74,9 @@ getTopRatedPlaygrounds(): Observable<any> {
     return this.http.put(`${this.apiUrl}/playground/rejected/${id}`, {status}, {headers});
   }
 
+
+
+  //owners part
   displayOwners(token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
     return this.http.get(`${this.apiUrl}/owner` , {headers} )
@@ -75,7 +84,18 @@ getTopRatedPlaygrounds(): Observable<any> {
 
   deleteOwners(id: any , token:any): Observable<any> {
     const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
-    return this.http.get(`${this.apiUrl}/admin/${id}` , {headers} )
+    return this.http.delete(`${this.apiUrl}/admin/${id}` , {headers} )
+  }
+  
+
+  //users part
+  displayUsers(token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.get(`${this.apiUrl}/user` , {headers} )
   }
 
+  deleteUsers(id: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.delete(`${this.apiUrl}/user/${id}` , {headers} )
+  }
 }

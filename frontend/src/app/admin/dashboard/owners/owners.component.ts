@@ -16,12 +16,12 @@ export class OwnersComponent {
 
   ngOnInit() {
     this.accessToken = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-    this.getOwners(4);
+    this.getOwners();
 
   }
 
 
-  getOwners(id: number) {
+  getOwners() {
     this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => {
       console.log(res);
       this.owners = res;
