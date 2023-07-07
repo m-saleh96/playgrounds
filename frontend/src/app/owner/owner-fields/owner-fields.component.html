@@ -62,7 +62,7 @@
     </select>
     <p *ngIf="addField.get('city')?.errors !=null && addField.get('city')?.touched" class="py-2 text-danger">inValid</p>
   </div>
-  
+
   <div class="form-group my-2">
     <label>Street</label>
     <input [class.is-valid]="addField.get('street')?.errors ==null && addField.get('street')?.touched"
@@ -106,7 +106,7 @@
     <tr *ngFor="let row of fields">
       <td>{{row.name}}</td>
       <td><button type="button" class="btn btn-dark">Show Details</button></td>
-      <td><button type="button" class="btn btn-info">Show Recieves</button></td>
+      <td><button type="button" class="btn btn-info" (click)="recieve(row.id)">Show Recieves</button></td>
       <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
       <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
     </tr>
