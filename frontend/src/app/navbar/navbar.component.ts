@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,8 @@ export class NavbarComponent implements OnInit{
   isLogin:boolean=false;
   isOwner:boolean=false
   isAdmin:boolean=false
-  constructor (private cookieService: CookieService){ }
+  token!:any
+  constructor (private cookieService: CookieService , private registerService:RegisterService){ }
 
   ngOnInit(): void {
     if(JSON.parse(this.cookieService.get('userData') || '{}').user?.role){
@@ -22,6 +24,7 @@ export class NavbarComponent implements OnInit{
         this.isAdmin=true;
       }
     }
+    this.token = (JSON.parse(this.cookieService.get('userData') || '{}').access_token)
   }
 
   logout(){
