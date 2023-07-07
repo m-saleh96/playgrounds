@@ -1,5 +1,8 @@
 <div>
-  <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+  <div class="container text-end pb-3 w-75">
+    <button (click)="addform()" class="btn btn-success text-white">Add</button>
+  </div>
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()" *ngIf="activeForm">
     <div class="text-center">
       <div *ngIf="flag" class="alert alert-danger w-50 m-auto text-center my-3">
         {{errorMessage}}
@@ -26,12 +29,10 @@
           <tr>
             <td class="px-4">From</td>
             <td class="px-4">To</td>
-            <td>delete</td>
           </tr>
           <tr *ngFor="let time of timeSlots; let i = index">
             <td>{{time.start}}</td>
             <td>{{time.end}}</td>
-            <td class="px-4"><a (click)="deleteSlot(i)"><i class="fa-solid fa-trash"></i></a></td>
           </tr>
         </table>
       </div>
@@ -44,4 +45,28 @@
       </div>
     </div>
   </form>
+  <div class="text-center main" *ngIf="tableData">
+    <table class="table table-striped table-dark w-75">
+      <thead>
+        <tr>
+          <th>day</th>
+          <th>start_time</th>
+          <th>end_time</th>
+          <th>status</th>
+          <th>edit</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of recieve">
+          <td>{{row.day}}</td>
+          <td>{{row.start_time}}</td>
+          <td>{{row.end_time}}</td>
+          <td>{{row.status}}</td>
+          <td><button class="btn btn-secondary">edit</button></td>
+          <td><i class="fa-solid fa-trash" (click)="deleteTime(row.id)"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
