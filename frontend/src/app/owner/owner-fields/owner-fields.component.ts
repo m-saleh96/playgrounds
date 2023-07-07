@@ -43,7 +43,7 @@ export class OwnerFieldsComponent implements OnInit{
         window.location.reload();
       }
     }
-      );
+    );
     this.categoryService.getAllCategory().subscribe((res: any) => this.category = res);
     this.http.get('assets/egypt/governorates.json').subscribe((data: any) => this.location = data);
     this.http.get('assets/egypt/cities.json').subscribe((data: any) => this.cities = data);

@@ -40,7 +40,16 @@ export class RecievesComponent implements OnInit {
   }
 
   getAllTime(){
-    this.ownerRecieve.getTime(this.playGroundId).subscribe(res=>this.recieve=res);
+    this.ownerRecieve.getTime(this.playGroundId).subscribe(res=>{
+      this.recieve=res
+    },
+    (error) => {
+      if (error.status === 404 && error.error.message === 'No time slots for this playground') {
+        this.activeForm = true;
+        this.tableData = false;
+      }
+    }
+    );
   }
 
   addform(){
@@ -116,7 +125,14 @@ export class RecievesComponent implements OnInit {
       if (res) {
         window.location.reload();
       }
-    })
+    },
+    (error) => {
+      if (error.status === 400 && error.error.day[0] === 'The day has already been taken.') {
+        this.flag=true;
+        this.errorMessage = error.error.day;
+      }
+    }
+    )
 
   }
 
