@@ -22,9 +22,19 @@ export class OwnersComponent {
 
 
   getOwners(id: number) {
-    this.playgroundService.displayOwners(id, this.accessToken).subscribe((res: any) => {
+    this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => {
       console.log(res);
       this.owners = res;
+    });
+  }
+
+  deleteOwner(id: number) {
+    // delete owner
+    this.playgroundService.deleteOwners(id, this.accessToken).subscribe((res) => {
+    console.log(res);
+
+    // reload owners list
+    this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => this.owners = res);
     });
   }
 }

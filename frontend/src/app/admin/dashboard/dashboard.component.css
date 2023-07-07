@@ -5,7 +5,9 @@
 .main, .container{
   background-color: var(--main-color2);
   color: white;
+  min-height: 93vh;
 }
+
 /* .main{
   background: linear-gradient(to right, var(--main-color) 50%, white 50%);
 
