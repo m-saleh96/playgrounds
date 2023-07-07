@@ -32,7 +32,17 @@ export class OwnerFieldsComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.playGroundService.ownerField(this.owner.user.id, this.owner.access_token).subscribe((res: any) => this.fields = res);
+    this.playGroundService.ownerField(this.owner.user.id, this.owner.access_token).subscribe((res: any) => {
+      this.fields = res
+    } ,
+    (error) => {
+      console.log(error.status);
+      if (error.status === 401 && error.error.error === 'Unauthorized') {
+        this.cookieService.delete('userData');
+        window.location.reload();
+      }
+    }
+      );
     this.categoryService.getAllCategory().subscribe((res: any) => this.category = res);
     this.http.get('assets/egypt/governorates.json').subscribe((data: any) => this.location = data);
     this.http.get('assets/egypt/cities.json').subscribe((data: any) => this.cities = data);
