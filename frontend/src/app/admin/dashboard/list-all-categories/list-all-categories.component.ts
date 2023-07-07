@@ -44,6 +44,11 @@ export class ListAllCategoriesComponent {
     this.toDisplayAdd = true
   }
 
+  //close form
+  closeAddForm() {
+    this.toDisplayAdd = false;
+  }
+
   // add category
   postCategory() {
     console.log(this.categoryName);
@@ -60,7 +65,7 @@ export class ListAllCategoriesComponent {
   }
 
   // open edit form
-  edit(id: number, i: number) {
+  openEditForm(id: number, i: number) {
     this.categoryId = id;
     this.toedit = true;
     this.toDisplayAdd = false
@@ -68,6 +73,11 @@ export class ListAllCategoriesComponent {
     console.log(this.categoryNameEdit);
 
   }
+
+  closeEditForm() {
+    this.toedit = false;
+  }
+
   //editCategory
   editCategory() {
     const token = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
@@ -91,10 +101,10 @@ export class ListAllCategoriesComponent {
     //console.log(this.categoryName.length);
 
     if (!unique) {
-      this.errorMessage = "not unique category"
+      this.errorMessage = "category already exist"
     }
     else if (this.categoryName.length <= 3) {
-      this.errorMessage = "too short category name"
+      this.errorMessage = "length must be at least 3 characters"
     }
     else {
       this.postCategory();
@@ -107,13 +117,17 @@ export class ListAllCategoriesComponent {
     //console.log(this.categoryName.length);
 
     if (!unique) {
-      this.errorMessage = "not unique category"
+      this.errorMessage = "category already exist"
     }
     else if (this.categoryNameEdit.length <= 3) {
-      this.errorMessage = "too short category name"
+      this.errorMessage = "length must be at least 3 characters"
     }
     else {
       this.editCategory();
     }
   }
+
+
+
+
 }
