@@ -120,3 +120,9 @@ Route::resource('reservation', ReservationsController::class);
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
 
 Route::post('stripe',[StripeController::class,'StripePost']);
+
+//Favorite
+Route::post('/playground/{playground}/favorite', [PlaygroundController::class, 'addFavorite']);
+Route::get('/favorites', [PlaygroundController::class, 'listFavorites']);
+Route::delete('/favorites/{favorite}', [PlaygroundController::class, 'deleteFavorite']);
+

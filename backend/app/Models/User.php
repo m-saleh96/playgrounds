@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -83,6 +83,12 @@ class User extends Authenticatable implements JWTSubject
     public function receivedMessages()
     {
         return $this->hasMany(ChatMessage::class, 'receiver_id');
+    }
+    
+    public function favoritePlaygrounds(): BelongsToMany
+    {
+        return $this->belongsToMany(Playground::class, 'favorites', 'user_id', 'playground_id')
+            ->withTimestamps();
     }
     
 
