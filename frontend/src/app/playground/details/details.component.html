@@ -1,20 +1,19 @@
 <div class="main">
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <img id="mainImg"
-        [src]="'http://localhost:8000/images/' + playground.image"/>
-    </div>
-    <div class="col-4">
-      <div class="row">
-        <div *ngFor="let image of playground.subImage">
-          <img class="allImg"
-            [src]="'http://localhost:8000/images/' + image" alt="Image"/>
-        </div>
+  <div class="col-8">
+    <img id="mainImg"
+      [src]="'http://localhost:8000/images/' + playground.image"/>
+    <!-- <img id="mainImg" [src]="'http://localhost:8000/images/'+playground.subimage"> -->
+  </div>
+  <div class="col-4">
+    <div class="row">
+      <div *ngFor="let image of playground.subImage">
+        <!-- <h1>{{image}}</h1> -->
+
+        <img class="allImg"
+          [src]="'http://localhost:8000/images/' + image" alt="Image"/>
       </div>
     </div>
   </div>
-</div>
 
   <div class="container">
     <div class="row">
@@ -96,8 +95,7 @@
             </button>
           </td>
 
-        </div>
-        <hr>
+        </div>     <hr>
       </div>
 
       <!-- Start edit review form-->
