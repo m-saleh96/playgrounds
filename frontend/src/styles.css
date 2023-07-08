@@ -1,10 +1,14 @@
-  @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bayon&family=Orbitron:wght@400;700&family=Six+Caps&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bayon&family=Orbitron:wght@400;700&family=Six+Caps&family=Staatliches&display=swap');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
   @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 
 
 :root{
-  --main-color: #000;
+  --main-color2: #222429;
+  --main-color3: #222429;
+
+  --main-color: #fff;
+
   --dark-blue: #213245;
   --green-color: #7DB905;
   --neon-green: #14CF42;
@@ -16,7 +20,6 @@
   --gray-color: #555555;
   --dark-gray2: #2B2B2A;
   --light-gary2: #313131;
-  --main-color2: #222429;
   --dark-shade : #323132;
   --gray-color: #181818;
   --semi-white: #F7F7F7;

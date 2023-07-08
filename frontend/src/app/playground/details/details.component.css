@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Agdasima&display=swap');   /* font-family: 'Agdasima', sans-serif; */
 
 .main{
-  background-color: #252525;
-  color: white;
+  background-color: var(--main-color);
+  /* color: white; */
 }
 
 #mainImg{
@@ -73,7 +73,6 @@ strong{
     float: right;
     margin: .5rem;
   }
-
 
 
 
