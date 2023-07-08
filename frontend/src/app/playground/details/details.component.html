@@ -53,20 +53,34 @@
         <h2 class="py-5">Reviews</h2>
         <div *ngIf="toDisplay">
           <!-- add new review form -->
-          <div class="form-group">
-            <div class="row">
-              <div class="col md-9">
-                <input type="text" class="form-control" placeholder="add review" [(ngModel)]="review" name="review"/>
+          <form #reviewForm="ngForm" (ngSubmit)="postReview()" novalidate>
+            <div class="form-group">
+              <div class="row">
                 <div class="col md-9">
-                  <input type="number" class="form-control" placeholder="add rating" [(ngModel)]="rating" name="rating" max="5" min="1"/>
-                </div>
-                <div class="col md-3">
-                  <button type="submit" class="btn btn-info" (click)="postReview()">ADD</button>
+                  <input type="text" class="form-control" placeholder="add review" [(ngModel)]="review" name="review"
+                    required #reviewInput="ngModel"/>
+                  <div *ngIf="reviewInput.invalid && (reviewInput.dirty || reviewInput.touched)"
+                    class="text-danger">
+                    Review is required.
+                  </div>
                 </div>
               </div>
+              <div class="col md-9">
+                <br><br>
+                <input type="number" class="form-control" placeholder="add rating" [(ngModel)]="rating" name="rating" max="5"
+                  min="1" required #ratingInput="ngModel"/>
+                <div *ngIf="ratingInput.invalid && (ratingInput.dirty || ratingInput.touched)"
+                  class="text-danger">
+                  Rating is required.
+                </div>
+              </div>
+              <div class="col md-3">
+                <button type="submit" class="btn btn-info" [disabled]="reviewForm.invalid">ADD</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
+      
 
         <a class="btn px-2" (click)="checklogin()" class="btn btn-success" *ngIf="!userHasReview">add Review</a>
 
@@ -110,7 +124,7 @@
                   class="form-control"
                   placeholder="add review"
                   [(ngModel)]="review"
-                  name="review"/><br/>
+                  name="review"/><br/><br>
                 <div class="col md-9">
                   <input
                     type="number"
