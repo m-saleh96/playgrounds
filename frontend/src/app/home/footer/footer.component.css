@@ -1,0 +1,42 @@
+.main {
+  background-image: url(../../../assets/images/i2.jpg);
+  background-size: cover;
+  background-position: center top;
+  color: white;
+  height: 40vh;
+}
+.container{
+  margin-top: 2%;
+}
+
+h1{
+  display: flex;
+}
+
+h4{
+  font-size: 1.2rem;
+}
+
+span{
+  font-family: 'Petit Formal Script', cursive;
+}
+
+
+.list-container {
+  display: flex;
+}
+
+
+
+h1{
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--neon-green);
+}
+
+span{
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 100;
+  color: white;
+}

@@ -7,6 +7,8 @@ import { CardComponent } from './cards/card/card.component';
 import { TopRatedPlaygroundsComponent } from './top-rated-playgrounds/top-rated-playgrounds.component';
 import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/top-rated-card-playgrounds.component';
 import { ThirdPartComponent } from './third-part/third-part.component';
+import { FooterComponent } from './footer/footer.component';
+import { LastFooterComponent } from './last-footer/last-footer.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { ThirdPartComponent } from './third-part/third-part.component';
     TopRatedPlaygroundsComponent,
     TopRatedCardPlaygroundsComponent,
     ThirdPartComponent,
+    FooterComponent,
+    LastFooterComponent,
   ],
   imports: [
     CommonModule,
