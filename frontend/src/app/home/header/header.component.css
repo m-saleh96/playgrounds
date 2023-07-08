@@ -24,9 +24,10 @@ h1, h2{
 }
 
 .btn{
-  background-color: var(--neon-green);
   border-radius: 50px;
   font-weight: bold;
+  background-color: black;
+  color: var(--neon-green);
 }
 
 #myCarousel {
@@ -51,10 +52,6 @@ h1, h2{
   top: 21%;
 }
 
-.btn{
-  background-color: black;
-  color: var(--neon-green);
-}
 
 .carousel-control-prev-icon::before,
 .carousel-control-next-icon::before {

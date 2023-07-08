@@ -8,7 +8,6 @@ import { TopRatedPlaygroundsComponent } from './top-rated-playgrounds/top-rated-
 import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/top-rated-card-playgrounds.component';
 import { ThirdPartComponent } from './third-part/third-part.component';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
