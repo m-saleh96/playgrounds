@@ -5,6 +5,7 @@
     </div>
     <div class="col-md-6">
       <div class="card-body">
+        <i class="fa-solid fa-heart" [class.text-danger]="playground.favorite" (click)="favourite(playground.id)"></i>
         <table>
           <tr>
             <td>Name </td>

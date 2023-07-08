@@ -52,3 +52,7 @@ font-family: 'Bayon', sans-serif;
 font-family: 'Orbitron', sans-serif;
 font-family: 'Six Caps', sans-serif;
 font-family: 'Staatliches', cursive; */
+sup{
+  font-size: 16px;
+  margin-left: 5px;
+}

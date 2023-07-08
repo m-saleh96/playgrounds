@@ -34,6 +34,9 @@
       <div class="x d-flex">
         <ul class="navbar-nav">
 
+          <li class="nav-item">
+            <a class="nav-link" routerLink="favourite" routerLinkActive="active"><i class="fa-regular fa-heart"></i><sup>{{counter}}</sup></a>
+          </li>
           <li *ngIf="!isLogin" class="nav-item">
             <a class="nav-link" routerLink="signup" routerLinkActive="active">Register</a>
           </li>

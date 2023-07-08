@@ -11,12 +11,14 @@ import { PlaygroundsModule } from './playgrounds/playgrounds.module';
 import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { OwnerModule } from './owner/owner.module';
 import { PaymentComponent } from './payment/payment.component';
+import { FavouriteComponent } from './favourite/favourite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     PaymentComponent,
+    FavouriteComponent,
   ],
   imports: [
     BrowserModule,
