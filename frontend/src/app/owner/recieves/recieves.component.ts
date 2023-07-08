@@ -69,6 +69,7 @@ export class RecievesComponent implements OnInit {
     },
     (error) => {
       if (error.status === 404 && error.error.message === 'No time slots for this playground') {
+        this.activeAddButton = true;
         this.activeForm = true;
         this.tableData = false;
         this.flag = true;
@@ -76,9 +77,6 @@ export class RecievesComponent implements OnInit {
       }
     }
     );
-
-
-
   }
 
 
@@ -101,7 +99,6 @@ export class RecievesComponent implements OnInit {
 
   addTime(){
     console.log(this.timeSlots);
-
     if (this.myForm.valid) {
       this.flag=false;
 
