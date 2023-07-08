@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-third-part',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ThirdPartComponent {
 
-}
+  constructor(private router:Router){}
+
+
+goToRegesterPage(){
+    this.router.navigate(['signup'])
+  }
+ }
