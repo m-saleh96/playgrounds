@@ -161,23 +161,26 @@ export class RecievesComponent implements OnInit {
         )
       }
     } else if (this.activeEditButton){
-      const data = { playground_id: this.playGroundId, day: this.editDay, time: this.timeSlots , _method: "put" };
-      const slotID = this.recieve[0].slot_id
+      if (this.myForm.valid) {
+        const data = { playground_id: this.playGroundId, day: this.editDay, time: this.timeSlots , _method: "put" };
+        const slotID = this.recieve[0].slot_id
 
-      this.ownerRecieve.updateSlot(slotID,data,this.token).subscribe(res=>{
-        if (res) {
-          window.location.reload();
-        }
-      },
-      (error) => {
-        if (error) {
+        this.ownerRecieve.updateSlot(slotID,data,this.token).subscribe(res=>{
+          if (res) {
+            window.location.reload();
+          }
+        },
+        (error) => {
+          if (error) {
 
+          }
         }
+        )
+      } else{
+        this.errorMessage = "Please fill all the required fields"
+        this.flag=true
       }
-      )
-
     }
-
   }
 
   formatTime(timeString: string): string {
