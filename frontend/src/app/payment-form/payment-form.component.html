@@ -1,34 +1,26 @@
 
 
-
 <div class="container">
   <div class="form-container">
-   
+    <h2 class="form-heading">Pay Now</h2>
 
     <form (ngSubmit)="submitPayment()">
-    
+      <div class="form-group">
+        <label for="cardNumber">Card Number:</label>
+        <input type="text" id="cardNumber" class="form-control" [(ngModel)]="cardNumber" required>
+      </div>
 
-<h2>Pay Now</h2>
+      <div class="form-group">
+        <label for="expirationDate">Expiration Date:</label>
+        <input type="text" id="expirationDate" class="form-control" [(ngModel)]="expirationDate" required>
+      </div>
 
-<form (ngSubmit)="submitPayment()">
-  <div class="form-group">
-    <label for="cardNumber">Card Number:</label>
-    <input type="text" id="cardNumber" class="form-control" [(ngModel)]="cardNumber" required>
-  </div>
+      <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" class="form-control" [(ngModel)]="cvv" required>
+      </div>
 
-  <div class="form-group">
-    <label for="expirationDate">Expiration Date:</label>
-    <input type="text" id="expirationDate" class="form-control" [(ngModel)]="expirationDate" required>
-  </div>
-
-  <div class="form-group">
-    <label for="cvv">CVV:</label>
-    <input type="text" id="cvv" class="form-control" [(ngModel)]="cvv" required>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit Payment</button>
-</form>
-
+      <button type="submit" class="btn btn-primary">Submit Payment</button>
     </form>
   </div>
 </div>
