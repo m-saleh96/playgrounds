@@ -388,37 +388,50 @@ class PlaygroundController extends Controller
     }
 
 
-   
+
 
     public function addFavorite(Request $request)
     {
         $userId = $request->user_id;
         $playgroundId = $request->playground_id;
-    
+
         // Check if the user has already added this playground as a favorite
         $user = User::find($userId);
         if ($user->favoritePlaygrounds()->where('playground_id', $playgroundId)->exists()) {
             return response()->json(['message' => 'This playground is already a favorite.'], 400);
         }
-    
+
 
         $user->favoritePlaygrounds()->attach($playgroundId);
-    
+
         return response()->json(['message' => 'Favorite added successfully.']);
     }
 
-        public function listFavorites()
+    public function listFavorites(Request $request)
     {
-        $favorites = Favorite::with('playground')->get();
+        $userId = $request->user_id;
+
+        $favorites = Favorite::with('playground')->where('user_id', $userId)->get();
+
         return response()->json($favorites);
     }
 
 
-    public function deleteFavorite(Request $request, Favorite $favorite)
+
+    public function deleteFavorite(Request $request)
     {
-        $favorite->delete();
-        return response()->json(['message' => 'Favorite deleted successfully']);
+        $userId = $request->user_id;
+        $playgroundId = $request->playground_id;
+        $favorite = Favorite::where('user_id', $userId)->where('playground_id', $playgroundId)->first();
+
+        if ($favorite) {
+            $favorite->delete();
+            return response()->json(['message' => 'Favorite deleted successfully']);
+        }
+
+        return response()->json(['message' => 'Favorite not found.'], 404);
     }
+
 
 }
 

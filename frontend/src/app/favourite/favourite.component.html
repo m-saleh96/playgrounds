@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="card mb-3" *ngFor="let playground of playground">
+    <div class="row no-gutters">
+      <div class="col-md-6">
+        <img [src]="'http://localhost:8000/images/'+playground.playground.image" class="card-img" alt="..." (click)="redirectToDetails(playground.playground.id)" height="200px">
+      </div>
+      <div class="col-md-6">
+        <div class="card-body">
+          <i class="fa-solid fa-heart" [class.text-danger]="playground.favorite" (click)="favourite(playground.playground.id)"></i>
+          <table>
+            <tr>
+              <td>Name </td>
+              <td>{{playground.playground.name}}</td>
+            </tr>
+            <tr>
+              <td>Type</td>
+              <td>{{playground.playground.type}}</td>
+            </tr>
+            <tr>
+              <td>Gov</td>
+              <td>{{playground.playground.location}}</td>
+            </tr>
+            <tr>
+              <td>city</td>
+              <td>{{playground.playground.city}}</td>
+            </tr>
+            <tr>
+              <td>street</td>
+              <td>{{playground.playground.street}}</td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td>{{playground.playground.price}} EGP</td>
+            </tr>
+            <tr>
+              <td>Rating</td>
+              <td>
+                <div class="rating">
+                  <span class="star" [ngClass]="{'filled': playground.playground.rating >= 1}">&#9734;</span>
+                  <span class="star" [ngClass]="{'filled': playground.playground.rating >= 2}">&#9734;</span>
+                  <span class="star" [ngClass]="{'filled': playground.playground.rating >= 3}">&#9734;</span>
+                  <span class="star" [ngClass]="{'filled': playground.playground.rating >= 4}">&#9734;</span>
+                  <span class="star" [ngClass]="{'filled': playground.playground.rating >= 5}">&#9734;</span>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div><hr>
+  </div>
+</div>
+
+
+
+
+
