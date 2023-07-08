@@ -1,11 +1,9 @@
 .navbar{
-  background-color: var(--main-color);
+  background-color: var(--main-color2);
 }
-
 li a{
-color: black;
+  color: white;
 }
-
 a{
     cursor: pointer;
 }
@@ -28,9 +26,7 @@ h1{
 span{
   font-family: 'Orbitron', sans-serif;
   font-weight: 100;
-  /* color: white; */
-  color: black;
-
+  color: white;
 }
 
 sup{

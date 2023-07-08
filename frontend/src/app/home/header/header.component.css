@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
-
 .carousel-caption{
   display: flex;
   justify-content: center;
@@ -11,16 +8,11 @@
 
 .carousel-item{
   z-index: 0;
-  background-color: var(--main-color);
+  background-color: var(--main-color2);
 }
-
 
 h1, h2{
   font-size: 3rem;
-  color: black;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-family: 'Koulen', cursive;
 }
 
 .btn{
@@ -30,7 +22,7 @@ h1, h2{
 }
 
 #myCarousel {
-  height: 100vh;
+  height: 90vh;
 }
 
 .img-right {
@@ -43,16 +35,20 @@ h1, h2{
 }
 
 .txt{
-  color: #BBF1C8;
-  font-family: 'Krona One', sans-serif;
-  font-size: 14rem;
+  color: var(--light-gray);
+  font-size: 20rem;
   position: absolute;
   z-index: -1;
-  top: 21%;
 }
 
-.btn{
-  background-color: black;
-  color: var(--neon-green);
-}
 
+
+/* .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+} */
