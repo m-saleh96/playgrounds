@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { PlaygroundsComponent } from './playgrounds/playgrounds.component';
 import { PaymentComponent } from './payment/payment.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const routes: Routes = [
     {path:'' , redirectTo:'home' , pathMatch:'full'},
@@ -15,6 +16,8 @@ const routes: Routes = [
     { path:'playgrounds', component: PlaygroundsComponent},
     {path:'payment',component:PaymentComponent},
     {path:'favourite',component:FavouriteComponent},
+    {path:'paymentform',component:PaymentFormComponent}
+
 ];
 
 @NgModule({
