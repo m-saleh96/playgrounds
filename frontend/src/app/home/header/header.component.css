@@ -30,7 +30,7 @@ h1, h2{
 }
 
 #myCarousel {
-  height: 100vh;
+  height: 90vh;
 }
 
 .img-right {
@@ -54,4 +54,24 @@ h1, h2{
 .btn{
   background-color: black;
   color: var(--neon-green);
+}
+
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  color: black !important;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('../../../assets/images/right-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+}
+.carousel-control-next-icon {
+  background-image: url('../../../assets/images/right-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.carousel-indicators button {
+  background-color: black;
 }
