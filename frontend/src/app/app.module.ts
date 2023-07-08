@@ -12,6 +12,8 @@ import { DashboardModule } from './admin/dashboard/dashboard.module';
 import { OwnerModule } from './owner/owner.module';
 import { PaymentComponent } from './payment/payment.component';
 import { FavouriteComponent } from './favourite/favourite.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { FavouriteComponent } from './favourite/favourite.component';
     NavbarComponent,
     PaymentComponent,
     FavouriteComponent,
+    PaymentFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { FavouriteComponent } from './favourite/favourite.component';
     PlaygroundModule,
     PlaygroundsModule,
     DashboardModule,
-    OwnerModule
+    OwnerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
