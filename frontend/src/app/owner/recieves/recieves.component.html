@@ -30,14 +30,14 @@
           <tr>
             <td class="px-4">From</td>
             <td class="px-4">To</td>
-            <td>edit</td>
-            <td>delete</td>
+            <td *ngIf="activeEditButton">edit</td>
+            <td *ngIf="!activeEditButton">delete</td>
           </tr>
           <tr *ngFor="let time of timeSlots; let i = index">
             <td>{{time.start}}</td>
             <td>{{time.end}}</td>
-            <td class="px-4"><a (click)="upToEdit(i)" class="btn btn-primary">edit</a></td>
-            <td class="px-4"><a (click)="deleteSlot(i)"><i class="fa-solid fa-trash"></i></a></td>
+            <td class="px-4" *ngIf="activeEditButton"><a (click)="upToEdit(i)" class="btn btn-primary">edit</a></td>
+            <td class="px-4" *ngIf="!activeEditButton"><a (click)="deleteSlot(i)"><i class="fa-solid fa-trash"></i></a></td>
           </tr>
         </table>
       </div>
