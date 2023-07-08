@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Kite+One&family=Pompiere&display=swap');
 
 .main{
-  /* background-color: var(--main-color2); */
-  /* background-color: #f3f3f3; */
-  padding-bottom: 100px;
+  background-color: #f3f3f3;
+  padding-bottom: 3rem;
 }
 
 .first-p{
   font-size: 3.2rem;
   color: var(--neon-green);
   /* font-family: 'Pompiere', cursive; */
-  font-family: 'Titillium Web', sans-serif;
+  /* font-family: 'Titillium Web', sans-serif; */
 
 }
 .my-btn{

@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bayon&family=Orbitron:wght@400;700&family=Six+Caps&family=Staatliches&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Bayon&family=Orbitron:wght@400;700&family=Six+Caps&family=Staatliches&display=swap');
   @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
   @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
 
 
 :root{
@@ -8,6 +10,7 @@
   --main-color3: #222429;
 
   --main-color: #fff;
+  --light-green: #BBF1C8;
 
   --dark-blue: #213245;
   --green-color: #7DB905;
