@@ -74,7 +74,9 @@ strong{
     margin: .5rem;
   }
 
-
+span{
+  color: var(--neon-green);
+}
 
 
 

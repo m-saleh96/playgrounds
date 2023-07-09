@@ -20,5 +20,8 @@ export class PlayerRecieveService {
     return this.http.get(`${this.apiUrl}/reservation/${id}` )
   }
 
+  cancelReservation(id: any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/reservation/${id}` )
+  }
 
 }

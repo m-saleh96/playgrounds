@@ -16,7 +16,7 @@
             <td>{{row.start_time}}</td>
             <td>{{row.end_time}}</td>
             <td>{{row.status}}</td>
-            <td><button [value]="row.id" type="text" class="btn btn-danger">cancel</button></td>
+            <td><button [value]="row.id" type="text" class="btn btn-danger" (click)="canelReservations(row.id)">cancel</button></td>
           </tr>
         </tbody>
       </table>
