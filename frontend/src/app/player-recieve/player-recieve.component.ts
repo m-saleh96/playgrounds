@@ -33,9 +33,7 @@ export class PlayerRecieveComponent implements OnInit {
 
   getAllTime(){
     this.ownerRecieve.getTime(this.playGroundId).subscribe(res=>{
-      this.recieve=res
-      console.log(res);
-
+      this.recieve=res.filter((res:any)=>res.status == "available")
       this.uniqueDays = [...new Set(this.recieve.map(item => item.day))].filter((value, index, self) => self.indexOf(value) === index);
 
       this.selectedDay = this.uniqueDays[0]
