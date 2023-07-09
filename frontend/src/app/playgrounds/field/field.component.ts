@@ -29,6 +29,10 @@ redirectToDetails(id: number){
   this.router.navigate(['playground/details/',id])
 }
 
+goToRecieve(id:any){
+  this.router.navigate(['recieve/',id])
+}
+
 favourite(id:any){
   const data = {user_id:this.userID,playground_id:id}
   if (this.userID) {
