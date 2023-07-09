@@ -18,7 +18,7 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="playgrounds" routerLinkActive="active">Fields</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isPlayer">
               <a class="nav-link" routerLink="playground/complain" routerLinkActive="active">complain</a>
             </li>
             <li class="nav-item" *ngIf="isAdmin">
