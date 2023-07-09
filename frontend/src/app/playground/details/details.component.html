@@ -15,13 +15,20 @@
   </div>
 
   <div class="container">
+    <div class="row my-1">
+      <div class="col-6">
+        <h2 > <span>{{ playground.price | currency:'EGP'}}</span></h2>
+      </div>
+      <div class="col-6">
+        <button class="btn btn-success" (click)="goToRecieve()">reserve</button>
+      </div>
+
+    </div>
     <div class="row">
-      <div class="col-6">
-        <h2 class="py-5">Playground Description</h2>
+      <div class="col">
+        <h2 class="py-5">Playground Details</h2>
       </div>
-      <div class="col-6">
-        <button class="btn btn-success my-5" (click)="goToRecieve()">reserve</button>
-      </div>
+
       <table>
         <tbody>
           <tr class="row">
@@ -38,7 +45,7 @@
           </tr>
           <tr class="row">
             <th scope="row" class="col-lg-3">Price</th>
-            <td class="col-lg-9">{{ playground.price }}</td>
+            <td class="col-lg-9">{{ playground.price | currency:'EGP'}}</td>
           </tr>
           <tr class="row">
             <th scope="row" class="col-lg-3">Size</th>
