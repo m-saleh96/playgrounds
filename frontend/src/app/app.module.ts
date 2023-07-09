@@ -13,7 +13,7 @@ import { OwnerModule } from './owner/owner.module';
 import { PaymentComponent } from './payment/payment.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlayerRecieveComponent } from './player-recieve/player-recieve.component';
 import { PlayerProfileComponent } from './player-profile/player-profile.component';
 
@@ -25,7 +25,7 @@ import { PlayerProfileComponent } from './player-profile/player-profile.componen
     FavouriteComponent,
     PaymentFormComponent,
     PlayerRecieveComponent,
-    PlayerProfileComponent,
+    PlayerProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +36,9 @@ import { PlayerProfileComponent } from './player-profile/player-profile.componen
     PlaygroundModule,
     PlaygroundsModule,
     DashboardModule,
+    ReactiveFormsModule,
     OwnerModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

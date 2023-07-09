@@ -19,8 +19,8 @@ const routes: Routes = [
     { path:'playgrounds', component: PlaygroundsComponent},
     {path:'payment',component:PaymentComponent},
     {path:'favourite',component:FavouriteComponent},
-    {path:'paymentform',component:PaymentFormComponent},
-    {path:'recieve/:id',component:PlayerRecieveComponent},
+    {path:'paymentform',component:PaymentFormComponent , canActivate:[playerGuard]},
+    {path:'recieve/:id',component:PlayerRecieveComponent , canActivate:[playerGuard]},
     {path:'profile',component:PlayerProfileComponent , canActivate:[playerGuard]},
 
 ];

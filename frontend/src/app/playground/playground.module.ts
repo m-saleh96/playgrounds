@@ -7,10 +7,11 @@ import { PlaygroundService } from '../services/playground.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlaygroundComponent } from './playground.component';
 import { ComplainComponent } from './complain/complain.component';
+import { playerGuard } from '../guards/player.guard';
 
 // routes for playground module
 const routes: Routes = [
-  {path:'complain', component: ComplainComponent },
+  {path:'complain', component: ComplainComponent , canActivate:[playerGuard]},
   {path:'details/:id', component : DetailsComponent},
   {path:'card', component : CardComponent},
 ]

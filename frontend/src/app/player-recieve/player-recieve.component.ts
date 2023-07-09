@@ -3,6 +3,8 @@ import { OwnerRecieveService } from '../services/owner-recieve.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { PlayerRecieveService } from '../services/player-recieve.service';
+import { PlaygroundService } from '../services/playground.service';
+import { PaymentService } from '../services/payment.service';
 
 @Component({
   selector: 'app-player-recieve',
@@ -17,10 +19,11 @@ export class PlayerRecieveComponent implements OnInit {
   playGroundId!:number
   timeSlots: any[] = [];
   errorMessage!:any;
-  userID!:any;
+  userID!:number;
+  price!:number;
 
   constructor(private ownerRecieve:OwnerRecieveService , private route:ActivatedRoute , private cookieService:CookieService ,
-              private playerService:PlayerRecieveService , private router:Router){}
+              private playerService:PlayerRecieveService , private router:Router , private playground:PlaygroundService , private payment:PaymentService){}
 
   ngOnInit(): void {
     this.userID = JSON.parse(this.cookieService.get('userData') || '{}').user.id;
@@ -28,6 +31,7 @@ export class PlayerRecieveComponent implements OnInit {
       this.playGroundId =params['id'];
     })
     this.getAllTime();
+    this.playground.getById(this.playGroundId).subscribe((res:any)=>this.price = res.playground.price);
 
   }
 
@@ -81,6 +85,7 @@ export class PlayerRecieveComponent implements OnInit {
           this.router.navigate(['paymentform'])
         }
       })
+    this.payment.price = this.price;
     }
 
 
