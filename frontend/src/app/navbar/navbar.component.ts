@@ -10,8 +10,9 @@ import { FavouriteService } from '../services/favourite.service';
 })
 export class NavbarComponent implements OnInit{
   isLogin:boolean=false;
-  isOwner:boolean=false
-  isAdmin:boolean=false
+  isOwner:boolean=false;
+  isPlayer:boolean=false;
+  isAdmin:boolean=false;
   token!:any
   counter!:number;
   userID!:number;
@@ -27,6 +28,9 @@ export class NavbarComponent implements OnInit{
       }
       if (JSON.parse(this.cookieService.get('userData') || '{}').user?.role === "admin") {
         this.isAdmin=true;
+      }
+      if (JSON.parse(this.cookieService.get('userData') || '{}').user?.role === "player") {
+        this.isPlayer=true;
       }
     }
     this.token = (JSON.parse(this.cookieService.get('userData') || '{}').access_token);

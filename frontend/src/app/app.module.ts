@@ -14,6 +14,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { FavouriteComponent } from './favourite/favourite.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { FormsModule } from '@angular/forms';
+import { PlayerRecieveComponent } from './player-recieve/player-recieve.component';
+import { PlayerProfileComponent } from './player-profile/player-profile.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { FormsModule } from '@angular/forms';
     PaymentComponent,
     FavouriteComponent,
     PaymentFormComponent,
+    PlayerRecieveComponent,
+    PlayerProfileComponent,
   ],
   imports: [
     BrowserModule,
