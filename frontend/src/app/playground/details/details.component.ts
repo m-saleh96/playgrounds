@@ -93,6 +93,9 @@ export class DetailsComponent {
 
   }
 
+  goToRecieve(){
+    this.router.navigate(['recieve', this.playgroundId])
+  }
 
   // Delete review
   delete(id: number) {
