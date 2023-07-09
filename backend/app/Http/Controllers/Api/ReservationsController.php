@@ -90,14 +90,21 @@ class ReservationsController extends Controller
         $reservations = reservations::where('id', '=', $id)->first();
         $date = Carbon::now();
         $diffHours = Carbon::parse($reservations->created_at)->diffInHours($date);
-        
-        if($diffHours>24){
+
+        if($diffHours>100){
             return   response( "sorry this request can not cansel");
         }
         else{
+            // $timeSlot = TimeSlot::where('day',$reservations->day)->where('start_time',$reservations->start_time)->get();
+            $timeSlot = TimeSlot::where([
+                ['day', '=', $reservations->day],
+                ['start_time', $reservations->start_time],
+            ])->first();
+            $timeSlot->status = "available";
+            $timeSlot->save();
             $reservations->delete();
             return         
-            response( "canselation seccessefuly"
+            response("deleted seccessfuly"
             );
         }
        
