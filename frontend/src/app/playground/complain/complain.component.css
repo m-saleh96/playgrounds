@@ -1,8 +1,19 @@
+.main{
+  height: 90vh;
+}
+.container{
+  background-color: rgb(255, 255, 255);
+}
+span
+{
+  color: red;
+}
 
-span{
-    color: red;
-  }
-  h1{
-    color: blue;
-    text-align: center;
-  }
+h1{
+  color: blue;
+  text-align: center;
+}
+
+label{
+  font-weight: bold;
+}
