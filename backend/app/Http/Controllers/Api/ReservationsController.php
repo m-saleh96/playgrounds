@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\reservations;
 use Illuminate\Http\Request;
@@ -87,6 +87,20 @@ class ReservationsController extends Controller
      */
     public function destroy($id)
     {
+        $reservations = reservations::where('id', '=', $id)->first();
+        $date = Carbon::now();
+        $diffHours = Carbon::parse($reservations->created_at)->diffInHours($date);
+        
+        if($diffHours>24){
+            return   response( "sorry this request can not cansel");
+        }
+        else{
+            $reservations->delete();
+            return         
+            response( "canselation seccessefuly"
+            );
+        }
+       
         //
     }
 

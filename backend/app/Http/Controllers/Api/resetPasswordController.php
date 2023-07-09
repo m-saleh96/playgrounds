@@ -37,7 +37,9 @@ $this->otp=new Otp;
             'body' => 'use the below code for reset password',
             'code' =>$otp->token
         ];
-        Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
+        // Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
+        Mail::to($request->email)->send(new firstmail($mailData));
+
 
         // return response()->json(['message' => $otp]);
         return response()->json(['message' => 'Email send successfully']);
