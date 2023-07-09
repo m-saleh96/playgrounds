@@ -86,3 +86,9 @@ span{
   color: red;
   transition: 0.3s;
 }
+
+
+h2
+{
+  color: var(--neon-green);
+}

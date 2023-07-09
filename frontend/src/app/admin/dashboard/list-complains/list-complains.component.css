@@ -2,7 +2,7 @@ img{
     height: 5rem;
     width: 5rem;
   }
-  
+
   .table, thead, tbody, th, tbody td{
   background-color: var(--light-gray);
   color: white;
@@ -33,3 +33,7 @@ span{
   color: red;
 }
 
+h2
+{
+  color: var(--neon-green);
+}
