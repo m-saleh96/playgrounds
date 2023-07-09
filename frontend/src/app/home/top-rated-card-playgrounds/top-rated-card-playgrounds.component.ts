@@ -16,4 +16,6 @@ export class TopRatedCardPlaygroundsComponent {
   redirectToDetails(id: number){
     this.router.navigate(['playground/details/',id])
   }
+    isExpanded = false; // define and initialize isExpanded property
+
 }

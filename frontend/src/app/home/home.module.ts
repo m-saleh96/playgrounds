@@ -9,6 +9,7 @@ import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/t
 import { ThirdPartComponent } from './third-part/third-part.component';
 import { FooterComponent } from './footer/footer.component';
 import { LastFooterComponent } from './last-footer/last-footer.component';
+import { ForthPartComponent } from './forth-part/forth-part.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LastFooterComponent } from './last-footer/last-footer.component';
     ThirdPartComponent,
     FooterComponent,
     LastFooterComponent,
+    ForthPartComponent,
   ],
   imports: [
     CommonModule,
