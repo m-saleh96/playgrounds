@@ -1,0 +1,20 @@
+.card-body{
+  position: relative;
+}
+
+.star {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.filled {
+  color: orange;
+}
+
+i{
+  font-size: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="form-container">
+    <h2 class="form-heading">Pay Now</h2>
+    <div *ngIf="flag" class="alert alert-danger w-50 m-auto">
+      {{errorMessage}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submitPayment(form)">
+      <p>Price : <span class="text-danger">{{price}}</span> EGP</p>
+      <div class="form-group my-2">
+        <label>Card Number:</label>
+        <input [class.is-valid]="form.get('cardNumber')?.errors ==null && form.get('cardNumber')?.touched"
+        formControlName='cardNumber' type="number" class="form-control">
+        <p *ngIf="form.get('cardNumber')?.errors !=null && form.get('cardNumber')?.touched"
+        class="py-2 text-danger">cardNumber should be 16 number</p>
+      </div>
+
+      <div class="form-group my-2">
+        <label>Expiration Date:</label>
+        <input [class.is-valid]="form.get('expirationDate')?.valid && form.get('expirationDate')?.touched"
+        formControlName="expirationDate" type="month" class="form-control">
+        <p *ngIf="form.get('expirationDate')?.invalid && form.get('expirationDate')?.touched"
+        class="py-2 text-danger">Invalid expiration date</p>
+      </div>
+
+      <div class="form-group my-2">
+        <label>CVV:</label>
+        <input [class.is-valid]="form.get('cvv')?.errors ==null && form.get('cvv')?.touched"
+        formControlName='cvv' type="number" class="form-control">
+        <p *ngIf="form.get('cvv')?.errors !=null && form.get('cvv')?.touched"
+        class="py-2 text-danger">expirationDate should be 3 number</p>
+      </div>
+
+      <div class="form-group my-2">
+        <label>description:</label>
+        <input [class.is-valid]="form.get('description')?.errors ==null && form.get('description')?.touched"
+        formControlName='description' type="text" class="form-control">
+        <p *ngIf="form.get('description')?.errors !=null && form.get('description')?.touched"
+        class="py-2 text-danger">expirationDate should be 3 number</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit Payment</button>
+    </form>
+  </div>
+</div>

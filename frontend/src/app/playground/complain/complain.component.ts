@@ -13,6 +13,7 @@ import { Playground } from 'src/app/interfaces/playground';
 })
 export class ComplainComponent {
   error!:string;
+  sucess!:string;
   user_id: number = Number(JSON.parse(this.cookieService.get('userData') || '{}').user?.id);
   token: string = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
   complaintMessage!:string;
@@ -43,7 +44,10 @@ console.log(this.playgrounds);
         userId:Number( this.user_id),
       };
   
-  this.complainService.createComplian(data,this.token).subscribe((res)=>console.log(res))
+  this.complainService.createComplian(data,this.token).subscribe((res:any)=>
+  this.sucess=" Your complain had sent succesfully "
+  // console.log(res.complaintMessage)
+  )
   
     }
     else{

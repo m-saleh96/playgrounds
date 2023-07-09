@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd11875a815814f9d2e1d1e77ac06f1c",
+    "content-hash": "daf8f7fef8e7bf574608cb10e91fd67e",
     "packages": [
         {
             "name": "brick/math",
@@ -3826,7 +3826,6 @@
             "time": "2022-11-25T16:15:06+00:00"
         },
         {
-
             "name": "stripe/stripe-php",
             "version": "v10.16.0",
             "source": {

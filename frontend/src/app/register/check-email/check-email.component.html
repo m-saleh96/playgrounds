@@ -1,0 +1,22 @@
+<div class="container-fluid d-flex vh-100 align-items-center justify-content-center">
+  <div class="col-md-4 mx-auto shadow">
+    <div class="card bg-transparent p-5">
+      <div *ngIf="flag" class="alert alert-danger w-50 m-auto">
+        {{errorMessage}}
+      </div>
+      <form class="w-75 m-auto py-5"  [formGroup]="loginForm" (ngSubmit)="getLoginInfo(loginForm)">
+        <div class="form-group my-2">
+            <label>Code</label>
+            <input [class.is-valid]="loginForm.get('otp')?.errors ==null && loginForm.get('otp')?.touched"
+            formControlName='otp' type="text" class="form-control">
+            <p *ngIf="loginForm.get('otp')?.errors !=null && loginForm.get('otp')?.touched"
+            class="py-2 text-danger">enter your correct data </p>
+        </div>
+        <button [disabled]="loginForm.invalid" type="submit" class="btn btn-danger text-white my-2">send number</button>
+    </form>
+      <div class="text-center">
+        <a routerLink="/forgetpassword">resend email </a>
+      </div>
+    </div>
+  </div>
+</div>

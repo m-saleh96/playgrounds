@@ -60,6 +60,7 @@ export class DetailsComponent {
 
   // Open small form to add review (if you are login) if not go to login page
   checklogin() {
+    this.userHasReview=true;
     if (JSON.parse(this.cookieService.get('userData') || '{}').user?.id >= 1) {
       this.toDisplay = true
       this.isLogin = true;
@@ -92,6 +93,9 @@ export class DetailsComponent {
 
   }
 
+  goToRecieve(){
+    this.router.navigate(['recieve', this.playgroundId])
+  }
 
   // Delete review
   delete(id: number) {

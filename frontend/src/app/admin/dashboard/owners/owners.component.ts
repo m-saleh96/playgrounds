@@ -16,15 +16,25 @@ export class OwnersComponent {
 
   ngOnInit() {
     this.accessToken = JSON.parse(this.cookieService.get('userData') || '{}').access_token;
-    this.getOwners(4);
+    this.getOwners();
 
   }
 
 
-  getOwners(id: number) {
-    this.playgroundService.displayOwners(id, this.accessToken).subscribe((res: any) => {
+  getOwners() {
+    this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => {
       console.log(res);
       this.owners = res;
+    });
+  }
+
+  deleteOwner(id: number) {
+    // delete owner
+    this.playgroundService.deleteOwners(id, this.accessToken).subscribe((res) => {
+    console.log(res);
+
+    // reload owners list
+    this.playgroundService.displayOwners(this.accessToken).subscribe((res: any) => this.owners = res);
     });
   }
 }

@@ -2,7 +2,7 @@ img{
     height: 5rem;
     width: 5rem;
   }
-  
+
   .table, thead, tbody, th, tbody td{
   background-color: var(--light-gray);
   color: white;
@@ -33,3 +33,56 @@ span{
   color: red;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* semi-transparent black background */
+  z-index: 999; /* make sure it appears on top of other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* design form */
+.modal-overlay button.btn-secondary {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+}
+
+.form-container {
+  position: relative; /* set the position to relative for positioning the close button */
+  max-width: 400px;
+  background-color: white;
+  padding: 3rem 1rem 1rem; /* add extra padding to the top */
+  border-radius: 0.5rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1rem;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #000;
+  opacity: 0.5;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-align: center;
+}
+
+.form-close:hover {
+  opacity: 0.8;
+  color: red;
+  transition: 0.3s;
+}

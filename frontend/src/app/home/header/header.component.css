@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
 .carousel-caption{
   display: flex;
   justify-content: center;
@@ -8,17 +11,23 @@
 
 .carousel-item{
   z-index: 0;
-  background-color: var(--main-color2);
+  background-color: var(--main-color);
 }
+
 
 h1, h2{
   font-size: 3rem;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Koulen', cursive;
 }
 
 .btn{
-  background-color: var(--neon-green);
   border-radius: 50px;
   font-weight: bold;
+  background-color: black;
+  color: var(--neon-green);
 }
 
 #myCarousel {
@@ -35,20 +44,31 @@ h1, h2{
 }
 
 .txt{
-  color: var(--light-gray);
-  font-size: 20rem;
+  color: #BBF1C8;
+  font-family: 'Krona One', sans-serif;
+  font-size: 14rem;
   position: absolute;
   z-index: -1;
+  top: 21%;
 }
 
 
+.carousel-control-prev-icon::before,
+.carousel-control-next-icon::before {
+  color: black !important;
+}
 
-/* .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-} */
+.carousel-control-prev-icon {
+  background-image: url('../../../assets/images/right-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+}
+.carousel-control-next-icon {
+  background-image: url('../../../assets/images/right-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.carousel-indicators button {
+  background-color: black;
+}

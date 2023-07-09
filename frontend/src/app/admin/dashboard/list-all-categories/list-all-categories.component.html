@@ -1,49 +1,67 @@
 <div class="container">
-  <!-- <button style="margin-bottom: 30px ;margin-left:900px ;margin-bottom:50px" class="btn green" (click)="openAddForm" >Create New Category</button> -->
   <div>
-    <a class="btn px-2" id="addbtn" (click)="openAddForm()"> add Ctegory</a>
+    <a class="btn px-2" id="addbtn" (click)="openAddForm()"> add Category</a>
   </div>
 
-  <!-- to add category -->
-  <div *ngIf="toDisplayAdd">
-    <div class="form-group">
+  <!-- START add category -->
+  <div *ngIf="toDisplayAdd" class="modal-overlay">
+    <div class="form-container form-group">
+      <button type="button" class="form-close" (click)="closeAddForm()">&#215;</button>
+
       <div class="row">
         <div class="col md-9">
-          <input type="text" class="form-control" placeholder="Add category" [(ngModel)]="categoryName"
-            name="categoryName" #categoryNameInput="ngModel" required>
-          <br>
-          <div class="col md-3">
-            <button type="submit" class="btn btn-info" (click)="validationCreate()">ADD</button><br>
+          <input type="text" class="form-control" placeholder="Add category" [(ngModel)]="categoryName" name="categoryName" #categoryNameInput="ngModel" required>
+
+          <div class="error" *ngIf="categoryNameInput.invalid && categoryNameInput.touched">
+            <span>category name is required.</span>
           </div>
+
+          <div class="col md-12 mt-3">
+            <span class="error">{{errorMessage}}</span>
+          </div>
+
+          <div class="col md-3">
+            <button type="submit" class="btn btn-info mt-3" (click)="validationCreate()">add</button>
+          </div>
+          
         </div>
-      </div>
-      <div class="error" *ngIf="categoryNameInput.invalid && categoryNameInput.touched">
-        <span>Category name is required.</span>
       </div>
     </div>
   </div>
+  <!-- END add category -->
 
-  <!-- to edit categories -->
-  <div *ngIf="toedit" id="edit_form">
-    <div class="form-group">
-      <div class="row">
-        <div class="col md-9">
-          <input type="text" class="form-control" placeholder="add category" [(ngModel)]="categoryNameEdit"
-            name="categoryNameEdit" #categoryNameEditInput="ngModel" [value]="categoryNameEdit" required>
-          <br>
-          <div class="col md-3">
-            <button type="submit" class="btn btn-info" (click)="validationEdit()">Edit</button><br>
+
+  <!-- START edit categories -->
+ <div *ngIf="toedit" id="edit_form" class="modal-overlay">
+  <div class="form-container form-group">
+    <button type="button" class="form-close" (click)="closeEditForm()">&#215;</button>
+
+    <div class="row">
+      <div class="col md-9">
+        <input type="text" class="form-control" placeholder="Edit category" [(ngModel)]="categoryNameEdit"
+          name="categoryNameEdit" #categoryNameEditInput="ngModel" [value]="categoryNameEdit" required>
+
+          <div class="error" *ngIf="categoryNameEditInput.invalid && categoryNameEditInput.touched">
+            <span>category name is required.</span>
           </div>
-        </div>
-      </div>
-      <div class="error" *ngIf="categoryNameEditInput.invalid && categoryNameEditInput.touched">
-        <span>Category name is required.</span>
+
+          <div class="col md-12 mt-3">
+            <span class="error">{{errorMessage}}</span>
+          </div>
+
+          <div class="col md-3">
+            <button type="submit" class="btn btn-info mt-3" (click)="validationEdit()">Edit</button><br>
+          </div>
+
       </div>
     </div>
   </div>
-  <span>{{errorMessage}}</span>
+</div>
+  <!-- END edit categories -->
 
-  <!-- to display categories -->
+
+
+  <!-- START display categories -->
   <table class="table text-center">
 
     <thead>
@@ -56,15 +74,13 @@
     </thead>
     <tbody *ngFor="let category of categories; index as i">
       <tr>
-        <th scope="row">{{category.id}}</th>
-        <td>{{category.name}}
-
-
-        </td>
-        <td><button type="button" class="btn btn-warning" (click)="edit(category.id,i)">Edit</button></td>
+        <td scope="row">{{category.id}}</td>
+        <td>{{category.name}}</td>
+        <td><button type="button" class="btn btn-warning" (click)="openEditForm(category.id,i)">Edit</button></td>
         <td><button type="button" class="btn btn-danger" (click)="delete(category.id)">Delete</button></td>
 
     </tbody>
   </table>
+  <!-- END display categories -->
 
 </div>

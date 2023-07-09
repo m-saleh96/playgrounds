@@ -50,6 +50,12 @@ class ReservationsController extends Controller
             'start_time' =>$request->start_time,
             'end_time' =>$request->end_time,
             ]);
+            $timeSlot = TimeSlot::where([
+                ['day', '=', $request->day],
+                ['start_time', $request->start_time],
+            ])->first();
+            $timeSlot->status = "hold";
+            $timeSlot->save();
         return response()->json($reservations,201);
     }
 

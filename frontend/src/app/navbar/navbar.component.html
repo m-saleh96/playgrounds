@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a class="navbar-brand text-white">
-      <h1 routerLink="home"><span>play</span>Grounds</h1>
+    <a class="navbar-brand">
+      <h1 routerLink="home"><span>U</span>Field</h1>
     </a>
     <button class="navbar-toggler bg-light text-body" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -16,9 +16,9 @@
               <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="playgrounds" routerLinkActive="active">Field</a>
+              <a class="nav-link" routerLink="playgrounds" routerLinkActive="active">Fields</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isPlayer">
               <a class="nav-link" routerLink="playground/complain" routerLinkActive="active">complain</a>
             </li>
             <li class="nav-item" *ngIf="isAdmin">
@@ -27,6 +27,9 @@
             <li class="nav-item" *ngIf="isOwner">
               <a class="nav-link" routerLink="owner" routerLinkActive="active">owner</a>
             </li>
+            <li class="nav-item" *ngIf="isPlayer">
+              <a class="nav-link" routerLink="profile" routerLinkActive="active">profile</a>
+            </li>
           </ul>
         </div>
 
@@ -34,6 +37,9 @@
       <div class="x d-flex">
         <ul class="navbar-nav">
 
+          <li class="nav-item">
+            <a class="nav-link" routerLink="favourite" routerLinkActive="active"><i class="fa-regular fa-heart"></i><sup>{{counter}}</sup></a>
+          </li>
           <li *ngIf="!isLogin" class="nav-item">
             <a class="nav-link" routerLink="signup" routerLinkActive="active">Register</a>
           </li>
@@ -49,5 +55,4 @@
     </div>
   </div>
 </nav>
-
 

@@ -8,3 +8,8 @@ label{
   font-size: 20px;
   font-weight: 500;
 }
+
+a{
+  text-decoration: none;
+  color: white;
+}

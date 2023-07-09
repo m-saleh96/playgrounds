@@ -40,7 +40,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
     Route::get('a','a');
     Route::get('sendmail','sendmail');
-    
+
 });
 Route::controller(resetPasswordController::class)->group(function () {
     Route::post('sendcode', 'sendtoken');
@@ -63,7 +63,7 @@ Route::middleware(['auth:api', 'player'])->group(function () {
 Route::middleware(['auth:api', 'sameplayer'])->group(function () {
     Route::resource('review', ReviewController::class)->only(['update','destroy']);});
 
-    
+
 //should be logged in to access
 Route::middleware('auth:api')->group(function () {
     Route::resource('review', ReviewController::class)->except(['index', 'show']);
@@ -76,10 +76,10 @@ Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::get('/complaints', [ComplaintController::class, 'index']);
 
     Route::put('playground/rejected/{playground}',[PlaygroundController::class,'rejected']);
-    
+
     Route::post('playgrounds/add-admin', [PlaygroundController::class, 'addAdmin']);
     Route::get('owner', [adminController::class, 'owner']);
-    // 
+    //
 Route::resource('admin', adminController::class);
 Route::resource('user', userController::class);
 
@@ -110,4 +110,14 @@ Route::resource('reservation', ReservationsController::class);
 //payment
 Route::get('/payment',[ReservationsController::class,'payment_verify'])->name('payment-verify');
 
+
 Route::post('stripe',[StripeController::class,'StripePost']);
+
+//Favorite
+Route::post('/{playground}/favorite', [PlaygroundController::class, 'addFavorite']);
+Route::get('/favorites', [PlaygroundController::class, 'listFavorites']);
+Route::delete('/favorite', [PlaygroundController::class, 'deleteFavorite']);
+
+
+Route::post('stripe',[StripeController::class,'StripePost']);
+

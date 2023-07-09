@@ -2,12 +2,12 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { PlaygroundsComponent } from './playgrounds/playgrounds.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { WelcomeComponent } from './admin/dashboard/welcome/welcome.component';
-import { UsersComponent } from './admin/dashboard/users/users.component';
-import { ListAllCategoriesComponent } from './admin/dashboard/list-all-categories/list-all-categories.component';
-import { ListAllPlaygroundsComponent } from './admin/dashboard/list-all-playgrounds/list-all-playgrounds.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FavouriteComponent } from './favourite/favourite.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { PlayerRecieveComponent } from './player-recieve/player-recieve.component';
+import { PlayerProfileComponent } from './player-profile/player-profile.component';
+import { playerGuard } from './guards/player.guard';
 
 const routes: Routes = [
     {path:'' , redirectTo:'home' , pathMatch:'full'},
@@ -17,7 +17,12 @@ const routes: Routes = [
 
     { path:'home', component: HomeComponent},
     { path:'playgrounds', component: PlaygroundsComponent},
-    {path:'payment',component:PaymentComponent}
+    {path:'payment',component:PaymentComponent},
+    {path:'favourite',component:FavouriteComponent},
+    {path:'paymentform',component:PaymentFormComponent , canActivate:[playerGuard]},
+    {path:'recieve/:id',component:PlayerRecieveComponent , canActivate:[playerGuard]},
+    {path:'profile',component:PlayerProfileComponent , canActivate:[playerGuard]},
+
 ];
 
 @NgModule({

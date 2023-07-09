@@ -18,6 +18,11 @@ export class OwnerRecieveService {
     return this.http.post(`${this.apiUrl}/timeslot`, formData , {headers} )
   }
 
+  updateSlot(id:number , formData: any , token:any): Observable<any> {
+    const headers = new HttpHeaders({'Authorization' : `Bearer ${token}`})
+    return this.http.post(`${this.apiUrl}/timeslot/${id}`, formData , {headers} )
+  }
+
   getTime(id: any): Observable<any> {
     return this.http.get(`${this.apiUrl}/timeslot/${id}`)
   }
