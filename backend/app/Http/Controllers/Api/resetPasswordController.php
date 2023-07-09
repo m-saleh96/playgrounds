@@ -39,6 +39,10 @@ $this->otp=new Otp;
         ];
         // Mail::to('gergesvictor512@gmail.com')->send(new firstmail($mailData));
         Mail::to($request->email)->send(new firstmail($mailData));
+<<<<<<< HEAD
+
+=======
+>>>>>>> 81ab81774e53a91c185c61dffba15dd1f934c7da
 
         // return response()->json(['message' => $otp]);
         return response()->json(['message' => 'Email send successfully']);
