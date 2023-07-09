@@ -1,33 +1,8 @@
-.main {
-  background-image: url(../../../assets/images/i2.jpg);
-  background-size: cover;
-  background-position: center top;
+.footer {
+  background-color: var(--main-color2);
   color: white;
-  height: 15vh;
+  border-top: 1px solid var(--light-gray);
 }
-.container{
-  margin-top: 2%;
-}
-
-h1{
-  display: flex;
-}
-
-h4{
-  font-size: 1.2rem;
-}
-
-span{
-  font-family: 'Petit Formal Script', cursive;
-}
-
-
-.list-container {
-  display: flex;
-}
-
-
-
 h1{
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
@@ -38,5 +13,6 @@ h1{
 span{
   font-family: 'Orbitron', sans-serif;
   font-weight: 100;
-  color: white;
+  color: var(--main-color);
+
 }

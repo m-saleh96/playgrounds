@@ -8,7 +8,6 @@ import { TopRatedPlaygroundsComponent } from './top-rated-playgrounds/top-rated-
 import { TopRatedCardPlaygroundsComponent } from './top-rated-card-playgrounds/top-rated-card-playgrounds.component';
 import { ThirdPartComponent } from './third-part/third-part.component';
 import { FooterComponent } from './footer/footer.component';
-import { LastFooterComponent } from './last-footer/last-footer.component';
 import { ForthPartComponent } from './forth-part/forth-part.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ForthPartComponent } from './forth-part/forth-part.component';
     TopRatedCardPlaygroundsComponent,
     ThirdPartComponent,
     FooterComponent,
-    LastFooterComponent,
     ForthPartComponent,
   ],
   imports: [
