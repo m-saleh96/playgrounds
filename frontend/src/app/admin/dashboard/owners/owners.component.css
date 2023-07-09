@@ -6,3 +6,7 @@ table, tbody td, tr, th{
   border: 1px solid #373B3E;
 }
 
+h2
+{
+  color: var(--neon-green);
+}

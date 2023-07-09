@@ -98,7 +98,7 @@
       <th scope="col">Name</th>
       <th scope="col">Status</th>
       <th scope="col">Details</th>
-      <th scope="col">Recieves</th>
+      <th scope="col">Reservations</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
@@ -108,7 +108,7 @@
       <td>{{row.name}}</td>
       <td>{{row.status}}</td>
       <td><button type="button" class="btn btn-dark" (click)="redirectToDetails(row.id)">Show Details</button></td>
-      <td><button type="button" class="btn btn-info" (click)="recieve(row.id )">Show Recieves</button></td>
+      <td><button type="button" class="btn btn-info" (click)="recieve(row.id )">Show Reservations</button></td>
       <td><button type="button" class="btn btn-warning" (click)="updateform(row.id)">Edit</button></td>
       <td><button type="button" class="btn btn-danger" (click)="deleteField(row.id)">Delete</button></td>
     </tr>
