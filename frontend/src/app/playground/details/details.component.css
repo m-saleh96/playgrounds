@@ -55,7 +55,6 @@ td{
     height: 11rem;
     width: 100%;
     margin-bottom: 1rem;
-    border-radius: 2%;
 }
 
 .section{
@@ -69,6 +68,7 @@ button{
 }
 
 .price-txt{
+  font-weight: bold;
   color: var(--neon-green);
 }
 
