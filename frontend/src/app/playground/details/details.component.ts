@@ -89,6 +89,8 @@ export class DetailsComponent {
       (error) => { console.log('Error: ', error); }
     )
     this.toDisplay = false
+    console.log(this.token);
+
 
 
   }
