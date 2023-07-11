@@ -22,13 +22,16 @@ export class PlayerProfileComponent implements OnInit{
 
 
   canelReservations(id: number) {
-    // cancel reservation
     this.playerService.cancelReservation(id).subscribe((res) => {
-      console.log(res);
-      // reload reservation list
-      this.playerService.playerRecieve(this.userID).subscribe(res => {
-        this.recieve = res;
-      });
+      if (res == "deleted seccessfuly") {
+        window.location.reload();
+      }
+    }
+    ,(error)=>{
+      if (error.error.text == "deleted seccessfuly") {
+        window.location.reload();
+      }
+
     });
   }
 
