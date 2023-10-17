@@ -1,19 +1,6 @@
 # UField
 
-Developed an ERP system tailored for Magalis's company, providing comprehensive control and management across various key business areas. This robust system seamlessly handles:
-
-Warehouse management </br>
-Product categorization</br>
-Supplier interactions</br>
-Purchase tracking</br>
-Manufacturing processes</br>
-Financial management</br>
-Shipping logistics</br>
-System administration</br>
-HR management and control</br>
-Customized reporting</br>
-User permissions and access control</br>
-This ERP solution optimizes operational efficiency and decision-making while streamlining workflows, ensuring compliance, and enhancing overall productivity.</br>
+the project is about playgrounds in Egypt , the owners can added there playground and select all details about it with price , select time for reserve ,players can check all playgrounds and select reserve time and use visa for payment . </br>
 
 
 Skills: REST APIs · Angular · MySQL · Laravel · Bootstrap </br>
